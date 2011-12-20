@@ -8,7 +8,7 @@
     var math = null;
 	
 	// Name of our module
-    module( 'Math/Matrix', {
+    module( 'Matrix2 Tests', {
         setup: function () {
             stop();
             _math.create( {}, function( instance ) {
@@ -59,12 +59,22 @@
     });
 
     test( 'Matrix Constants', function() {
-        expect( 1 );
+        expect( 3 );
 
         deepEqual(
                 new math.Matrix2( [1, 0, 0, 1] ),				
 				math.matrix2.identity,
                 'Matrix is identity matrix'
+        );
+        deepEqual(
+                new math.Matrix2( [1, 1, 1, 1] ),				
+				math.matrix2.one,
+                'Matrix is one matrix'
+        );
+        deepEqual(
+                new math.Matrix2( [0, 0, 0, 0] ),				
+				math.matrix2.zero,
+                'Matrix is zero matrix'
         );
     });
 
@@ -95,4 +105,91 @@
                 'Two different matricies are not equal'
         );
     });
+    
+    test( 'Add/Subtract', function() {
+        expect( 2 );
+
+        var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
+        var m2 = math.Matrix2( [ 2, 3, 4, 5 ] );
+        var ml = [];
+        
+        ml.push(m1);
+        ml.push(m2);
+        
+        ok(
+            math.matrix2.equal( math.matrix2.add( ml ),
+                [ 3, 5, 
+                  7, 9] ),
+            'Addition is correct when returned'
+        );
+        
+        ok(
+            math.matrix2.equal( math.matrix2.subtract( ml ),
+                [ -1, -1, 
+                  -1, -1] ),
+            'Subtraction is correct when returned'
+        );
+
+    });
+    
+    test( 'Multiplication', function() {
+        expect( 1 );
+
+        var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
+        var m2 = math.Matrix2( [ 2, 3, 4, 5 ] );
+        var ml = [];
+        
+        ml.push(m1);
+        ml.push(m2);
+        
+        ok(
+            math.matrix2.equal( math.matrix2.multiply( ml ),
+                [ 10, 13, 
+                  22, 29] ),
+            'Result is correct when returned'
+        );
+
+    });
+    
+    test( 'Determinant', function() {
+        expect( 1 );
+
+        var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
+        
+        ok(
+            math.matrix2.equal( math.matrix2.determinant( m1 ),
+                -2 ),
+            'Determinant is correct when returned'
+        );
+
+    });
+    
+    test( 'Inverse', function() {
+        expect( 1 );
+
+        var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
+        var test = math.matrix2.inverse( m1 );
+        
+        ok(
+            math.matrix2.equal( test,
+                [ -2, 1, 1.5, -0.5 ] ),
+            'Expected: [ -2, 1, 1.5, -0.5] || Returned: ' + test[0] + ', ' + test[1]+ ', ' + test[2]+ ', ' + test[3]
+        );
+
+    });
+    
+    test( 'Transpose', function() {
+        expect( 1 );
+
+        var m1 = math.Matrix2( [ 7, 2, 1, 4 ] );
+        var test = math.matrix2.transpose( m1 );
+        
+        ok(
+            math.matrix2.equal( test,
+                [ 7, 1, 2, 4 ] ),
+            'Expected: [ 7, 1, 2, 4 ] || Returned: ' + test[0] + ', ' + test[1]+ ', ' + test[2]+ ', ' + test[3]
+        );
+
+    });
+    
 }());

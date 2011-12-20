@@ -11,7 +11,7 @@ define( function ( require ) {
         var Matrix2 = function() {
             if( 0 === arguments.length ) {
                 return matrix.$( 4, [0, 0,
-                                   0, 0] );
+                                     0, 0] );
             } else {
                 return matrix.$( 4, arguments );
             }
@@ -19,71 +19,111 @@ define( function ( require ) {
 
         var matrix2 = {
 
-                $: Matrix2,
+            $: Matrix2,
 
-                add: function( m1, m2 ) {
-//                  Test
-                    return [ m1[0] + m2[0], m1[1] + m2[1], m1[2] + m2[2], m1[3] + m2[3] ];
-                },
-
-                iadd: matrix.iadd,
-
-                subtract: function( m1, m2 ) {
-//                  Test
-                    return [ m1[0] - m2[0], m1[1] - m2[1], m1[2] - m2[2], m1[3] - m2[3] ];
-                },
-
-                isubtract: matrix.isubtract,
-
-                clear: matrix.clear,
-
-                equal: matrix.equal,
-
-                translate: function() {
-                    if( 0 === arguments.length ) {
-                        return matrix2.identity;
-                    } else if( 1 === arguments.length ) {
-                        var v = arguments[0];
-                        var x = v[0],
-                        y = v[1];
-                        return matrix.$( 4, [1 , x,
-                                           0 , y] );
-//                      Test
-                    } else {
-                        return matrix.$( 4, arguments );       
-                    }
-                },
-
-                scale: function() {
-                    if( 0 === arguments.length ) {
-                        return matrix2.identity;
-                    } else if( 1 === arguments.length ) {
-                        var v = arguments[0];
-                        var x = v[0],
-                        y = v[1];
-                        return matrix.$( 4, [x, 0,
-                                           0, y] );
-//                      Test                
-                    } else {
-                        return matrix.$( 4, arguments );
-                    }
-                },
-
-                rotate: function() {
-                    if( 0 === arguments.length ) {
-                        return matrix2.identity;
-                    } else if( 1 === arguments.length ) {
-                        var v = arguments[0];
-                        var r = v[0];
-//                      return Matrix( 4, [] );
-                        // Todo (Quaternion = w + xi + yj + zk)
-                    } else {
-                        return matrix.$( 4, arguments );
+            add: function( ml, result ) {
+                result = result || Matrix2();
+                var temp = ml[0];
+                
+                if (ml.length == 1)
+                    result = temp;
+                else {
+                    for (var i = 1; i < ml.length; ++ i) {
+                        result = matrix.add(temp, ml[i], result);
+                        temp = result;
                     }
                 }
+                return result;
+            },
 
+            subtract: function( ml, result ) {
+                result = result || Matrix2();
+                var temp = ml[0];
+                
+                if (ml.length == 1) {
+                    result = temp;
+                } else {
+                    var temp = ml[0];
+                    for (var i = 1; i < ml.length; ++ i) {
+                        result = matrix.subtract(temp, ml[i], result);
+                        temp = result;
+                    }
+                }
+                return result;
+            },
+
+            clear: matrix.clear,
+
+            equal: matrix.equal,
+
+            determinant: function( m ) {
+                return m[0]*m[3] - m[1]*m[2];
+            },
+            
+            inverse: function( m, result ) {
+            
+                var det = matrix2.determinant(m);
+                if (det == 0)
+                    throw 'matrix is singular';
+                
+                result = result || Matrix2();
+                
+                result[0] = m[3]/det;
+                result[1] = m[1]*-1/det;
+                result[2] = m[2]*-1/det;
+                result[3] = m[0]/det;
+                
+                return result;
+            },
+            
+            multiply: function( ml, result ) {
+                result = result || Matrix2();
+                
+                if (ml.length == 1)
+                    return ml[0];
+                else {
+
+                    var temp = ml[0];
+                    for (var i = 1; i < ml.length; ++ i) {
+                        result[0] = temp[0]*ml[i][0] + temp[1]*ml[i][2];
+                        result[1] = temp[0]*ml[i][1] + temp[1]*ml[i][3];
+                        result[2] = temp[2]*ml[i][0] + temp[3]*ml[i][2];
+                        result[3] = temp[2]*ml[i][1] + temp[3]*ml[i][3];
+                        temp = result;
+                    }
+                }
+                return result;
+            },
+            
+            transpose: function( m, result ) {
+                result = result || Matrix2();
+                
+                var temp = m[1];
+                result[0] = m[0];
+                result[1] = m[2];
+                result[2] = temp;
+                result[3] = m[3];
+                
+                return result;
+            }
         }
 
+        Object.defineProperty( matrix2, 'zero', {
+            get: function() {
+                return Matrix2( [0, 0,
+                                 0, 0] );
+            },
+            enumerable: true
+        });
+        
+        Object.defineProperty( matrix2, 'one', {
+            get: function() {
+                return Matrix2( [1, 1,
+                                 1, 1] );
+            },
+            enumerable: true
+        });
+        
         Object.defineProperty( matrix2, 'identity', {
             get: function() {
                 return Matrix2( [1, 0,

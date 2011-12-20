@@ -1,13 +1,13 @@
 /*jshint white: false, strict: false, plusplus: false, onevar: false,
-  nomen: false */
+nomen: false */
 /*global gladius: false, document: false, window: false, module: false, start,
-  test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
+test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
 (function() {
 
     var math = null;
-	
-	// Name of our module
+
+// Name of our module
     module( 'Math/Transform', {
         setup: function () {
             stop();
@@ -38,23 +38,6 @@
         );
     });
 
-    test( 'Translation (in-place)', function() {
-        expect( 1 );
-
-        var position = math.Vector3( 1, 2, 3 );
-        var result = math.matrix4.identity;
-        math.transform.translate( position, result );
-
-        ok(
-            math.matrix4.equal( result,
-            [ 1, 0, 0, 1,
-              0, 1, 0, 2,
-              0, 0, 1, 3,
-              0, 0, 0, 1 ] ),
-            'Translation matrix is correct'
-        );
-    });
-
     test( 'Rotation', function() {
         expect( 1 );
 
@@ -67,7 +50,11 @@
 
         ok(
             math.matrix4.equal( result, expected ),
-            'Rotation matrix is correct'
+            'Expected: [ 0, -1/2, -0.866, 0, 1, 0, 0, 0, 0, -0.866, 1/2, 0, 0, 0, 0, 1 ] \n Returned: ' 
+            + result[0] + ', ' + result[1] + ', ' + result[2] + ', ' + result[3]
+            + ', ' + result[4] + ', ' + result[5] + ', ' + result[6] + ', ' + result[7]
+            + ', ' + result[8] + ', ' + result[9] + ', ' + result[10] + ', ' + result[11]
+            + ', ' + result[12] + ', ' + result[13] + ', ' + result[14] + ', ' + result[15]
         );
 
     });
@@ -87,24 +74,4 @@
             'Scale matrix is correct'
         );
     });
-
-    test( 'Fixed', function() {
-        expect( 1 );
-
-        var position = math.Vector3( 1, 2, 3 );
-        var rotation = math.vector3.zero;
-        var scale = math.vector3.one;
-        var result = math.transform.fixed( position, rotation, scale );
-
-        ok(
-            math.matrix4.equal( result,
-            [ 1, 0, 0, 1,
-              0, 1, 0, 2,
-              0, 0, 1, 3,
-              0, 0, 0, 1 ]
-            ),
-            'Fixed transform is correct'
-        );
-    });
-
 }());
