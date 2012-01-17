@@ -99,10 +99,10 @@ define( function ( require ) {
 
             // Convert a vector3 translation to a 4x4 matrix
             translate: function( v, result ) {
-                var r = [ 1.0, 0.0, 0.0, v[0],
-                           0.0, 1.0, 0.0, v[1],
-                           0.0, 0.0, 1.0, v[2],
-                           0.0, 0.0, 0.0, 1.0 ]
+                var r = [ 1.0, 0.0, 0.0, 0.0,
+                           0.0, 1.0, 0.0, 0.0,
+                           0.0, 0.0, 1.0, 0.0,
+                           v[0], v[1], v[2], 1.0 ]
 
                 if( result ) {
                     matrix4.multiply( matrix4.$( result ), r, result );
