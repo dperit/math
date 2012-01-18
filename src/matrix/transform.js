@@ -91,7 +91,7 @@ define( function ( require ) {
                            0.0, 0.0, 0.0, 1.0 ];
 
                 if( result ) {
-                    matrix4.multiply( matrix4.$( result ), r, result );
+                    matrix4.multiply( [ matrix4.$( result ), r ], result );
                 } else {
                     return r;
                 }
@@ -105,7 +105,7 @@ define( function ( require ) {
                            v[0], v[1], v[2], 1.0 ]
 
                 if( result ) {
-                    matrix4.multiply( matrix4.$( result ), r, result );
+                    matrix4.multiply( [ matrix4.$( result ), r ], result );
                 } else {
                     return r;
                 }
