@@ -194,5 +194,15 @@
         );
 
     });
-
+    
+    /* test vector3 transformation by matrix
+    test( 'transform point', function() {
+       expect( 0 );
+       
+       var v = math.Vector3( [1, 1, 1] );
+       var m = math.Matrix4( [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1] );
+       
+       var r = math.matrix4.multiplyVector3( m, v );
+    });
+    */
 }());

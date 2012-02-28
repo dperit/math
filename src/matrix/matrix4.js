@@ -7,6 +7,7 @@ define( function ( require ) {
     return function( FLOAT_ARRAY_TYPE ) {
 
         var matrix = require( './matrix' )( FLOAT_ARRAY_TYPE );
+        var vector3 = require( '../vector/vector3' )( FLOAT_ARRAY_TYPE );
 
         var Matrix4 = function() {
             if( 0 === arguments.length ) {
@@ -87,6 +88,16 @@ define( function ( require ) {
                         temp = result;
                     }
                 }
+                return result;
+            },
+            
+            multiplyVector3: function( m, v, result ) {
+                result = result || vector3.$();
+                
+                result[0] = m[0] * v[0] + m[4] * v[1] + m[8] * v[2] + m[12];
+                result[1] = m[1] * v[0] + m[5] * v[1] + m[9] * v[2] + m[13];
+                result[2] = m[2] * v[0] + m[6] * v[1] + m[10] * v[2] + m[14];
+
                 return result;
             },
 
