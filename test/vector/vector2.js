@@ -246,5 +246,26 @@
                 ' Right angle axis test = pi/2' 
         );
     });
+    
+    test( 'projection', function() {
+        expect( 4 );
+        
+        var x_axis = math.Vector2( [1, 0] );
+        var y_axis = math.Vector2( [0, 1] );
+        var y_equals_x = math.Vector2( [1, 1] );
+        
+        ok( math.vector2.equal( math.vector2.project( y_equals_x, x_axis ),
+                                [1, 0]
+                              ), 'project y=x onto x-axis' );
+        ok( math.vector2.equal( math.vector2.project( y_equals_x, y_axis ),
+                [0, 1]
+              ), 'project y=x onto y-axis' );
+        ok( math.vector2.equal( math.vector2.project( x_axis, y_equals_x ),
+                [0.5, 0.5]
+              ), 'project x-axis onto y=x' );
+        ok( math.vector2.equal( math.vector2.project( y_axis, y_equals_x ),
+                [0.5, 0.5]
+              ), 'project y-axis onto y=x' );
+    });
 
 }());

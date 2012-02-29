@@ -59,6 +59,18 @@ define( function ( require ) {
 
                     return result;
                 },
+                
+                project: function( v1, v2, result ) {
+                    result = result || Vector2();
+                    
+                    var dp = v1[0]*v2[0] + v1[1]*v2[1];
+                    var dp_over_v2_squared_length = dp / (v2[0]*v2[0] + v2[1]*v2[1]);
+
+                    result[0] = dp_over_v2_squared_length * v2[0];
+                    result[1] = dp_over_v2_squared_length * v2[1];
+                    
+                    return result;
+                },
 
                 subtract: function( v1, v2, result ) {
                     result = result || Vector2();
