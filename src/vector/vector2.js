@@ -7,6 +7,7 @@ define( function ( require ) {
     return function( FLOAT_ARRAY_TYPE ) {
 
         var vector = require( './vector' )( FLOAT_ARRAY_TYPE );
+        var constants = require( '../constants' )();
 
         var Vector2 = function() {
             if( 0 === arguments.length ) {
@@ -69,6 +70,16 @@ define( function ( require ) {
                     result[0] = dp_over_v2_squared_length * v2[0];
                     result[1] = dp_over_v2_squared_length * v2[1];
                     
+                    return result;
+                },
+                
+                dproject: function( v1, v2, result ) {
+                    if( vector2.angle( v1, v2 ) >= constants.TAU/4 ) {
+                        result = vector2.zero;
+                    } else {
+                        result = result || Vector2();
+                        vector2.project( v1, v2, result );
+                    }                    
                     return result;
                 },
 

@@ -267,5 +267,14 @@
                 [0.5, 0.5]
               ), 'project y-axis onto y=x' );
     });
+    
+    test( 'direct projection', function() {
+        expect( 1 );
+        
+        var v1 = math.Vector2( 1, 0 );
+        var v2 = math.Vector2( -1, -1 );
+        
+        ok( math.vector2.equal( math.vector2.dproject( v1, v2 ), math.vector2.zero ), 'direct projection is zero' );
+    });
 
 }());
