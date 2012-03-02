@@ -83,6 +83,14 @@ define( function ( require ) {
 
                     return result;
                 },
+                
+                negate: function( v, result ) {
+                    for( var i = 0; i < v.length; ++ i ) {
+                        result[i] = v[i] * -1;
+                    }
+                    
+                    return result;
+                },
 
                 normalize: function( v, result ) {
                     var len = v.length;

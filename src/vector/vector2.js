@@ -50,6 +50,12 @@ define( function ( require ) {
 
                     return vector.multiply( v, s, result );
                 },
+                
+                negate: function( v, result ) {
+                    result = result || Vector2();
+                    
+                    return vector.negate( v, result );
+                },
 
                 normalize: function( v, result ) {
                     result = result || Vector2();
