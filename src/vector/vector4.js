@@ -70,6 +70,13 @@ define( function ( require ) {
 
                     return result;
                 },
+                
+                set: function( v, x, y, z, w ) {
+                    v[0] = x;
+                    v[1] = y;
+                    v[2] = z;
+                    v[3] = w;
+                },
 
                 // Computes v1 - v2
                 subtract: function( v1, v2, result ) {

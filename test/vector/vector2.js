@@ -268,13 +268,12 @@
               ), 'project y-axis onto y=x' );
     });
     
-    test( 'direct projection', function() {
+    test( 'set()', function() {
         expect( 1 );
         
-        var v1 = math.Vector2( 1, 0 );
-        var v2 = math.Vector2( -1, -1 );
-        
-        ok( math.vector2.equal( math.vector2.dproject( v1, v2 ), math.vector2.zero ), 'direct projection is zero' );
+        var v = new math.Vector2( 1, 2 );
+        math.vector2.set( v, 4, 5 );
+        ok( math.vector2.equal( v, [4, 5] ), 'v is set' );
     });
-
+    
 }());

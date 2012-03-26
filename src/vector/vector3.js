@@ -77,6 +77,12 @@ define( function ( require ) {
 
                     return result;
                 },
+                
+                set: function( v, x, y, z ) {
+                    v[0] = x;
+                    v[1] = y;
+                    v[2] = z;
+                },
 
                 subtract: function( v1, v2, result ) {
                     result = result || Vector3();

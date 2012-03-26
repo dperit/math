@@ -259,5 +259,13 @@
                 ' Right angle axis test = pi/2' 
         );
     });
+    
+    test( 'set()', function() {
+        expect( 1 );
+        
+        var v = new math.Vector4( 1, 2, 3, 4 );
+        math.vector4.set( v, 4, 5, 6, 7 );
+        ok( math.vector4.equal( v, [4, 5, 6, 7] ), 'v is set' );
+    });
 
 }());

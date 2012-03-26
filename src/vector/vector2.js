@@ -79,16 +79,11 @@ define( function ( require ) {
                     return result;
                 },
                 
-                dproject: function( v1, v2, result ) {
-                    if( vector2.angle( v1, v2 ) >= constants.TAU/4 ) {
-                        result = vector2.zero;
-                    } else {
-                        result = result || Vector2();
-                        vector2.project( v1, v2, result );
-                    }                    
-                    return result;
+                set: function( v, x, y ) {
+                    v[0] = x;
+                    v[1] = y;
                 },
-
+                
                 subtract: function( v1, v2, result ) {
                     result = result || Vector2();
 
