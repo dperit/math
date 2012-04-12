@@ -27,13 +27,13 @@ var query = location.href.split('?')[1],
     });
   }
 
-  if (query && query.base) {
-    base = query.base;
+  if (query && query.base && query.base === 'dist') {
+    base = '../dist';
   } else {
     base = '../src';
   }
 
-  if (typeof useBuilt !=== 'undefined') {
+  if (typeof useBuilt !== 'undefined') {
     src = [];
     builtMath = _Math;
   }
