@@ -3,26 +3,14 @@ nomen: false */
 /*global gladius: false, document: false, window: false, module: false, start,
 test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
-(function() {
-
-    var math = null;
+define(function() {
+  return function (_Math) {
 
 // Name of our module
-    module( 'Math/Transform', {
-        setup: function () {
-            stop();
-            _math.create( {}, function( instance ) {
-                math = instance;
-                start();
-            });
-        },
-
-        teardown: function () {
-            math = null;
-        }
-    });
+    module( 'Math/Transform' );
 
     test( 'Translation (return)', function() {
+        var math = new _Math();
         expect( 1 );
 
         var position = math.Vector3( 1, 2, 3 );
@@ -39,6 +27,7 @@ test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
     });
 
     test( 'Rotation', function() {
+        var math = new _Math();
         expect( 1 );
 
         var rotation = math.Vector3( math.TAU/2, math.TAU/3, math.TAU/4 );
@@ -50,7 +39,7 @@ test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
         ok(
             math.matrix4.equal( result, expected ),
-            'Expected: [ 0, -1/2, -0.866, 0, 1, 0, 0, 0, 0, -0.866, 1/2, 0, 0, 0, 0, 1 ] \n Returned: ' 
+            'Expected: [ 0, -1/2, -0.866, 0, 1, 0, 0, 0, 0, -0.866, 1/2, 0, 0, 0, 0, 1 ] \n Returned: '
             + result[0] + ', ' + result[1] + ', ' + result[2] + ', ' + result[3]
             + ', ' + result[4] + ', ' + result[5] + ', ' + result[6] + ', ' + result[7]
             + ', ' + result[8] + ', ' + result[9] + ', ' + result[10] + ', ' + result[11]
@@ -60,6 +49,7 @@ test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
     });
 
     test( 'Scale', function() {
+        var math = new _Math();
         expect( 1 );
 
         var scale = math.Vector3( 2, 2, 2 );
@@ -76,6 +66,7 @@ test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
     });
 
     test( 'Fixed', function() {
+        var math = new _Math();
         //expect( 4 );
         expect( 3 );
 
@@ -102,7 +93,7 @@ test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
         ok(
             math.matrix4.equal( result, expected ),
-            'Expected: [ 0, -1/2, -0.866, 0, 1, 0, 0, 0, 0, -0.866, 1/2, 0, 0, 0, 0, 1 ] \n Returned: ' 
+            'Expected: [ 0, -1/2, -0.866, 0, 1, 0, 0, 0, 0, -0.866, 1/2, 0, 0, 0, 0, 1 ] \n Returned: '
             + result[0] + ', ' + result[1] + ', ' + result[2] + ', ' + result[3]
             + ', ' + result[4] + ', ' + result[5] + ', ' + result[6] + ', ' + result[7]
             + ', ' + result[8] + ', ' + result[9] + ', ' + result[10] + ', ' + result[11]
@@ -135,4 +126,5 @@ test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
         );
 */
     });
-}());
+  };
+});

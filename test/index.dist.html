@@ -4,16 +4,9 @@
     <title>Gladius.Math Test Suite</title>
     <link rel="stylesheet" href="../tools/qunit/qunit/qunit.css" type="text/css" media="screen">
     <script src="../tools/qunit/qunit/qunit.js"></script>
-    <script src="../math.js"></script>
-
-    <script src="math.js"></script>
-    <script src="vector/vector2.js"></script>
-    <script src="vector/vector3.js"></script>
-    <script src="vector/vector4.js"></script>
-    <script src="matrix/matrix2.js"></script>
-    <script src="matrix/transform.js"></script>
-
-    
+    <script src="../dist/_math.js"></script>
+    <script>var useBuilt = true;</script>
+    <script data-main="unit-tests" src="../external/require.js"></script>
     <style>
       #test-canvas {
         width: 300px;
