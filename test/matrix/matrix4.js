@@ -3,26 +3,14 @@
 /*global gladius: false, document: false, window: false, module: false, start,
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
-(function() {
+define(function() {
+  return function (_Math) {
 
-    var math = null;
-	
-	// Name of our module
-    module( 'Matrix4 Tests', {
-        setup: function () {
-            stop();
-            _math.create( {}, function( instance ) {
-                math = instance;
-                start();
-            });
-        },
-
-        teardown: function () {
-            math = null;
-        }
-    });
+    // Name of our module
+    module( 'Matrix4 Tests' );
 
     test( 'Create Matrix4 & Compare', function() {
+        var math = new _Math();
         expect( 4 );
 
         var matrix4 = new math.Matrix4( [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] ); //Identity matrix
@@ -45,6 +33,7 @@
     });
 
     test( 'Default Matrix 4x4', function() {
+        var math = new _Math();
         expect( 1 );
 
         deepEqual(
@@ -55,26 +44,28 @@
     });
 
     test( 'Matrix Constants', function() {
+        var math = new _Math();
         expect( 3 );
 
         deepEqual(
-                new math.Matrix4( [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] ),				
+                new math.Matrix4( [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] ),
 				math.matrix4.identity,
                 'Matrix is identity matrix'
         );
         deepEqual(
-                new math.Matrix4( [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] ),				
+                new math.Matrix4( [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] ),
 				math.matrix4.one,
                 'Matrix is one matrix'
         );
         deepEqual(
-                new math.Matrix4( [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] ),				
+                new math.Matrix4( [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] ),
 				math.matrix4.zero,
                 'Matrix is zero matrix'
         );
     });
 
     test( 'Clone Matrix', function() {
+        var math = new _Math();
         expect( 1 );
 
         var m1 = new math.Matrix4( [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] );
@@ -86,6 +77,7 @@
     });
 
     test( 'Equality of 4 x 4 Matricies', function() {
+        var math = new _Math();
         expect( 2 );
 
         var m1 = new math.Matrix4( [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] );
@@ -101,17 +93,18 @@
                 'Two different matricies are not equal'
         );
     });
-    
+
     test( 'Add/Subtract', function() {
+        var math = new _Math();
         expect( 2 );
 
         var m1 = math.Matrix4( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] );
         var m2 = math.Matrix4( [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ] );
         var ml = [];
-        
+
         ml.push(m1);
         ml.push(m2);
-        
+
         ok(
             math.matrix4.equal( math.matrix4.add( ml ),
                 [ 3, 5, 7, 9,
@@ -120,7 +113,7 @@
                  27, 29, 31, 33] ),
             'Addition is correct when returned'
         );
-        
+
         ok(
             math.matrix4.equal( math.matrix4.subtract( ml ),
                 [ -1, -1, -1, -1,
@@ -131,17 +124,18 @@
         );
 
     });
-    
+
     test( 'Multiplication', function() {
+        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix4( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] );
         var m2 = math.Matrix4( [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ] );
         var ml = [];
-        
+
         ml.push(m1);
         ml.push(m2);
-        
+
         ok(
             math.matrix4.equal( math.matrix4.multiply( ml ),
                 [ 100, 110, 120, 130,
@@ -152,12 +146,13 @@
         );
 
     });
-    
+
     test( 'Determinant', function() {
+        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix4( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] );
-        
+
         ok(
             math.matrix4.equal( math.matrix4.determinant( m1 ),
                 0 ),
@@ -165,13 +160,14 @@
         );
 
     });
-    
+
     test( 'Inverse', function() {
+        var math = new _Math();
         expect( 1 );
-  
+
         var m1 = math.Matrix4( [ 1, 0, 0, 1, 0, 2, 1, 0, 2, 0, 1, 1, 1, 1, 0, 1 ] );
         var test = math.matrix4.inverse( m1 );
-        
+
         ok(
             math.matrix4.equal( test,
                 [ -3,-1,1,2,-1,0,0,1,2,1,0,-2,4,1,-1,-2 ] ),
@@ -179,30 +175,33 @@
         );
 
     });
-    
+
     test( 'Transpose', function() {
+        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix4( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] );
         var test = math.matrix4.transpose( m1 );
-        
+
         ok(
             math.matrix4.equal( test,
                 [ 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15, 4, 8, 12, 16 ] ),
-            'Expected: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] || Returned: ' 
+            'Expected: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] || Returned: '
             + test[0] + ', ' + test[1]+ ', ' + test[2]+ ', ' + test[3]
         );
 
     });
-    
+
     /* test vector3 transformation by matrix
     test( 'transform point', function() {
+       var math = new _Math();
        expect( 0 );
-       
+
        var v = math.Vector3( [1, 1, 1] );
        var m = math.Matrix4( [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1] );
-       
+
        var r = math.matrix4.multiplyVector3( m, v );
     });
     */
-}());
+  };
+});
