@@ -33,7 +33,7 @@ var query = location.href.split('?')[1],
     base = '../src';
   }
 
-  if (typeof useBuilt !=== 'undefined') {
+  if (typeof useBuilt !== 'undefined') {
     src = [];
     builtMath = _Math;
   }
