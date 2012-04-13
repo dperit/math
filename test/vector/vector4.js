@@ -3,26 +3,14 @@
 /*global gladius: false, document: false, window: false, module: false, start,
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
-(function() {
-
-    var math = null;
+define(function() {
+  return function (_Math) {
 
     // Name of our module
-    module( 'Vector4 Tests', {
-        setup: function () {
-            stop();
-            _math.create( {}, function( instance ) {
-                math = instance;
-                start();
-            });
-        },
-
-        teardown: function () {
-            math = null;
-        }
-    });
+    module( 'Vector4 Tests' );
 
     test( 'Basic', function() {
+        var math = new _Math();
         expect( 6 );
 
         var vec4 = new math.Vector4( [1, 2, 3, 4] );
@@ -46,7 +34,7 @@
                 vec4[0] === 1 && vec4[1] === 2 && vec4[2] === 3 && vec4[3] === 4,
                 'vec4 elements are [1, 2, 3, 4]'
         );
-        
+
         // Test vector clear
         var vec1 = new math.Vector4( [17 , 22, 14, 2] );
         var vec3 = new math.Vector4( [0, 0, 0, 0] );
@@ -55,10 +43,11 @@
                 math.vector4.equal( vec1, vec3 ),
                 'vector.clear, set to [0,0,0, 0]'
         );
-        
+
     });
 
     test( 'Defaults', function() {
+        var math = new _Math();
         expect( 1 );
 
         deepEqual(
@@ -69,6 +58,7 @@
     });
 
     test( 'Constants', function() {
+        var math = new _Math();
         expect( 6 );
 
         math.vector4.x[0] = -0.88262;
@@ -110,6 +100,7 @@
     });
 
     test( 'Clone', function() {
+        var math = new _Math();
         expect( 1 );
 
         var vec1 = new math.Vector4( [0, 1, 3, 4] );
@@ -121,6 +112,7 @@
     });
 
     test( 'Equality', function() {
+        var math = new _Math();
         expect( 3 );
 
         var vec1 = new math.Vector4( [1, 1, 1, 1.00000000001] );
@@ -135,7 +127,7 @@
                 !math.vector4.equal( vec1, vec3 ),
                 'Two different vectors are not equal'
         );
-        
+
         var vec4 = new math.Vector4( [2.000002, 3.000002, 4.000002, 5.000002] );
         deepEqual(
                 math.vector4.equal( vec3, vec4 ),
@@ -145,6 +137,7 @@
     });
 
     test( 'Length', function() {
+        var math = new _Math();
         expect( 1 );
 
         var vec1 = new math.Vector4( [1, 1, 1, 1] );
@@ -155,6 +148,7 @@
     });
 
     test( 'Addition', function() {
+        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector4( [1, 1, 1, 1] );
@@ -174,6 +168,7 @@
     });
 
     test( 'Subtraction', function() {
+        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector4( [1, 1, 1, 1] );
@@ -192,6 +187,7 @@
     });
 
     test( 'Scalar multiplication', function() {
+        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector4( [2, 3, 4, 5] );
@@ -208,8 +204,9 @@
                 '(2, 3, 4, 5) * 3 = [6, 9, 12, 15]'
         );
     });
-    
+
     test( 'Dot Product / Normalize', function() {
+        var math = new _Math();
         expect( 3 );
 
         var vec1 = new math.Vector4( [12, -5, 7, 1] );
@@ -227,22 +224,23 @@
                 Math.round ( (35*Math.sqrt(3/73)) * Math.pow(10,6) ), // Correct to 6 digits
                 ' [ (12/13), (-5/13) ] . [ 10, 4 ] = (100/13) '
         );
-        
+
         // Normalized vector
         var isNormalized = new math.Vector4( [ 1/2, 1/2, 1/2, 1/2] );
         deepEqual (
                 math.vector4.normalize( isNormalized ),
                 isNormalized,
-                'Normalized vector is already normalized' 
+                'Normalized vector is already normalized'
         );
     });
-    
+
     test( 'Angle()', function() {
+        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector4( [10, 8, 2, 7] );
         var vec2 = new math.Vector4( [6, 6, 1, -4] );
-        
+
         var cond = math.vector4.angle( vec1, vec2 );
         var res = Math.acos(82/(Math.sqrt(19313)));
         deepEqual(
@@ -250,22 +248,23 @@
                 Math.round ( res * Math.pow(10,6) ), // Correct to 6 digits
                 ' angle( vec1, vec2 ) = acos(82/(Math.sqrt(19313)))'
         );
-        
+
         var vec3 = new math.Vector4( [1, 0, 0, 0] );
         var vec4 = new math.Vector4( [0, 0, 1, 0] );
         deepEqual(
                 math.vector4.angle(vec3, vec4),
                 (Math.PI/2),
-                ' Right angle axis test = pi/2' 
+                ' Right angle axis test = pi/2'
         );
     });
-    
+
     test( 'set()', function() {
+        var math = new _Math();
         expect( 1 );
-        
+
         var v = new math.Vector4( 1, 2, 3, 4 );
         math.vector4.set( v, 4, 5, 6, 7 );
         ok( math.vector4.equal( v, [4, 5, 6, 7] ), 'v is set' );
     });
-
-}());
+  };
+});

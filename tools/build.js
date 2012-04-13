@@ -13,12 +13,6 @@
   paths: {
   },
 
-  // Use has branch trimming in the build to remove the document.write
-  // code in src/gladius.js after a minification is done.
-  has: {
-    'source-config': false
-  },
-
   // Do not minify with the requirejs optimizer, to allow shipping
   // a non-minified and minified version. The Makefile will do the
   // minification.
@@ -31,13 +25,9 @@
   name: '../tools/almond',
 
   // Files to include along with almond. Their nested dependencies will also be
-  // included. Subsystems are listed explicitly because gladius-src.js does not
-  // have explicit dependencies for them, but uses them on demand. Also,
-  // gladius.js references gladius-src in a document.write string, so it will
-  // not be found by the AST analysis done in the optimizer.
+  // included.
   include: [
-            'math',
-            'math-src'
+            '_math'
            ],
 
   // Wraps the built file in a closure and exports gladius as a global.
@@ -47,5 +37,5 @@
   },
 
   // The built gladius.js file for use by web sites.
-  out: '../dist/math.js'
+  out: '../dist/_math.js'
 })

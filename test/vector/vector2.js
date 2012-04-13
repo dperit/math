@@ -3,26 +3,14 @@
 /*global gladius: false, document: false, window: false, module: false, start,
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
-(function() {
-
-    var math = null;
+define(function() {
+  return function (_Math) {
 
     // Name of our module
-    module( 'Vector2 Tests', {
-        setup: function () {
-            stop();
-            _math.create( {}, function( instance ) {
-                math = instance;
-                start();
-            });
-        },
-
-        teardown: function () {
-            math = null;
-        }
-    });
+    module( 'Vector2 Tests' );
 
     test( 'Basic', function() {
+        var math = new _Math();
         expect( 6 );
 
         var vec2 = new math.Vector2( [1, 2] );
@@ -46,7 +34,7 @@
                 vec2[0] === 1 && vec2[1] === 2,
                 'vec2 elements are [1, 2]'
         );
-        
+
         // Test vector clear
         var vec1 = new math.Vector2( [17 , 22] );
         var vec3 = new math.Vector2( [0, 0] );
@@ -55,10 +43,11 @@
                 math.vector2.equal( vec1, vec3 ),
                 vec1[0] + ' vector.clear, set to 0,0 ' + vec1[1]
         );
-        
+
     });
 
     test( 'Defaults', function() {
+        var math = new _Math();
         expect( 1 );
 
         deepEqual(
@@ -69,6 +58,7 @@
     });
 
     test( 'Constants', function() {
+        var math = new _Math();
         expect( 4 );
 
         math.vector2.x[0] = 8.7;
@@ -98,7 +88,8 @@
     });
 
     test( 'Clone', function() {
-        expect( 1 );
+        var math = new _Math();
+       expect( 1 );
 
         var vec1 = new math.Vector2( [0, 1] );
         deepEqual(
@@ -109,12 +100,13 @@
     });
 
     test( 'Equality', function() {
+        var math = new _Math();
         expect( 3 );
 
         var vec1 = new math.Vector2( [1, 1.00000000001] );
         var vec2 = new math.Vector2( [1, 1] );
         var vec3 = new math.Vector2( [2, 3] );
-        
+
         var vec4 = new math.Vector2( [2.000002, 3.000002] );
 
         ok(
@@ -133,6 +125,7 @@
     });
 
     test( 'Length', function() {
+        var math = new _Math();
         expect( 1 );
 
         var vec1 = new math.Vector2( [1, 1] );
@@ -143,6 +136,7 @@
     });
 
     test( 'Addition', function() {
+        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector2( [1, 1] );
@@ -162,6 +156,7 @@
     });
 
     test( 'Subtraction', function() {
+        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector2( [1, 1] );
@@ -180,6 +175,7 @@
     });
 
     test( 'Scalar multiplication', function() {
+        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector2( [2, 3] );
@@ -196,8 +192,9 @@
                 '(2, 3) *= 3'
         );
     });
-    
+
     test( 'Dot Product / Normalize', function() {
+        var math = new _Math();
         expect( 3 );
 
         var vec1 = new math.Vector2( [12, -5] );
@@ -214,22 +211,23 @@
                 Math.round ( (100/13) * Math.pow(10,6) ), // Correct to 6 digits
                 ' [ (12/13), (-5/13) ] . [ 10, 4 ] = (100/13) '
         );
-        
+
         // Normalized vector
         var isNormalized = new math.Vector2( [ 1/Math.sqrt(2), 1/Math.sqrt(2) ] );
         deepEqual (
                 math.vector2.normalize( isNormalized ),
                 isNormalized,
-                'Normalized vector is already normalized' 
+                'Normalized vector is already normalized'
         );
     });
-    
+
     test( 'Angle()', function() {
+        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector2( [10, 8] );
         var vec2 = new math.Vector2( [6, 6] );
-        
+
         var cond = math.vector2.angle( vec1, vec2 );
         var res = Math.acos(9/(Math.sqrt(82)));
         deepEqual(
@@ -237,23 +235,24 @@
                 Math.round ( res * Math.pow(10,6) ), // Correct to 6 digits
                 ' angle( vec1, vec2 ) = acos(9/(Math.sqrt(82)))'
         );
-        
+
         var vec3 = new math.Vector2( [1, 0] );
         var vec4 = new math.Vector2( [0, 1] );
         deepEqual(
                 math.vector2.angle(vec3, vec4),
                 (Math.PI/2),
-                ' Right angle axis test = pi/2' 
+                ' Right angle axis test = pi/2'
         );
     });
-    
+
     test( 'projection', function() {
+        var math = new _Math();
         expect( 4 );
-        
+
         var x_axis = math.Vector2( [1, 0] );
         var y_axis = math.Vector2( [0, 1] );
         var y_equals_x = math.Vector2( [1, 1] );
-        
+
         ok( math.vector2.equal( math.vector2.project( y_equals_x, x_axis ),
                                 [1, 0]
                               ), 'project y=x onto x-axis' );
@@ -267,13 +266,14 @@
                 [0.5, 0.5]
               ), 'project y-axis onto y=x' );
     });
-    
+
     test( 'set()', function() {
+        var math = new _Math();
         expect( 1 );
-        
+
         var v = new math.Vector2( 1, 2 );
         math.vector2.set( v, 4, 5 );
         ok( math.vector2.equal( v, [4, 5] ), 'v is set' );
     });
-    
-}());
+  };
+});

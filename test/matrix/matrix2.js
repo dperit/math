@@ -3,26 +3,14 @@
 /*global gladius: false, document: false, window: false, module: false, start,
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
-(function() {
+define(function() {
+  return function (_Math) {
 
-    var math = null;
-	
-	// Name of our module
-    module( 'Matrix2 Tests', {
-        setup: function () {
-            stop();
-            _math.create( {}, function( instance ) {
-                math = instance;
-                start();
-            });
-        },
-
-        teardown: function () {
-            math = null;
-        }
-    });
+    // Name of our module
+    module( 'Matrix2 Tests' );
 
     test( 'Create Matrix2 & Compare', function() {
+        var math = new _Math();
         expect( 5 );
 
         var matrix2 = new math.Matrix2( [1, 0, 0, 1] ); //Identity matrix
@@ -49,6 +37,7 @@
     });
 
     test( 'Default Matrix [0, 0, 0, 0]', function() {
+        var math = new _Math();
         expect( 1 );
 
         deepEqual(
@@ -59,26 +48,28 @@
     });
 
     test( 'Matrix Constants', function() {
+        var math = new _Math();
         expect( 3 );
 
         deepEqual(
-                new math.Matrix2( [1, 0, 0, 1] ),				
+                new math.Matrix2( [1, 0, 0, 1] ),
 				math.matrix2.identity,
                 'Matrix is identity matrix'
         );
         deepEqual(
-                new math.Matrix2( [1, 1, 1, 1] ),				
+                new math.Matrix2( [1, 1, 1, 1] ),
 				math.matrix2.one,
                 'Matrix is one matrix'
         );
         deepEqual(
-                new math.Matrix2( [0, 0, 0, 0] ),				
+                new math.Matrix2( [0, 0, 0, 0] ),
 				math.matrix2.zero,
                 'Matrix is zero matrix'
         );
     });
 
     test( 'Clone Matrix', function() {
+        var math = new _Math();
         expect( 1 );
 
         var m1 = new math.Matrix2( [1, 0, 0, 1] );
@@ -90,6 +81,7 @@
     });
 
     test( 'Equality of 2 x 2 Matricies', function() {
+        var math = new _Math();
         expect( 2 );
 
         var m1 = new math.Matrix2( [1, 1, 1, 1] );
@@ -105,57 +97,60 @@
                 'Two different matricies are not equal'
         );
     });
-    
+
     test( 'Add/Subtract', function() {
+        var math = new _Math();
         expect( 2 );
 
         var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
         var m2 = math.Matrix2( [ 2, 3, 4, 5 ] );
         var ml = [];
-        
+
         ml.push(m1);
         ml.push(m2);
-        
+
         ok(
             math.matrix2.equal( math.matrix2.add( ml ),
-                [ 3, 5, 
+                [ 3, 5,
                   7, 9] ),
             'Addition is correct when returned'
         );
-        
+
         ok(
             math.matrix2.equal( math.matrix2.subtract( ml ),
-                [ -1, -1, 
+                [ -1, -1,
                   -1, -1] ),
             'Subtraction is correct when returned'
         );
 
     });
-    
+
     test( 'Multiplication', function() {
+        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
         var m2 = math.Matrix2( [ 2, 3, 4, 5 ] );
         var ml = [];
-        
+
         ml.push(m1);
         ml.push(m2);
-        
+
         ok(
             math.matrix2.equal( math.matrix2.multiply( ml ),
-                [ 10, 13, 
+                [ 10, 13,
                   22, 29] ),
             'Result is correct when returned'
         );
 
     });
-    
+
     test( 'Determinant', function() {
+        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
-        
+
         ok(
             math.matrix2.equal( math.matrix2.determinant( m1 ),
                 -2 ),
@@ -163,13 +158,14 @@
         );
 
     });
-    
+
     test( 'Inverse', function() {
+        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
         var test = math.matrix2.inverse( m1 );
-        
+
         ok(
             math.matrix2.equal( test,
                 [ -2, 1, 1.5, -0.5 ] ),
@@ -177,13 +173,14 @@
         );
 
     });
-    
+
     test( 'Transpose', function() {
+        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix2( [ 7, 2, 1, 4 ] );
         var test = math.matrix2.transpose( m1 );
-        
+
         ok(
             math.matrix2.equal( test,
                 [ 7, 1, 2, 4 ] ),
@@ -191,5 +188,5 @@
         );
 
     });
-    
-}());
+  };
+});
