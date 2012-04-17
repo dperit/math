@@ -123,7 +123,7 @@ define( function ( require ) {
             transpose: function (m , result) {
                 result = result || Matrix4();
                 
-                result[0] = m[0], 
+                result[0] = m[0];
                 result[1] = m[4];
                 result[2] = m[8];
                 result[3] = m[12];
