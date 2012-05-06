@@ -1,20 +1,25 @@
 QUnit.config.autostart = false;
 
+var query = location.href.split( '?' )[1];
+var parts = query && query.split( 
+    query.indexOf( "&amp;" ) !== -1 ? "&amp;" : '&' );
+
 require.config({
   baseUrl: "../src",
   paths: {
-    "core-lib": "../lib",
-    "base": "base",
-    "common": "common",
-    "core": "core",
-    "tests": "../tests",   
+    "tests": "../tests",
   }
 });
 
+var srcNames = ["_math"];
+
 require( ["tests/unit-tests"], function( testNames ) {
-  require( testNames, function() {
+  var moduleNames = srcNames.concat( testNames );
+  require( moduleNames, function( _Math ) {
     QUnit.start();
-    var testModules = Array.prototype.slice.call( arguments );
+    
+    var testModules = Array.prototype.slice.call( arguments, 
+        srcNames.length );
     
     test( "tests modules are valid", function() {
       expect( testModules.length );
@@ -24,7 +29,7 @@ require( ["tests/unit-tests"], function( testNames ) {
     });
     
     testModules.forEach( function( testModule ) {
-      testModule();
+      testModule( _Math );
     });
   });
 });
