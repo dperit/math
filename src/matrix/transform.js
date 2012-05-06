@@ -35,6 +35,7 @@ define( function ( require ) {
             // Convert a vector rotation (in radians) to a 4x4 matrix
             rotate: function( v, result ) {
                 var r = result || matrix4.identity;
+                var ml;
 
                 var sinA,
                     cosA;
@@ -102,7 +103,7 @@ define( function ( require ) {
                 var r = [ 1.0, 0.0, 0.0, 0.0,
                            0.0, 1.0, 0.0, 0.0,
                            0.0, 0.0, 1.0, 0.0,
-                           v[0], v[1], v[2], 1.0 ]
+                           v[0], v[1], v[2], 1.0 ];
 
                 if( result ) {
                     matrix4.multiply( [ r, matrix4.$( result ) ], result );

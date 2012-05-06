@@ -1,7 +1,3 @@
-/*jshint white: false, strict: false, plusplus: false, onevar: false,
-  nomen: false */
-/*global define: false, console: false, window: false, setTimeout: false */
-
 define( function ( require ) {
 
     return function( FLOAT_ARRAY_TYPE ) {
@@ -43,7 +39,7 @@ define( function ( require ) {
                 if (ml.length == 1) {
                     result = temp;
                 } else {
-                    var temp = ml[0];
+                    temp = ml[0];
                     for (var i = 1; i < ml.length; ++ i) {
                         result = matrix.subtract(temp, ml[i], result);
                         temp = result;
@@ -63,7 +59,7 @@ define( function ( require ) {
             inverse: function( m, result ) {
             
                 var det = matrix2.determinant(m);
-                if (det == 0)
+                if (det === 0)
                     throw 'matrix is singular';
                 
                 result = result || Matrix2();
@@ -106,7 +102,7 @@ define( function ( require ) {
                 
                 return result;
             }
-        }
+        };
 
         Object.defineProperty( matrix2, 'zero', {
             get: function() {

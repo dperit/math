@@ -24,7 +24,7 @@ define( function ( require ) {
             result[1] = v1[1] + v2[1];
             
             return result;
-        };
+        }
         
         function _angle( v1, v2 ) {
             var nV1 = Vector2();
@@ -34,19 +34,19 @@ define( function ( require ) {
             vector.normalize(v2, nV2);
 
             return Math.acos( vector.dot( nV1, nV2 ) );
-        };
+        }
         
         function _clear( v ) {
             v[0] = 0;
             v[1] = 0;
-        };
+        }
         
         function _dot( v1, v2 ) {
             var r = 0;
             r += v1[0] * v2[0];
             r += v1[1] * v2[1];
             return r;
-        };
+        }
         
         function _equal( v1, v2, e ) {
             e = e || 0.000001;
@@ -61,14 +61,14 @@ define( function ( require ) {
             }
 
             return true;
-        };
+        }
         
         function _length( v ) {
             var r = 0;
             r += v[0] * v[0];
             r += v[1] * v[1];
             return Math.sqrt( r );
-        };
+        }
         
         function _multiply( v, s, result ) {
             result = result || Vector2();
@@ -77,7 +77,7 @@ define( function ( require ) {
             result[1] = s * v[1];
             
             return result;
-        };
+        }
         
         function _negate( v, result ) {
             result = result || Vector2();
@@ -86,7 +86,7 @@ define( function ( require ) {
             result[1] = -1 * v[1];
             
             return result;
-        };
+        }
         
         function _normalize( v, result ) {
             result = result || Vector2();
@@ -96,7 +96,7 @@ define( function ( require ) {
             result[1] = v[1]/l;
             
             return result;
-        };
+        }
         
         function _project( v1, v2, result ) {
             result = result || Vector2();
@@ -108,7 +108,7 @@ define( function ( require ) {
             result[1] = dp_over_v2_squared_length * v2[1];
             
             return result;
-        };
+        }
         
         var vector2 = {                
                 $: Vector2,          

@@ -1,0 +1,6 @@
+tools
+node_modules
+dist
+.git
+lib
+tests/old-unit-tests.js

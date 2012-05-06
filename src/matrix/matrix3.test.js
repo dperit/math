@@ -13,7 +13,7 @@ define(
         });
 
         test( 'create Matrix3, compare', function() {
-          expect( 5 );
+          expect( 13 );
           var math = this.math;
 
           var matrix3 = new math.Matrix3( [1, 0, 0, 0, 1, 0, 0, 0, 1] ); //Identity matrix
@@ -33,12 +33,15 @@ define(
               9 === matrix3.length,
               'matrix3 has length 9'
           );
-          ok(
-              matrix3[0] === 1 && matrix3[1] === 0 && matrix3[2] === 0
-              && matrix3[3] === 0 && matrix3[4] === 1 && matrix3[5] === 0
-              && matrix3[6] === 0 && matrix3[7] === 0 && matrix3[8] === 1,
-              'matrix3 elements are [1, 0, 0, 0, 1, 0, 0, 0, 1]'
-          );
+          equal( matrix3[0], 1 );
+          equal( matrix3[1], 0 );
+          equal( matrix3[2], 0 );
+          equal( matrix3[3], 0 );
+          equal( matrix3[4], 1 );
+          equal( matrix3[5], 0 );
+          equal( matrix3[6], 0 );
+          equal( matrix3[7], 0 );
+          equal( matrix3[8], 1 );
         });
 
         test( 'default', function() {

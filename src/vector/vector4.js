@@ -1,7 +1,3 @@
-/*jshint white: false, strict: false, plusplus: false, onevar: false,
-  nomen: false */
-/*global define: false, console: false, window: false, setTimeout: false */
-
 define( function ( require ) {
 
     return function( FLOAT_ARRAY_TYPE ) {
@@ -85,7 +81,7 @@ define( function ( require ) {
                     return vector.subtract( v1, v2, result );
                 }
 
-        }
+        };
         
         Object.defineProperty( vector4, 'x', {
             get: function() {

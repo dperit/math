@@ -7,7 +7,7 @@ var parts = query && query.split(
 require.config({
   baseUrl: "../src",
   paths: {
-    "tests": "../tests",
+    "tests": "../tests"
   }
 });
 

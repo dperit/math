@@ -1,7 +1,3 @@
-/*jshint white: false, strict: false, plusplus: false, onevar: false,
-  nomen: false */
-/*global define: false, console: false, window: false, setTimeout: false */
-
 define( function ( require ) {
 
     return function( FLOAT_ARRAY_TYPE ) {
@@ -113,42 +109,42 @@ define( function ( require ) {
         
         Object.defineProperty( vector, 'x', {
             get: function() {
-                return Vector2( [1, 0] );
+                return Vector( 2, [1, 0] );
             },
             enumerable: true
         });
 
         Object.defineProperty( vector, 'u', {
             get: function() {
-                return Vector2( [1, 0] );
+                return Vector( 2, [1, 0] );
             },
             enumerable: true
         });
 
         Object.defineProperty( vector, 'y', {
             get: function() {
-                return Vector2( [0, 1] );
+                return Vector( 2, [0, 1] );
             },
             enumerable: true
         });
 
         Object.defineProperty( vector, 'v', {
             get: function() {
-                return Vector2( [0, 1] );
+                return Vector( 2, [0, 1] );
             },
             enumerable: true
         });
 
         Object.defineProperty( vector, 'zero', {
             get: function() {
-                return Vector2( [0, 0] );
+                return Vector( 2, [0, 0] );
             },
             enumerable: true
         });
 
         Object.defineProperty( vector, 'one', {
             get: function() {
-                return Vector2( [1, 1] );
+                return Vector( 2, [1, 1] );
             },
             enumerable: true
         });
