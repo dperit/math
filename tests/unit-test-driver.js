@@ -27,7 +27,7 @@ require( ["tests/unit-tests"], function( testNames ) {
         ok( typeof testModule === "function", "test module is a function" );
       });
     });
-    
+
     testModules.forEach( function( testModule ) {
       testModule( _Math );
     });
