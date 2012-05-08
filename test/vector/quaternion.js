@@ -4,7 +4,7 @@
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
 define(function() {
-  return function (_Math) {
+  return function (math) {
     // Name of our module
     module( 'Quaternion Tests' );
   };

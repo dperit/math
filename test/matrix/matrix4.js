@@ -4,13 +4,12 @@
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
 define(function() {
-  return function (_Math) {
+  return function (math) {
 
     // Name of our module
     module( 'Matrix4 Tests' );
 
     test( 'Create Matrix4 & Compare', function() {
-        var math = new _Math();
         expect( 4 );
 
         var matrix4 = new math.Matrix4( [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] ); //Identity matrix
@@ -33,7 +32,6 @@ define(function() {
     });
 
     test( 'Default Matrix 4x4', function() {
-        var math = new _Math();
         expect( 1 );
 
         deepEqual(
@@ -44,7 +42,6 @@ define(function() {
     });
 
     test( 'Matrix Constants', function() {
-        var math = new _Math();
         expect( 3 );
 
         deepEqual(
@@ -65,7 +62,6 @@ define(function() {
     });
 
     test( 'Clone Matrix', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = new math.Matrix4( [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1] );
@@ -77,7 +73,6 @@ define(function() {
     });
 
     test( 'Equality of 4 x 4 Matricies', function() {
-        var math = new _Math();
         expect( 2 );
 
         var m1 = new math.Matrix4( [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] );
@@ -95,7 +90,6 @@ define(function() {
     });
 
     test( 'Add/Subtract', function() {
-        var math = new _Math();
         expect( 2 );
 
         var m1 = math.Matrix4( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] );
@@ -126,7 +120,6 @@ define(function() {
     });
 
     test( 'Multiplication', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix4( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] );
@@ -148,7 +141,6 @@ define(function() {
     });
 
     test( 'Determinant', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix4( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] );
@@ -162,7 +154,6 @@ define(function() {
     });
 
     test( 'Inverse', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix4( [ 1, 0, 0, 1, 0, 2, 1, 0, 2, 0, 1, 1, 1, 1, 0, 1 ] );
@@ -177,7 +168,6 @@ define(function() {
     });
 
     test( 'Transpose', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix4( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] );

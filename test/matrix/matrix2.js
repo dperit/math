@@ -4,13 +4,12 @@
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
 define(function() {
-  return function (_Math) {
+  return function (math) {
 
     // Name of our module
     module( 'Matrix2 Tests' );
 
     test( 'Create Matrix2 & Compare', function() {
-        var math = new _Math();
         expect( 5 );
 
         var matrix2 = new math.Matrix2( [1, 0, 0, 1] ); //Identity matrix
@@ -37,7 +36,6 @@ define(function() {
     });
 
     test( 'Default Matrix [0, 0, 0, 0]', function() {
-        var math = new _Math();
         expect( 1 );
 
         deepEqual(
@@ -48,7 +46,6 @@ define(function() {
     });
 
     test( 'Matrix Constants', function() {
-        var math = new _Math();
         expect( 3 );
 
         deepEqual(
@@ -69,7 +66,6 @@ define(function() {
     });
 
     test( 'Clone Matrix', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = new math.Matrix2( [1, 0, 0, 1] );
@@ -81,7 +77,6 @@ define(function() {
     });
 
     test( 'Equality of 2 x 2 Matricies', function() {
-        var math = new _Math();
         expect( 2 );
 
         var m1 = new math.Matrix2( [1, 1, 1, 1] );
@@ -99,7 +94,6 @@ define(function() {
     });
 
     test( 'Add/Subtract', function() {
-        var math = new _Math();
         expect( 2 );
 
         var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
@@ -126,7 +120,6 @@ define(function() {
     });
 
     test( 'Multiplication', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
@@ -146,7 +139,6 @@ define(function() {
     });
 
     test( 'Determinant', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
@@ -160,7 +152,6 @@ define(function() {
     });
 
     test( 'Inverse', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix2( [ 1, 2, 3, 4 ] );
@@ -175,7 +166,6 @@ define(function() {
     });
 
     test( 'Transpose', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix2( [ 7, 2, 1, 4 ] );

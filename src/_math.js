@@ -149,6 +149,6 @@ define( function ( require ) {
         
     };
 
-    return _Math;
+    return new _Math();
 
 });

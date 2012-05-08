@@ -4,13 +4,12 @@
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
 define(function() {
-  return function (_Math) {
+  return function (math) {
 
     // Name of our module
     module( 'Matrix3 Tests' );
 
     test( 'Create Matrix3 & Compare', function() {
-        var math = new _Math();
         expect( 5 );
 
         var matrix3 = new math.Matrix3( [1, 0, 0, 0, 1, 0, 0, 0, 1] ); //Identity matrix
@@ -39,7 +38,6 @@ define(function() {
     });
 
     test( 'Default Matrix 3x3', function() {
-        var math = new _Math();
         expect( 1 );
 
         deepEqual(
@@ -50,7 +48,6 @@ define(function() {
     });
 
     test( 'Matrix Constants', function() {
-        var math = new _Math();
         expect( 3 );
 
         deepEqual(
@@ -71,7 +68,6 @@ define(function() {
     });
 
     test( 'Clone Matrix', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = new math.Matrix3( [1, 0, 0, 0, 1, 0, 0, 0, 1] );
@@ -83,7 +79,6 @@ define(function() {
     });
 
     test( 'Equality of 3 x 3 Matricies', function() {
-        var math = new _Math();
         expect( 2 );
 
         var m1 = new math.Matrix3( [1, 1, 1, 1, 1, 1, 1, 1, 1]);
@@ -101,7 +96,6 @@ define(function() {
     });
 
     test( 'Add/Subtract', function() {
-        var math = new _Math();
         expect( 2 );
 
         var m1 = math.Matrix3( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] );
@@ -130,7 +124,6 @@ define(function() {
     });
 
     test( 'Multiplication', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix3( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] );
@@ -151,7 +144,6 @@ define(function() {
     });
 
     test( 'Determinant', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix3( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] );
@@ -165,7 +157,6 @@ define(function() {
     });
 
     test( 'Inverse', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix3( [ 0, 0, 1, 0, 1, 0, 1, 0, 0 ] );
@@ -182,7 +173,6 @@ define(function() {
     });
 
     test( 'Transpose', function() {
-        var math = new _Math();
         expect( 1 );
 
         var m1 = math.Matrix3( [ 7, 2, 3, 1, 7, 4, 9, 8, 2 ] );

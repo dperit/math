@@ -4,13 +4,12 @@ nomen: false */
 test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
 define(function() {
-  return function (_Math) {
+  return function (math) {
 
 // Name of our module
     module( 'Math/Transform' );
 
     test( 'Translation (return)', function() {
-        var math = new _Math();
         expect( 1 );
 
         var position = math.Vector3( 1, 2, 3 );
@@ -27,7 +26,6 @@ define(function() {
     });
 
     test( 'Rotation', function() {
-        var math = new _Math();
         expect( 1 );
 
         var rotation = math.Vector3( math.TAU/2, math.TAU/3, math.TAU/4 );
@@ -49,7 +47,6 @@ define(function() {
     });
 
     test( 'Scale', function() {
-        var math = new _Math();
         expect( 1 );
 
         var scale = math.Vector3( 2, 2, 2 );
@@ -66,8 +63,6 @@ define(function() {
     });
 
     test( 'Fixed', function() {
-        var math = new _Math();
-        //expect( 4 );
         expect( 3 );
 
         var result, expected;

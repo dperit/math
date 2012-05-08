@@ -4,13 +4,12 @@
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
 define(function() {
-  return function (_Math) {
+  return function (math) {
     module( 'Math' );
 
     test( 'Basic', function() {
       expect( 2 );
 
-      var math = new _Math();
       ok(
         math,
         'Math found'

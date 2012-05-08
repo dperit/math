@@ -4,13 +4,12 @@
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
 define(function() {
-  return function (_Math) {
+  return function (math) {
 
     // Name of our module
     module( 'Vector3 Tests' );
 
     test( 'Basic', function() {
-        var math = new _Math();
         expect( 6 );
 
         var vec3 = new math.Vector3( [1, 2, 3] );
@@ -47,7 +46,6 @@ define(function() {
     });
 
     test( 'Defaults', function() {
-        var math = new _Math();
         expect( 1 );
 
         deepEqual(
@@ -58,7 +56,6 @@ define(function() {
     });
 
     test( 'Constants', function() {
-        var math = new _Math();
         expect( 5 );
 
         math.vector3.x[0] = -0.88262;
@@ -94,7 +91,6 @@ define(function() {
     });
 
     test( 'Clone', function() {
-        var math = new _Math();
         expect( 1 );
 
         var vec1 = new math.Vector3( [0, 1, 3] );
@@ -106,7 +102,6 @@ define(function() {
     });
 
     test( 'Equality', function() {
-        var math = new _Math();
         expect( 3 );
 
         var vec1 = new math.Vector3( [1, 1, 1.00000000001] );
@@ -131,7 +126,6 @@ define(function() {
     });
 
     test( 'Length', function() {
-        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector3( [1, 1, 1] );
@@ -149,7 +143,6 @@ define(function() {
     });
 
     test( 'Addition', function() {
-        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector3( [1, 1, 1] );
@@ -169,7 +162,6 @@ define(function() {
     });
 
     test( 'Subtraction', function() {
-        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector3( [1, 1, 1] );
@@ -188,7 +180,6 @@ define(function() {
     });
 
     test( 'Scalar multiplication', function() {
-        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector3( [2, 3, 4] );
@@ -207,7 +198,6 @@ define(function() {
     });
 
     test( 'Cross Product', function() {
-        var math = new _Math();
         expect (1);
 
         var vec1 = new math.Vector3( [3, -3, 2] );
@@ -220,7 +210,6 @@ define(function() {
     });
 
     test( 'Dot Product / Normalize', function() {
-        var math = new _Math();
         expect( 3 );
 
         var vec1 = new math.Vector3( [12, -5, 7] );
@@ -249,7 +238,6 @@ define(function() {
     });
 
     test( 'Angle()', function() {
-        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector3( [10, 8, 2] );
@@ -273,7 +261,6 @@ define(function() {
     });
 
     test( 'set()', function() {
-        var math = new _Math();
         expect( 1 );
 
         var v = new math.Vector3( 1, 2, 3 );

@@ -4,13 +4,12 @@
   test: false, expect: false, ok: false, notEqual: false, stop, QUnit: false */
 
 define(function() {
-  return function (_Math) {
+  return function (math) {
 
     // Name of our module
     module( 'Vector4 Tests' );
 
     test( 'Basic', function() {
-        var math = new _Math();
         expect( 6 );
 
         var vec4 = new math.Vector4( [1, 2, 3, 4] );
@@ -47,7 +46,6 @@ define(function() {
     });
 
     test( 'Defaults', function() {
-        var math = new _Math();
         expect( 1 );
 
         deepEqual(
@@ -58,7 +56,6 @@ define(function() {
     });
 
     test( 'Constants', function() {
-        var math = new _Math();
         expect( 6 );
 
         math.vector4.x[0] = -0.88262;
@@ -100,7 +97,6 @@ define(function() {
     });
 
     test( 'Clone', function() {
-        var math = new _Math();
         expect( 1 );
 
         var vec1 = new math.Vector4( [0, 1, 3, 4] );
@@ -112,7 +108,6 @@ define(function() {
     });
 
     test( 'Equality', function() {
-        var math = new _Math();
         expect( 3 );
 
         var vec1 = new math.Vector4( [1, 1, 1, 1.00000000001] );
@@ -137,7 +132,6 @@ define(function() {
     });
 
     test( 'Length', function() {
-        var math = new _Math();
         expect( 1 );
 
         var vec1 = new math.Vector4( [1, 1, 1, 1] );
@@ -148,7 +142,6 @@ define(function() {
     });
 
     test( 'Addition', function() {
-        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector4( [1, 1, 1, 1] );
@@ -168,7 +161,6 @@ define(function() {
     });
 
     test( 'Subtraction', function() {
-        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector4( [1, 1, 1, 1] );
@@ -187,7 +179,6 @@ define(function() {
     });
 
     test( 'Scalar multiplication', function() {
-        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector4( [2, 3, 4, 5] );
@@ -206,7 +197,6 @@ define(function() {
     });
 
     test( 'Dot Product / Normalize', function() {
-        var math = new _Math();
         expect( 3 );
 
         var vec1 = new math.Vector4( [12, -5, 7, 1] );
@@ -235,7 +225,6 @@ define(function() {
     });
 
     test( 'Angle()', function() {
-        var math = new _Math();
         expect( 2 );
 
         var vec1 = new math.Vector4( [10, 8, 2, 7] );
@@ -259,7 +248,6 @@ define(function() {
     });
 
     test( 'set()', function() {
-        var math = new _Math();
         expect( 1 );
 
         var v = new math.Vector4( 1, 2, 3, 4 );
