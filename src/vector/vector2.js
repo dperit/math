@@ -2,8 +2,8 @@ define( function ( require ) {
 
   return function( FLOAT_ARRAY_TYPE ) {
     
-    var Vector2Primitive = require( "vector/vector2-primitive" );
-    var vector2 = require( "vector/vector2-operations" );
+    var V2 = require( "vector/v2" );
+    var vector2 = require( "vector/vector2-api" );
 
     var Vector2 = function( vector ) {
       if( vector ) {
@@ -13,7 +13,7 @@ define( function ( require ) {
           this.buffer = vector;
         }
       } else {
-        this.buffer = new Vector2Primitive();
+        this.buffer = new V2();
       }
     };
     

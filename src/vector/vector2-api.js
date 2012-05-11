@@ -2,10 +2,10 @@ define( function ( require ) {
 
     return function( FLOAT_ARRAY_TYPE ) {
 
-        var Vector2 = require( './vector2' )( FLOAT_ARRAY_TYPE );
+        var V2 = require( "vector/v2" )( FLOAT_ARRAY_TYPE );
 
         function add( v1, v2, result ) {
-            result = result || new Vector2();
+            result = result || new V2();
             
             result[0] = v1[0] + v2[0];
             result[1] = v1[1] + v2[1];
@@ -14,13 +14,13 @@ define( function ( require ) {
         }
         
         function angle( v1, v2 ) {
-            var nV1 = Vector2();
-            var nV2 = Vector2();
+            var normalizedV1 = V2();
+            var normalizedV2 = V2();
 
-            vector.normalize(v1, nV1);
-            vector.normalize(v2, nV2);
+            normalize(v1, normalizedV1);
+            normalize(v2, normalizedV2);
 
-            return Math.acos( vector.dot( nV1, nV2 ) );
+            return Math.acos( dot( normalizedV1, normalizedV2 ) );
         }
         
         function clear( v ) {
@@ -64,7 +64,7 @@ define( function ( require ) {
         }
         
         function multiply( v, s, result ) {
-            result = result || new Vector2();
+            result = result || new V2();
             
             result[0] = s * v[0];
             result[1] = s * v[1];
@@ -73,7 +73,7 @@ define( function ( require ) {
         }
         
         function negate( v, result ) {
-            result = result || new Vector2();
+            result = result || new V2();
             
             result[0] = -1 * v[0];
             result[1] = -1 * v[1];
@@ -82,8 +82,8 @@ define( function ( require ) {
         }
         
         function normalize( v, result ) {
-            result = result || new Vector2();
-            var l = _length( v );
+            result = result || new V2();
+            var l = length( v );
             
             result[0] = v[0]/l;
             result[1] = v[1]/l;
@@ -92,7 +92,7 @@ define( function ( require ) {
         }
         
         function project( v1, v2, result ) {
-            result = result || new Vector2();
+            result = result || new V2();
             
             var dp = v1[0]*v2[0] + v1[1]*v2[1];
             var dp_over_v2_squared_length = dp / (v2[0]*v2[0] + v2[1]*v2[1]);
@@ -111,7 +111,7 @@ define( function ( require ) {
         }
         
         function subtract( v1, v2, result ) {
-          result = result || new Vector2();
+          result = result || new V2();
           
           result[0] = v1[0] - v2[0];
           result[1] = v1[1] - v2[1];
@@ -120,19 +120,19 @@ define( function ( require ) {
         }
         
         function x() {
-          return new Vector2( 1, 0 );
+          return new V2( 1, 0 );
         }
         
         function y() {
-          return new Vector2( 0, 1 );
+          return new V2( 0, 1 );
         }
         
         function zero() {
-          return new Vector2( 0, 0 );
+          return new V2( 0, 0 );
         }
         
         function one() {
-          return new Vector2( 1, 1 );
+          return new V2( 1, 1 );
         }
         
         var vector2 = {  

@@ -1,8 +1,10 @@
 define( function ( require ) {
 
   var constants = require( "constants" );
+
+  var V2 = require( "vector/v2" );
   var Vector2 = require( "vector/vector2" );
-  var vector2Operations = require( "vector/vector2-operations" );
+  var vector2 = require( "vector/vector2-api" );
 
   function extend( object, extra ) {
     for ( var prop in extra ) {
@@ -19,13 +21,13 @@ define( function ( require ) {
     };
     this.FLOAT_ARRAY_ENUM = FLOAT_ARRAY_ENUM;
 
-    var ARRAY_TYPE = FLOAT_ARRAY_ENUM.Float32;
-    this.ARRAY_TYPE = ARRAY_TYPE;
+    var ARRAY_TYPE = this.ARRAY_TYPE = FLOAT_ARRAY_ENUM.Float32;
 
     extend( this, constants );
 
-    this.Vector2 = Vector2( this.ARRAY_TYPE );
-    this.vector2 = vector2Operations( this.ARRAY_TYPE );
+    this.V2 = V2( ARRAY_TYPE );
+    this.Vector2 = Vector2( ARRAY_TYPE );
+    this.vector2 = vector2( ARRAY_TYPE );
   };
 
   return _Math;

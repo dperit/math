@@ -2,10 +2,13 @@ define( function ( require ) {
 
   return function( FLOAT_ARRAY_TYPE ) {
 
-    var Vector2Primitive = function() {
+    var V2 = function() {
       var elements = null;
-      if( 1 === arguments.length ) {
+      var argc = arguments.length;
+      if( 1 === argc) {
         elements = arguments[0];
+      } else if( 0 === argc ) {
+        elements = [0, 0];
       } else {
         elements = arguments;
       }
@@ -18,7 +21,7 @@ define( function ( require ) {
       return vector;
     };
 
-    return Vector2Primitive;
+    return V2;
 
   };
 

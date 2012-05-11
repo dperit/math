@@ -12,18 +12,14 @@ define(
           }
         });
 
-        test( 'basic', function() {
-          expect( 2 );
+        test( 'instance', function() {
+          expect( 3 );
 
           var math = this.math;
-          ok(
-              math,
-              'math found'
-          );
-          ok(
-              math.ARRAY_TYPE,
-              'found ARRAY_TYPE'
-          );
+          ok( math, "math found" );
+          ok( math.ARRAY_TYPE, "found ARRAY_TYPE" );
+          equal( math.ARRAY_TYPE, math.FLOAT_ARRAY_ENUM.Float32,
+            "default is float32" );
         });
 
       };
