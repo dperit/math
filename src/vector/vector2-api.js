@@ -103,10 +103,15 @@ define( function ( require ) {
             return result;
         }
         
-        function set( v, x, y ) {
-          v[0] = x;
-          v[1] = y;
-          
+        function set( v ) {
+          if( 2 === arguments.length ) {
+              v[0] = arguments[1][0];
+              v[1] = arguments[1][1];
+          } else {
+              v[0] = arguments[1];
+              v[1] = arguments[2];
+          }
+         
           return v;
         }
         
@@ -117,22 +122,6 @@ define( function ( require ) {
           result[1] = v1[1] - v2[1];
           
           return result;
-        }
-        
-        function x() {
-          return new V2( 1, 0 );
-        }
-        
-        function y() {
-          return new V2( 0, 1 );
-        }
-        
-        function zero() {
-          return new V2( 0, 0 );
-        }
-        
-        function one() {
-          return new V2( 1, 1 );
         }
         
         var vector2 = {  
@@ -149,12 +138,12 @@ define( function ( require ) {
                 set: set,
                 subtract: subtract,
                 
-                x: x,
-                u: x,
-                y: y,
-                v: y,
-                zero: zero,
-                one: one
+                x: new V2( 1, 0 ),
+                u: new V2( 1, 0 ),
+                y: new V2( 0, 1 ),
+                v: new V2( 0, 1 ),
+                zero: new V2( 0, 0 ),
+                one: new V2( 1, 1 )
         };
         
         return vector2;

@@ -190,6 +190,119 @@ define(
           ok( Math.abs( result[1] - 1/Math.sqrt( 2 ) ) < e, "y is correct" );
         });
 
+        test( "project, return new result", function() {
+          expect( 2 );
+
+          var v1 = new this.math.V2( 1, 1 );
+          var v2 = new this.math.V2( 0, 2 );
+          var result = this.math.vector2.project( v1, v2 );
+
+          equal( result[0], 0, "x is correct" );
+          equal( result[1], 1, "y is correct" );
+        });
+
+        test( "project, set result parameter", function() {
+          expect( 2 );
+
+          var v1 = new this.math.V2( 1, 1 );
+          var v2 = new this.math.V2( 0, 2 );
+          var result = new this.math.V2();
+
+          this.math.vector2.project( v2, v1, result );
+
+          equal( result[0], 1, "x is correct" );
+          equal( result[1], 1, "y is correct" );
+        });
+
+        test( "set with given values", function() {
+          expect( 2 );
+
+          var v = new this.math.V2();
+
+          this.math.vector2.set( v, 3, 4 );
+
+          equal( v[0], 3, "x is correct" );
+          equal( v[1], 4, "y is correct" );
+        });
+
+        test( "set with given array", function() {
+          expect( 2 );
+
+          var v = new this.math.V2();
+
+          this.math.vector2.set( v, [3, 4] );
+
+          equal( v[0], 3, "x is correct" );
+          equal( v[1], 4, "y is correct" );
+        });
+
+        test( "subtract, return new result", function() {
+          expect( 2 );
+
+          var v1 = new this.math.V2( 1, 2 );
+          var v2 = new this.math.V2( 4, 3 );
+
+          var result = this.math.vector2.subtract( v1, v2 );
+
+          equal( result[0], -3, "x is correct" );
+          equal( result[1], -1, "y is correct" );
+        });
+
+        test( "subtract, set result parameter", function() {
+          expect( 2 );
+
+          var v1 = new this.math.V2( 2, 1 );
+          var v2 = new this.math.V2( 3, 2 );
+          var result = new this.math.V2();
+
+          this.math.vector2.subtract( v1, v2, result );
+
+          equal( result[0], -1, "x is correct" );
+          equal( result[1], -1, "y is correct" );
+        });
+
+        test( "x vector", function() {
+          expect( 2 );
+
+          equal( this.math.vector2.x[0], 1, "x is correct" );
+          equal( this.math.vector2.x[1], 0, "y is correct" );
+        });
+
+        test( "u vector", function() {
+          expect( 2 );
+
+          equal( this.math.vector2.u[0], 1, "x is correct" );
+          equal( this.math.vector2.u[1], 0, "y is correct" );
+        });
+
+        test( "y vector", function() {
+          expect( 2 );
+
+          equal( this.math.vector2.y[0], 0, "x is correct" );
+          equal( this.math.vector2.y[1], 1, "y is correct" );
+        });
+
+        test( "v vector", function() {
+          expect( 2 );
+
+          equal( this.math.vector2.v[0], 0, "x is correct" );
+          equal( this.math.vector2.v[1], 1, "y is correct" );
+        });
+
+        test( "zero vector", function() {
+          expect( 2 );
+
+          equal( this.math.vector2.zero[0], 0, "x is correct" );
+          equal( this.math.vector2.zero[1], 0, "y is correct" );
+        });
+
+        test( "one vector", function() {
+          expect( 2 );
+
+          equal( this.math.vector2.one[0], 1, "x is correct" );
+          equal( this.math.vector2.one[1], 1, "y is correct" );
+        });
+
     };
   }
 );

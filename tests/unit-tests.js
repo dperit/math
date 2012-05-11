@@ -7,8 +7,11 @@ define( function( require ) {
   return [
 
           "_math.test",
-         
-          "vector/vector2.test", /*
+
+          "vector/v2.test",
+          "vector/vector2-api.test",
+/*         
+          "vector/vector2.test",
           "vector/vector3.test",
           "vector/vector4.test",
           "vector/quaternion.test",
