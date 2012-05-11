@@ -142,6 +142,54 @@ define(
           equal( result[1], 9, "y is correct" );
         });
 
+        test( "negate, return new result", function() {
+          expect( 2 );
+
+          var v = this.math.V2( -1, 2 );
+          var result = this.math.vector2.negate( v );
+
+          equal( result[0], 1, "x is correct" );
+          equal( result[1], -2, "y is correct" );
+        });
+
+        test( "negate, set result parameter", function() {
+          expect( 2 );
+
+          var v = this.math.V2( 0, 1 );
+          var result = new this.math.V2();
+
+          this.math.vector2.negate( v, result );
+
+          equal( result[0], 0, "x is correct" );
+          equal( result[1], -1, "y is correct" );
+        });
+
+        test( "normalize, return new result", function() {
+          expect( 2 );
+
+          var e = 0.0000001;
+
+          var v = new this.math.V2( 1, 1 );
+          var result = this.math.vector2.normalize( v );
+
+          ok( Math.abs( result[0] - 1/Math.sqrt( 2 ) ) < e, "x is correct" );
+          ok( Math.abs( result[1] - 1/Math.sqrt( 2 ) ) < e, "y is correct" );
+        });
+
+        test( "normalize, set result parameter", function() {
+          expect( 2 );
+
+          var e = 0.0000001;
+
+          var v = new this.math.V2( 1, 1 );
+          var result = new this.math.V2();
+
+          this.math.vector2.normalize( v, result );
+
+          ok( Math.abs( result[0] - 1/Math.sqrt( 2 ) ) < e, "x is correct" );
+          ok( Math.abs( result[1] - 1/Math.sqrt( 2 ) ) < e, "y is correct" );
+        });
+
     };
   }
 );
