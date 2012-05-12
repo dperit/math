@@ -10,6 +10,7 @@ define( function( require ) {
 
           "vector/v2.test",
           "vector/vector2-api.test",
+          "vector/vector2.test"
 /*         
           "vector/vector2.test",
           "vector/vector3.test",
