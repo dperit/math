@@ -164,6 +164,45 @@ define(
         equal( v2[1], 4, "y is the same" );
       });
 
+      test( "equal with vector object", function() {
+        expect( 2 );
+
+        var v1 = new this.math.Vector2( 3, 4 );
+        var v2 = new this.math.Vector2( 2, 3 );
+
+        ok( v1.equal( v1 ), "vector is equal to itself" );
+        ok( !v1.equal( v2 ), "vector not equal to different vector" );
+      });
+
+      test( "equal with typed array", function() {
+        expect( 2 );
+
+        var v1 = new this.math.Vector2( 1, 2 );
+        var v2 = new this.math.V2( 3, 4 );
+
+        ok( v1.equal( v1.buffer ), "vector is equal to itself" );
+        ok( !v1.equal( v2 ), "vector not equal to different vector" );
+      });
+
+      test( "equal with given array", function() {
+        expect( 2 );
+
+        var v1 = new this.math.Vector2( 5, 2 );
+        var v2 = [2, 3];
+
+        ok( v1.equal( [5, 2] ), "vector is equal to itself" );
+        ok( !v1.equal( v2 ), "vector is not equal to different vector" );
+      });
+
+      test( "length", function() {
+        expect( 1 );
+
+        var v = new this.math.Vector2( 4, 5 );
+        var result = v.length();
+
+        equal( result, this.math.vector2.length( v.buffer ), "length is correct" );
+      });
+
     };
   }
 );

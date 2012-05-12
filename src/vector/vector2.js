@@ -80,14 +80,29 @@ define( function ( require ) {
 
       return vector2.dot( this.buffer, other );
     }
+
+    function equal( arg ) {
+      var other;
+      if( arg instanceof Vector2 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      return vector2.equal( this.buffer, other );
+    }
+
+    function length() {
+      return vector2.length( this.buffer );
+    }
     
     Vector2.prototype = {
       add: add,
       angle: angle,
       clear: clear,
       dot: dot,
-      equal: undefined,
-      length: undefined,
+      equal: equal,
+      length: length,
       multiply: undefined,
       negate: undefined,
       normalize: undefined,
