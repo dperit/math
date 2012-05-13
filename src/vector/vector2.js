@@ -14,15 +14,14 @@ define( function ( require ) {
     }
 
     var Vector2 = function( arg1, arg2 ) {
-      if( 1 === arguments.length ) {
+      var argc = arguments.length;
+      if( 1 === argc ) {
         if( arg1 instanceof Vector2 ) {
-          this.buffer = arg1.buffer;
-        } else if ( arg1 instanceof FLOAT_ARRAY_TYPE ) {
-          this.buffer = arg1;
+          this.buffer = new V2( arg1.buffer );
         } else {
           this.buffer = new V2( arg1 );
         }
-      } else if( 2 === arguments.length ) {
+      } else if( 2 === argc ) {
         this.buffer = new V2( arg1, arg2 );
       } else {
         this.buffer = new V2();
@@ -70,6 +69,10 @@ define( function ( require ) {
       return this;
     }
 
+    function clone() {
+      return new Vector2( this );
+    }
+
     function dot( arg ) {
       var other;
       if( arg instanceof Vector2 ) {        
@@ -95,20 +98,85 @@ define( function ( require ) {
     function length() {
       return vector2.length( this.buffer );
     }
+
+    function multiply( arg ) {
+      vector2.multiply( this.buffer, arg, this.buffer );
+
+      return this;
+    }
+
+    function negate() {
+      vector2.negate( this.buffer, this.buffer );
+
+      return this;
+    }
+
+    function normalize() {
+      vector2.normalize( this.buffer, this.buffer );
+
+      return this;
+    }
+
+    function project( arg ) {
+      var other;
+      if( arg instanceof Vector2 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      vector2.project( this.buffer, other, this.buffer );
+
+      return this;
+    }
+
+    function set( arg1, arg2 ) {
+      var argc = arguments.length;
+      var buffer = this.buffer;
+      if( 1 === argc ) {
+        if( arg1 instanceof Vector2 ) {
+          var other = arg1.buffer;
+          buffer[0] = other[0];
+          buffer[1] = other[1];
+        } else {
+          buffer[0] = arg1[0];
+          buffer[1] = arg1[1];
+        }
+      } else if( 2 === argc ) {
+        buffer[0] = arg1;
+        buffer[1] = arg2;
+      }
+
+      return this;
+    }
+
+    function subtract( arg ) {
+      var other;
+      if( arg instanceof Vector2 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      vector2.subtract( this.buffer, other, this.buffer );
+
+      return this;
+    }    
     
     Vector2.prototype = {
       add: add,
       angle: angle,
       clear: clear,
+      clone: clone,
       dot: dot,
       equal: equal,
       length: length,
-      multiply: undefined,
-      negate: undefined,
-      normalize: undefined,
-      project: undefined,
-      set: undefined,
-      subtract: undefined
+      multiply: multiply,
+      negate: negate,
+      normalize: normalize,
+      project: project,
+      set: set,
+      subtract: subtract
     };
 
     return Vector2;

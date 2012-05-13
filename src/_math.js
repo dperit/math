@@ -24,12 +24,13 @@ define( function ( require ) {
     var ARRAY_TYPE = this.ARRAY_TYPE = FLOAT_ARRAY_ENUM.Float32;
 
     extend( this, constants );
-
-    this.V2 = V2( ARRAY_TYPE );
-    this.Vector2 = Vector2( ARRAY_TYPE );
-    this.vector2 = vector2( ARRAY_TYPE );
+    extend( this, {
+      V2: V2( ARRAY_TYPE ),
+      Vector2: Vector2( ARRAY_TYPE ),
+      vector2: vector2( ARRAY_TYPE )
+    });
   };
 
-  return _Math;
+  return new _Math();
 
 });
