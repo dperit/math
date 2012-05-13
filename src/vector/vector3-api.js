@@ -144,12 +144,19 @@ define( function ( require ) {
       dot: dot,
       equal: equal,
       length: length,
+      limit: notImplemented,
       multiply: multiply,
       negate: negate,
       normal: cross,
       normalize: normalize,
       set: set,
-      subtract: subtract
+      subtract: subtract,
+
+      x: new V3( 1, 0, 0 ),
+      y: new V3( 0, 1, 0 ),
+      z: new V3( 0, 0, 1 ),
+      zero: new V3( 0, 0, 0 ),
+      one: new V3( 1, 1, 1 )
     };
     
     return vector3;

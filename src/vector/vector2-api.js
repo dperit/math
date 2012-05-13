@@ -48,8 +48,7 @@ define( function ( require ) {
       }
       
       if( Math.abs( v1[0] - v2[0] ) > e ||
-          Math.abs( v1[1] - v2[1] ) > e ||
-          Math.abs( v1[2] - v2[2] ) > e ) {
+          Math.abs( v1[1] - v2[1] ) > e ) {
           return false;
       }
 
@@ -134,6 +133,7 @@ define( function ( require ) {
       dot: dot,
       equal: equal,
       length: length,
+      limit: notImplemented,
       multiply: multiply,              
       negate: negate,
       normalize: normalize,
