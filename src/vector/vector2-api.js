@@ -2,6 +2,7 @@ define( function ( require ) {
 
   return function( FLOAT_ARRAY_TYPE ) {
 
+    var notImplemented = require( "common/not-implemented" );
     var V2 = require( "vector/v2" )( FLOAT_ARRAY_TYPE );
 
     function add( v1, v2, result ) {
@@ -47,7 +48,8 @@ define( function ( require ) {
       }
       
       if( Math.abs( v1[0] - v2[0] ) > e ||
-          Math.abs( v1[1] - v2[1] ) > e ) {
+          Math.abs( v1[1] - v2[1] ) > e ||
+          Math.abs( v1[2] - v2[2] ) > e ) {
           return false;
       }
 
@@ -128,6 +130,7 @@ define( function ( require ) {
       add: add,
       angle: angle,
       clear: clear,
+      distance: notImplemented,
       dot: dot,
       equal: equal,
       length: length,
