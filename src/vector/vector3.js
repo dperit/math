@@ -1,130 +1,67 @@
 define( function ( require ) {
 
-    return function( FLOAT_ARRAY_TYPE ) {
+  return function( FLOAT_ARRAY_TYPE ) {
+    
+    var V3 = require( "vector/v3" )( FLOAT_ARRAY_TYPE );
+    var vector3 = require( "vector/vector3-api" )( FLOAT_ARRAY_TYPE );
 
-        var vector = require( './vector' )( FLOAT_ARRAY_TYPE );
+    function getValue( index ) {
+      return this.buffer[index];
+    }
 
-        var Vector3 = function() {
-            if( 0 === arguments.length ) {
-                return vector.$( 3, [0, 0, 0] );
-            } else {
-                return vector.$( 3, arguments );
-            }
-        };
+    function setValue( index, value ) {
+      this.buffer[index] = value;
+    }
 
-        var vector3 = {
-                
-                $: Vector3,
+    var Vector3 = function( arg1, arg2, arg3 ) {
+      var argc = arguments.length;
+      if( 1 === argc ) {
+        if( arg1 instanceof Vector3 ) {
+          this.buffer = new V3( arg1.buffer );
+        } else {
+          this.buffer = new V3( arg1 );
+        }
+      } else if( 3 === argc ) {
+        this.buffer = new V3( arg1, arg2, arg3 );
+      } else {
+        this.buffer = new V3();
+      }
 
-                add: function( v1, v2, result ) {
-                    result = result || Vector3();
-
-                    return vector.add( v1, v2, result );
-                },
-
-                angle: function( v1, v2 ) {
-
-                    return Math.acos(
-                            (v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2]) /
-                            (Math.sqrt(v1[0] * v1[0] + v1[1] * v1[1] + v1[2] * v1[2]) *
-                                    Math.sqrt(v2[0] * v2[0] + v2[1] * v2[1] + v2[2] * v2[2]))
-                    );
-                },
-
-                clear: vector.clear,
-
-                cross: function( v1, v2, result ) {
-                    result = result || Vector3();
-
-                    result[0] = (v1[1] * v2[2]) - (v2[1] * v1[2]);
-                    result[1] = (v1[2] * v2[0]) - (v2[2] * v1[0]);
-                    result[2] = (v1[0] * v2[1]) - (v2[0] * v1[1]);
-
-                    return result;
-                },
-
-                dot: function( v1, v2 ) {
-                    return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
-                },
-
-                equal: vector.equal,
-
-                length: vector.length,
-
-                multiply: function( v, s, result ) {
-                    result = result || Vector3();
-
-                    return vector.multiply( v, s, result );
-                },
-
-                normal: function( v1, v2, result ) {
-                    result = result || Vector3();
-
-                    return Vector3.cross( v1, v2, result );
-                },
-
-                normalize: function( v, result ) {
-                    result = result || Vector3();
-                    var len = vector.length(v);
-
-                    result[0] = v[0]/len;
-                    result[1] = v[1]/len;
-                    result[2] = v[2]/len;
-
-                    return result;
-                },
-                
-                set: function( v, x, y, z ) {
-                    v[0] = x;
-                    v[1] = y;
-                    v[2] = z;
-                },
-
-                subtract: function( v1, v2, result ) {
-                    result = result || Vector3();
-
-                    return vector.subtract( v1, v2, result );
-                }
-
-        };
-        
-        Object.defineProperty( vector3, 'x', {
-            get: function() {
-                return Vector3( [1, 0, 0] );
-            },
-            enumerable: true
-        });
-
-        Object.defineProperty( vector3, 'y', {
-            get: function() {
-                return Vector3( [0, 1, 0] );
-            },
-            enumerable: true
-        });
-
-        Object.defineProperty( vector3, 'z', {
-            get: function() {
-                return Vector3( [0, 0, 1] );
-            },
-            enumerable: true
-        });
-
-        Object.defineProperty( vector3, 'zero', {
-            get: function() {
-                return Vector3( [0, 0, 0] );
-            },
-            enumerable: true
-        });
-
-        Object.defineProperty( vector3, 'one', {
-            get: function() {
-                return Vector3( [1, 1, 1] );
-            },
-            enumerable: true
-        });
-
-        return vector3;
-
+      Object.defineProperties( this, {
+        x: {
+          get: getValue.bind( this, 0 ),
+          set: setValue.bind( this, 0 )
+        },
+        y: {
+          get: getValue.bind( this, 1 ),
+          set: setValue.bind( this, 1 )
+        },
+        z: {
+          get: getValue.bind( this, 2 ),
+          set: setValue.bind( this, 2 )
+        }
+      });
     };
+
+    function add( arg ) {
+      var other;
+      if( arg instanceof Vector3 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      vector3.add( this.buffer, other, this.buffer );
+
+      return this;
+    }
+    
+    Vector3.prototype = {
+      add: add
+    };
+
+    return Vector3;
+
+  };
 
 });

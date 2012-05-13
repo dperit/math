@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Math Perf Suite</title>
+    <script src="../lib/JSLitmus.js"></script>
+    <script src="../dist/_math.min.js"></script>
+    <script src="../lib/gl-matrix-min.js"></script>
+    <script>
+      JSLitmus.test( "bistro vector3 add", function( count ) {
+        var v3_1 = new _Math.V3( 1, 1, 1 );
+        var v3_2 = new _Math.V3( 1, 1, 1 );
+        var vec3_1 = vec3.create( 1, 1, 1 );
+        var vec3_2 = vec3.create( 1, 1, 1 );
+
+        var v3_add = _Math.vector3.add;
+        var vec3_add = vec3.add;        
+        while( count -- ) {
+          v3_add( v3_1, v3_2, v3_1 );
+        }
+      });
+
+      JSLitmus.test( "glmatrix vector3 add", function( count ) {
+        var v3_1 = new _Math.V3( 1, 1, 1 );
+        var v3_2 = new _Math.V3( 1, 1, 1 );
+        var vec3_1 = vec3.create( 1, 1, 1 );
+        var vec3_2 = vec3.create( 1, 1, 1 );
+
+        var v3_add = _Math.vector3.add;
+        var vec3_add = vec3.add;        
+        while( count -- ) {
+          vec3_add( v3_1, v3_2, v3_1 );
+        }
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

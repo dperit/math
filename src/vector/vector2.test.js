@@ -5,7 +5,7 @@ define(
 
       module( "Vector2", {
         setup: function() {
-          this.math = new _Math();
+          this.math = _Math;
         },
         teardown: function() {
           this.math = null;
