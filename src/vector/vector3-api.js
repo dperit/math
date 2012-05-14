@@ -41,11 +41,18 @@ define( function ( require ) {
     }
 
     function cross( v1, v2, result ) {
-      result = result || V3();
+      result = result || new V3();
 
-      result[0] = (v1[1] * v2[2]) - (v2[1] * v1[2]);
-      result[1] = (v1[2] * v2[0]) - (v2[2] * v1[0]);
-      result[2] = (v1[0] * v2[1]) - (v2[0] * v1[1]);
+      var v1_0 = v1[0],
+        v1_1 = v1[1],
+        v1_2 = v1[2];
+      var v2_0 = v2[0],
+        v2_1 = v2[1],
+        v2_2 = v2[2];
+
+      result[0] = (v1_1 * v2_2) - (v2_1 * v1_2);
+      result[1] = (v1_2 * v2_0) - (v2_2 * v1_0);
+      result[2] = (v1_0 * v2_1) - (v2_0 * v1_1);
 
       return result;
     }

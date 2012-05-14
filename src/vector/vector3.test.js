@@ -156,6 +156,47 @@ define(
         notDeepEqual( v1.buffer, v2.buffer, "vectors are not equal" );
       });
 
+      test( "cross with vector object", function() {
+        expect( 1 );
+
+        var v1 = new this.math.Vector3( 2, 3, 1 );
+        var v2 = new this.math.Vector3( 4, 2, 6 );
+        var result = v1.cross( v2 );
+
+        deepEqual( result.buffer, this.math.vector3.cross( [2, 3, 1], [4, 2, 6] ), "result is correct" );
+      });
+
+      test( "cross with typed array", function() {
+        expect( 1 );
+
+        var v1 = new this.math.Vector3( 2, 3, 1 );
+        var v2 = new this.math.V3( 4, 2, 6 );
+        var result = v1.cross( v2 );
+
+        deepEqual( result.buffer, this.math.vector3.cross( [2, 3, 1], [4, 2, 6] ), "result is correct" );
+      });
+
+      test( "cross with given array", function() {
+        expect( 1 );
+
+        var v1 = new this.math.Vector3( 2, 3, 1 );
+        var v2 = [2, 4, 1]
+        var result = v1.cross( v2 );
+
+        deepEqual( result.buffer, this.math.vector3.cross( [2, 3, 1], [2, 4, 1] ), "result is correct" );
+      });
+
+      test( "cross with result", function() {
+        expect( 1 );
+
+        var v1 = new this.math.Vector3( 2, 3, 1 );
+        var v2 = new this.math.Vector3( 4, 2, 6 );
+        var result = new this.math.Vector3();
+        v1.cross( v2, result );
+
+        deepEqual( result.buffer, this.math.vector3.cross( v1.buffer, v2.buffer ), "result is correct" );
+      });
+
       test( "dot with vector object", function() {
         expect( 7 );
 
