@@ -121,7 +121,7 @@ define( function ( require ) {
 
     function multiply( arg, result ) {
       result = result || this;
-      vector3.multiply( this.buffer, arg, this.buffer );
+      vector3.multiply( this.buffer, arg, result.buffer );
 
       return this;
     }
