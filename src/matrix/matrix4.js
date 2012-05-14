@@ -16,17 +16,19 @@ define( function ( require ) {
 
     function setValue( index, value ) {
       this.buffer[index] = value;
+      this.matrix.modified = true;
     }
 
     function updateViews() {
       var i;
       for( i = 0; i < 4; ++ i ) {
-        this._views[i] = new Matrix4View( this.buffer, 
+        this._views[i] = new Matrix4View( this, this.buffer, 
           i*4, (i+1)*4 );
       }
     }
 
-    var Matrix4View = function( buffer, start, end ) {
+    var Matrix4View = function( matrix, buffer, start, end ) {
+      this.matrix = matrix;
       this.buffer = buffer.subarray( start, end );
 
       Object.defineProperties( this, {
@@ -87,6 +89,8 @@ define( function ( require ) {
       this._views = [];
 
       updateViews.call( this );
+
+      this.modified = true;
     };
 
     function add( arg ) {

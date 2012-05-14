@@ -12,6 +12,7 @@ define( function ( require ) {
 
     function setValue( index, value ) {
       this.buffer[index] = value;
+      this.modified = true;
     }
 
     var Vector2 = function( arg1, arg2 ) {
@@ -38,6 +39,8 @@ define( function ( require ) {
           set: setValue.bind( this, 1 )
         }
       });
+
+      this.modified = true;
     };
 
     function add( arg, result ) {
