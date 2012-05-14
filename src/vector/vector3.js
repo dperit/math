@@ -44,7 +44,7 @@ define( function ( require ) {
       });
     };
 
-    function add( arg ) {
+    function add( arg, result ) {
       var other;
       if( arg instanceof Vector3 ) {        
         other = arg.buffer;
@@ -52,7 +52,8 @@ define( function ( require ) {
         other = arg;
       }
 
-      vector3.add( this.buffer, other, this.buffer );
+      result = result || this;
+      vector3.add( this.buffer, other, result.buffer );
 
       return this;
     }
@@ -78,7 +79,7 @@ define( function ( require ) {
       return new Vector3( this );
     }
 
-    function cross( arg ) {
+    function cross( arg, result ) {
       var other;
       if( arg instanceof Vector3 ) {        
         other = arg.buffer;
@@ -86,7 +87,8 @@ define( function ( require ) {
         other = arg;
       }
 
-      vector3.cross( this.buffer, other, this.buffer );     
+      result = result || this;
+      vector3.cross( this.buffer, other, result.buffer );     
 
       return this;
     }
@@ -117,20 +119,23 @@ define( function ( require ) {
       return vector3.length( this.buffer );
     }
 
-    function multiply( arg ) {
+    function multiply( arg, result ) {
+      result = result || this;
       vector3.multiply( this.buffer, arg, this.buffer );
 
       return this;
     }
 
-    function negate() {
-      vector3.negate( this.buffer, this.buffer );
+    function negate( result ) {
+      result = result || this;
+      vector3.negate( this.buffer, result.buffer );
 
       return this;
     }
 
-    function normalize() {
-      vector3.normalize( this.buffer, this.buffer );
+    function normalize( result ) {
+      result = result || this;
+      vector3.normalize( this.buffer, result.buffer );
 
       return this;
     }
@@ -158,7 +163,7 @@ define( function ( require ) {
       return this;
     }
 
-    function subtract( arg ) {
+    function subtract( arg, result ) {
       var other;
       if( arg instanceof Vector3 ) {        
         other = arg.buffer;
@@ -166,7 +171,8 @@ define( function ( require ) {
         other = arg;
       }
 
-      vector3.subtract( this.buffer, other, this.buffer );
+      result = result || this;
+      vector3.subtract( this.buffer, other, result.buffer );
 
       return this;
     }    

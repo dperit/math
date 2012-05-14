@@ -47,6 +47,9 @@ define( function ( require ) {
       Matrix4: Matrix4( ARRAY_TYPE ),
       matrix4: matrix4( ARRAY_TYPE )
     });
+    extend( this, {
+      Transform: M4( ARRAY_TYPE )
+    });
   };
 
   return new _Math();

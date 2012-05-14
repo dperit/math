@@ -28,6 +28,15 @@ define( function ( require ) {
       return result;
     }
 
+    function clear( m ) {
+      m[0] = m[1] = m[2] = m[3] = 0;
+      m[4] = m[5] = m[6] = m[7] = 0;
+      m[8] = m[9] = m[10] = m[11] = 0;
+      m[12] = m[13] = m[14] = m[15] = 0;
+
+      return m;
+    }
+
     function multiply( m1, m2, result ) {
       result = result || new M4();
 
@@ -63,7 +72,28 @@ define( function ( require ) {
 
     var matrix4 = {  
       add: add,
-      multiply: multiply
+      clear: clear,
+      determinant: notImplemented,
+      equal: notImplemented,
+      inverse: notImplemented,
+      multiply: multiply,
+      multiplyV3: notImplemented,
+      set: notImplemented,
+      subtract: notImplemented,
+      transpose: notImplemented,
+
+      zero: new M4( 0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0 ),
+      one: new M4( 1, 1, 1, 1,
+                   1, 1, 1, 1,
+                   1, 1, 1, 1,
+                   1, 1, 1, 1 ),
+      identity: new M4( 1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, 0, 1 )
     };
     
     return matrix4;

@@ -15,8 +15,8 @@ define( function ( require ) {
     }
       
     function angle( v1, v2 ) {
-      var normalizedV1 = V2();
-      var normalizedV2 = V2();
+      var normalizedV1 = new V2();
+      var normalizedV2 = new V2();
 
       normalize(v1, normalizedV1);
       normalize(v2, normalizedV2);

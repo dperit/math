@@ -2,6 +2,7 @@ define( function ( require ) {
 
   return function( FLOAT_ARRAY_TYPE ) {
     
+    var notImplemented = require( "common/not-implemented" );
     var V2 = require( "vector/v2" )( FLOAT_ARRAY_TYPE );
     var vector2 = require( "vector/vector2-api" )( FLOAT_ARRAY_TYPE );
 
@@ -39,7 +40,7 @@ define( function ( require ) {
       });
     };
 
-    function add( arg ) {
+    function add( arg, result ) {
       var other;
       if( arg instanceof Vector2 ) {        
         other = arg.buffer;
@@ -47,7 +48,8 @@ define( function ( require ) {
         other = arg;
       }
 
-      vector2.add( this.buffer, other, this.buffer );
+      result = result || this;
+      vector2.add( this.buffer, other, result.buffer );
 
       return this;
     }
@@ -99,25 +101,28 @@ define( function ( require ) {
       return vector2.length( this.buffer );
     }
 
-    function multiply( arg ) {
-      vector2.multiply( this.buffer, arg, this.buffer );
+    function multiply( arg, result ) {
+      result = result || this;
+      vector2.multiply( this.buffer, arg, result.buffer );
 
       return this;
     }
 
-    function negate() {
-      vector2.negate( this.buffer, this.buffer );
+    function negate( result ) {
+      result = result || this;
+      vector2.negate( this.buffer, result.buffer );
 
       return this;
     }
 
-    function normalize() {
-      vector2.normalize( this.buffer, this.buffer );
+    function normalize( result ) {
+      result = result || this;
+      vector2.normalize( this.buffer, result.buffer );
 
       return this;
     }
 
-    function project( arg ) {
+    function project( arg, result ) {
       var other;
       if( arg instanceof Vector2 ) {        
         other = arg.buffer;
@@ -125,7 +130,8 @@ define( function ( require ) {
         other = arg;
       }
 
-      vector2.project( this.buffer, other, this.buffer );
+      result = result || this;
+      vector2.project( this.buffer, other, result.buffer );
 
       return this;
     }
@@ -150,7 +156,7 @@ define( function ( require ) {
       return this;
     }
 
-    function subtract( arg ) {
+    function subtract( arg, result ) {
       var other;
       if( arg instanceof Vector2 ) {        
         other = arg.buffer;
@@ -158,7 +164,8 @@ define( function ( require ) {
         other = arg;
       }
 
-      vector2.subtract( this.buffer, other, this.buffer );
+      result = result || this;
+      vector2.subtract( this.buffer, other, result.buffer );
 
       return this;
     }    
@@ -168,6 +175,7 @@ define( function ( require ) {
       angle: angle,
       clear: clear,
       clone: clone,
+      distance: notImplemented,
       dot: dot,
       equal: equal,
       length: length,

@@ -78,6 +78,17 @@ define(
         equal( result, v1, "add returns this" );
       });
 
+      test( "add with result", function() {
+        expect( 2 );
+
+        var v1 = new this.math.Vector2( 2, 3 );
+        var result = new this.math.Vector2();
+        v1.add( [-1, 2], result );
+
+        equal( result.x, 1, "x is correct" );
+        equal( result.y, 5, "y is correct" );
+      });
+
       test( "angle with vector object", function() {
         expect( 1 );
 
@@ -226,6 +237,17 @@ define(
         equal( result, v, "multiply returns this" );
       });
 
+      test( "multiply with result", function() {
+        expect( 2 );
+
+        var v = new this.math.Vector2( 1, 2 );
+        var result = new this.math.Vector2();
+        v.multiply( 4, result );
+
+        equal( result.x, 4, "x is correct" );
+        equal( result.y, 8, "y is correct" );
+      });
+
       test( "negate", function() {
         expect( 3 );
 
@@ -237,6 +259,17 @@ define(
         equal( result, v, "negate return this" );
       });
 
+      test( "negate with result", function() {
+        expect( 2 );
+
+        var v = new this.math.Vector2( -1, 2 );
+        var result = new this.math.Vector2();
+        v.negate( result );
+
+        equal( result.x, 1, "x is correct" );
+        equal( result.y, -2, "y is correct" );
+      });
+
       test( "normalize", function() {
         expect( 2 );
 
@@ -246,6 +279,17 @@ define(
         deepEqual( v.buffer, this.math.vector2.normalize( [-1, 9] ),
           "normalized vector is correct" );
         equal( result, v, "normalize returns this" );
+      });
+
+      test( "normalize with result", function() {
+        expect( 1 );
+
+        var v = new this.math.Vector2( -1, 9 );
+        var result = new this.math.Vector2();
+        v.normalize( result );
+
+        deepEqual( result.buffer, this.math.vector2.normalize( [-1, 9] ),
+          "normalized vector is correct" );
       });
 
       test( "project with vector object", function() {
@@ -282,6 +326,18 @@ define(
         deepEqual( v1.buffer, this.math.vector2.project( v1.buffer, v2 ),
           "projection is correct" );
         equal( result, v1, "project returns this" );
+      });
+
+      test( "project with result", function() {
+        expect( 1 );
+
+        var v1 = new this.math.Vector2( -1, 9 );
+        var v2 = [3, 4];
+        var result = new this.math.Vector2();
+        v1.project( v2, result );
+
+        deepEqual( result.buffer, this.math.vector2.project( v1.buffer, v2 ),
+          "projection is correct" );
       });
 
       test( "set with vector object", function() {
@@ -368,6 +424,17 @@ define(
         equal( v1.x, 3, "x is correct" );
         equal( v1.y, 1, "y is correct" );
         equal( result, v1, "subtract returns this" );
+      });
+
+      test( "subtract with result", function() {
+        expect( 2 );
+
+        var v1 = new this.math.Vector2( 2, 3 );
+        var result = new this.math.Vector2();
+        v1.subtract( [-1, 2], result );
+
+        equal( result.x, 3, "x is correct" );
+        equal( result.y, 1, "y is correct" );
       });
 
     };
