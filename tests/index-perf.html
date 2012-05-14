@@ -6,6 +6,9 @@
     <script src="../dist/_math.min.js"></script>
     <script src="../lib/gl-matrix-min.js"></script>
     <script>
+      debugger;
+    </script>
+    <script>
       JSLitmus.test( "bistro vector3 add", function( count ) {
         var v3_1 = new _Math.V3( 1, 1, 1 );
         var v3_2 = new _Math.V3( 1, 1, 1 );
@@ -31,6 +34,56 @@
           vec3_add( v3_1, v3_2, v3_1 );
         }
       });
+
+      JSLitmus.test( "bistro matrix4 multiply", function( count ) {
+        var m4_1 = new _Math.M4( 1, 1, 1, 1,
+                                 1, 1, 1, 1,
+                                 1, 1, 1, 1,
+                                 1, 1, 1, 1 );
+        var m4_2 = new _Math.M4( 1, 1, 1, 1,
+                                 1, 1, 1, 1,
+                                 1, 1, 1, 1,
+                                 1, 1, 1, 1 );
+        var mat4_1 = mat4.create( [1, 1, 1, 1,
+                                  1, 1, 1, 1,
+                                  1, 1, 1, 1,
+                                  1, 1, 1, 1] );
+        var mat4_2 = mat4.create( [1, 1, 1, 1,
+                                  1, 1, 1, 1,
+                                  1, 1, 1, 1,
+                                  1, 1, 1, 1] );
+
+        var m4_multiply = _Math.matrix4.multiply;
+        var mat4_multiply = mat4.multiply;
+        while( count -- ) {
+          m4_multiply( m4_1, m4_2, m4_1 );
+        }
+      });
+
+      JSLitmus.test( "glmatrix matrix4 multiply", function( count ) {
+        var m4_1 = new _Math.M4( 1, 1, 1, 1,
+                                 1, 1, 1, 1,
+                                 1, 1, 1, 1,
+                                 1, 1, 1, 1 );
+        var m4_2 = new _Math.M4( 1, 1, 1, 1,
+                                 1, 1, 1, 1,
+                                 1, 1, 1, 1,
+                                 1, 1, 1, 1 );
+        var mat4_1 = mat4.create( [1, 1, 1, 1,
+                                  1, 1, 1, 1,
+                                  1, 1, 1, 1,
+                                  1, 1, 1, 1] );
+        var mat4_2 = mat4.create( [1, 1, 1, 1,
+                                  1, 1, 1, 1,
+                                  1, 1, 1, 1,
+                                  1, 1, 1, 1] );
+
+        var m4_multiply = _Math.matrix4.multiply;
+        var mat4_multiply = mat4.multiply;
+        while( count -- ) {
+          mat4_multiply( m4_1, m4_2, m4_1 );
+        }
+      });      
     </script>
   </head>
   <body>

@@ -10,6 +10,10 @@ define( function ( require ) {
   var Vector3 = require( "vector/vector3" );
   var vector3 = require( "vector/vector3-api" );
 
+  var M4 = require( "matrix/m4" );
+  var Matrix4 = require( "matrix/matrix4" );
+  var matrix4 = require( "matrix/matrix4-api" );
+
   function extend( object, extra ) {
     for ( var prop in extra ) {
       if ( !object.hasOwnProperty( prop ) && extra.hasOwnProperty( prop ) ) {
@@ -37,6 +41,11 @@ define( function ( require ) {
       V3: V3( ARRAY_TYPE ),
       Vector3: Vector3( ARRAY_TYPE ),
       vector3: vector3( ARRAY_TYPE )
+    });
+    extend( this, {
+      M4: M4( ARRAY_TYPE ),
+      Matrix4: Matrix4( ARRAY_TYPE ),
+      matrix4: matrix4( ARRAY_TYPE )
     });
   };
 
