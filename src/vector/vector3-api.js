@@ -135,7 +135,7 @@ define( function ( require ) {
       return result;
     }
 
-    var vector3 = {  
+    var vector3 = {
       add: add,
       angle: angle,
       clear: clear,
@@ -147,7 +147,6 @@ define( function ( require ) {
       limit: notImplemented,
       multiply: multiply,
       negate: negate,
-      normal: cross,
       normalize: normalize,
       set: set,
       subtract: subtract,

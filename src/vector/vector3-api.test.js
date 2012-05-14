@@ -64,6 +64,31 @@ define(
           equal( v[2], 0, "z is cleared" );
         });
 
+        test( "cross, return new result", function() {
+          expect( 3 );
+
+          var v1 = new this.math.V3( 1, 0, 0 );
+          var v2 = new this.math.V3( 0, 1, 0 );
+          var result = this.math.vector3.cross( v1, v2 );
+
+          equal( result[0], 0, "x is correct" );
+          equal( result[1], 0, "y is correct" );
+          equal( result[2], 1, "z is correct" );
+        });
+
+        test( "cross, set result parameter", function() {
+          expect( 3 );
+
+          var v1 = new this.math.V3( 1, 0, 0 );
+          var v2 = new this.math.V3( 0, 1, 0 );
+          var result = new this.math.V3();
+          this.math.vector3.cross( v1, v2, result );
+
+          equal( result[0], 0, "x is correct" );
+          equal( result[1], 0, "y is correct" );
+          equal( result[2], 1, "z is correct" );
+        });
+
         test( "dot", function() {
           expect( 1 );
 
