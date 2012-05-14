@@ -13,41 +13,46 @@ define(
       });
 
       test( "create an empty vector", function() {
-        expect( 3 );
+        expect( 4 );
 
-        var v = new this.math.Vector3();
+        var v = new this.math.Vector3();        
 
+        ok( v.modified, "modified is set" );
         equal( v.x, 0, "x is correct" );
         equal( v.y, 0, "y is correct" );
         equal( v.z, 0, "z is correct" );
       });
 
       test( "create a vector with given values", function() {
-        expect( 3 );
+        expect( 4 );
 
         var v = new this.math.Vector3( 1, 2, 3 );
 
+        ok( v.modified, "modified is set" );
         equal( v.x, 1, "x is correct" );
         equal( v.y, 2, "y is correct" );
         equal( v.z, 3, "z is correct" );
       });
 
       test( "create a vector with given array", function() {
-        expect( 3 );
+        expect( 4 );
 
         var v = new this.math.Vector3( [2, 3, 4] );
 
+        ok( v.modified, "modified is set" );
         equal( v.x, 2, "x is correct" );
         equal( v.y, 3, "y is correct" );
         equal( v.z, 4, "z is correct" );
       });
 
       test( "add with vector object", function() {
-        expect( 7 );
+        expect( 8 );
 
         var v1 = new this.math.Vector3( 1, 2, 3 );
         var v2 = new this.math.Vector3( 3, 4, 5 );
+        v1.modified = false;
         var result = v1.add( v2 );
+        ok( v1.modified, "modified is set" );
 
         equal( v1.x, 4, "x is correct" );
         equal( v1.y, 6, "y is correct" );
@@ -59,11 +64,13 @@ define(
       });
 
       test( "add with typed array", function() {
-        expect( 7 );
+        expect( 8 );
 
         var v1 = new this.math.Vector3( 2, 3, 4 );
         var v2 = new this.math.V3( 4, 5, 6 );
+        v1.modified = false;
         var result = v1.add( v2 );
+        ok( v1.modified, "modified is set" );
 
         equal( v1.x, 6, "x is correct" );
         equal( v1.y, 8, "y is correct" );
@@ -75,10 +82,12 @@ define(
       });
 
       test( "add with given array", function() {
-        expect( 4 );
+        expect( 5 );
 
         var v1 = new this.math.Vector3( 2, 3, 4 );
+        v1.modified = false;
         var result = v1.add( [-1, 2, 5] );
+        ok( v1.modified, "modified is set" );
 
         equal( v1.x, 1, "x is correct" );
         equal( v1.y, 5, "y is correct" );
@@ -87,11 +96,13 @@ define(
       });
 
       test( "add with result", function() {
-        expect( 3 );
+        expect( 4 );
 
         var v1 = new this.math.Vector3( 2, 3, 4 );
         var result = new this.math.Vector3();
+        result.modified = false;
         v1.add( [-1, 2, 4], result );
+        ok( result.modified, "modified is set" );
 
         equal( result.x, 1, "x is correct" );
         equal( result.y, 5, "y is correct" );
@@ -132,10 +143,12 @@ define(
       });
 
       test( "clear", function() {
-        expect( 4 );
+        expect( 5 );
 
         var v = new this.math.Vector3( 3, 4, 5 );
+        v.modified = false;
         var result = v.clear();
+        ok( v.modified, "modified is set" );
 
         equal( v.x, 0, "x is correct" );
         equal( v.y, 0, "y is correct" );
@@ -157,42 +170,50 @@ define(
       });
 
       test( "cross with vector object", function() {
-        expect( 1 );
+        expect( 2 );
 
         var v1 = new this.math.Vector3( 2, 3, 1 );
         var v2 = new this.math.Vector3( 4, 2, 6 );
+        v1.modified = false;
         var result = v1.cross( v2 );
+        ok( v1.modified, "modified is set" );
 
         deepEqual( result.buffer, this.math.vector3.cross( [2, 3, 1], [4, 2, 6] ), "result is correct" );
       });
 
       test( "cross with typed array", function() {
-        expect( 1 );
+        expect( 2 );
 
         var v1 = new this.math.Vector3( 2, 3, 1 );
         var v2 = new this.math.V3( 4, 2, 6 );
+        v1.modified = false;
         var result = v1.cross( v2 );
+        ok( v1.modified, "modified is set" );
 
         deepEqual( result.buffer, this.math.vector3.cross( [2, 3, 1], [4, 2, 6] ), "result is correct" );
       });
 
       test( "cross with given array", function() {
-        expect( 1 );
+        expect( 2 );
 
         var v1 = new this.math.Vector3( 2, 3, 1 );
         var v2 = [2, 4, 1]
+        v1.modified = false;
         var result = v1.cross( v2 );
+        ok( v1.modified, "modified is set" );
 
         deepEqual( result.buffer, this.math.vector3.cross( [2, 3, 1], [2, 4, 1] ), "result is correct" );
       });
 
       test( "cross with result", function() {
-        expect( 1 );
+        expect( 2 );
 
         var v1 = new this.math.Vector3( 2, 3, 1 );
         var v2 = new this.math.Vector3( 4, 2, 6 );
         var result = new this.math.Vector3();
+        result.modified = false;
         v1.cross( v2, result );
+        ok( result.modified, "modified is set" );
 
         deepEqual( result.buffer, this.math.vector3.cross( v1.buffer, v2.buffer ), "result is correct" );
       });
@@ -285,10 +306,12 @@ define(
       });
 
       test( "multiply", function() {
-        expect( 4 );
+        expect( 5 );
 
         var v = new this.math.Vector3( 1, 2, 5 );
+        v.modified = false;
         var result = v.multiply( 4 );
+        ok( v.modified, "modified is set" );
 
         equal( v.x, 4, "x is correct" );
         equal( v.y, 8, "y is correct" );
@@ -297,11 +320,13 @@ define(
       });
 
       test( "multiply with result", function() {
-        expect( 3 );
+        expect( 4 );
 
         var v = new this.math.Vector3( 1, 2, 5 );
         var result = new this.math.Vector3();
+        result.modified = false;
         v.multiply( 4, result );
+        ok( result.modified, "modified is set" );
 
         equal( result.x, 4, "x is correct" );
         equal( result.y, 8, "y is correct" );
@@ -309,10 +334,12 @@ define(
       });
 
       test( "negate", function() {
-        expect( 4 );
+        expect( 5 );
 
         var v = new this.math.Vector3( -1, 2, 4 );
+        v.modified = false;
         var result = v.negate();
+        ok( v.modified, "modified is set" );
 
         equal( v.x, 1, "x is correct" );
         equal( v.y, -2, "y is correct" );
@@ -321,11 +348,13 @@ define(
       });
 
       test( "negate with result", function() {
-        expect( 3 );
+        expect( 4 );
 
         var v = new this.math.Vector3( -1, 2, 3 );
         var result = new this.math.Vector3();
+        result.modified = false;
         v.negate( result );
+        ok( result.modified, "modified is set" );
 
         equal( result.x, 1, "x is correct" );
         equal( result.y, -2, "y is correct" );
@@ -333,10 +362,12 @@ define(
       });
 
       test( "normalize", function() {
-        expect( 2 );
+        expect( 3 );
 
         var v = new this.math.Vector3( -1, 9, 2 );
+        v.modified = false;
         var result = v.normalize();
+        ok( v.modified, "modified is set" );
 
         deepEqual( v.buffer, this.math.vector3.normalize( [-1, 9, 2] ),
           "normalized vector is correct" );
@@ -344,22 +375,26 @@ define(
       });
 
       test( "normalize with result", function() {
-        expect( 1 );
+        expect( 2 );
 
         var v = new this.math.Vector3( -1, 9, 3 );
         var result = new this.math.Vector3();
+        result.modified = false;
         v.normalize( result );
+        ok( result.modified, "modified is set" );
 
         deepEqual( result.buffer, this.math.vector3.normalize( [-1, 9, 3] ),
           "normalized vector is correct" );
       });
 
       test( "set with vector object", function() {
-        expect( 4 );
+        expect( 5 );
 
         var v1 = new this.math.Vector3( 1, 2, 3 );
         var v2 = new this.math.Vector3( 3, 4, 5 );
+        v1.modified = false;
         v1.set( v2 );
+        ok( v1.modified, "modified is set" );
 
         equal( v2.x, 3, "x is the same" );
         equal( v2.y, 4, "y is the same" );
@@ -368,11 +403,13 @@ define(
       });
 
       test( "set with typed array", function() {
-        expect( 4 );
+        expect( 5 );
 
         var v1 = new this.math.Vector3( 1, 2, 3 );
         var v2 = new this.math.V3( 3, 4, 5 );
+        v1.modified = false;
         v1.set( v2 );
+        ok( v1.modified, "modified is set" );
 
         equal( v2[0], 3, "x is the same" );
         equal( v2[1], 4, "y is the same" );
@@ -381,11 +418,13 @@ define(
       });
 
       test( "set with given array", function() {
-        expect( 6 );
+        expect( 7 );
 
         var v1 = new this.math.Vector3( 1, 2, 3 );
         var v2 = [3, 4, 5];
+        v1.modified = false;
         v1.set( v2 );
+        ok( v1.modified, "modified is set" );
 
         equal( v2[0], 3, "x is the same" );
         equal( v2[1], 4, "y is the same" );
@@ -396,10 +435,12 @@ define(
       });
 
       test( "set with given values", function() {
-        expect( 3 );
+        expect( 4 );
 
         var v1 = new this.math.Vector3( 1, 2, 3 );
+        v1.modified = false;
         v1.set( 3, 4, 5 );
+        ok( v1.modified, "modified is set" );
 
         equal( v1.x, 3, "x is the same" );
         equal( v1.y, 4, "y is the same" );
@@ -407,11 +448,13 @@ define(
       });
 
       test( "subtract with vector object", function() {
-        expect( 7 );
+        expect( 8 );
 
         var v1 = new this.math.Vector3( 1, 2, 3 );
         var v2 = new this.math.Vector3( 3, 4, 2 );
+        v1.modified = false;
         var result = v1.subtract( v2 );
+        ok( v1.modified, "modified is set" );
 
         equal( v1.x, -2, "x is correct" );
         equal( v1.y, -2, "y is correct" );
@@ -423,11 +466,13 @@ define(
       });
 
       test( "subtract with typed array", function() {
-        expect( 7 );
+        expect( 8 );
 
         var v1 = new this.math.Vector3( 2, 3, 5 );
         var v2 = new this.math.V3( 4, 5, 1 );
+        v1.modified = false;
         var result = v1.subtract( v2 );
+        ok( v1.modified, "modified is set" );
 
         equal( v1.x, -2, "x is correct" );
         equal( v1.y, -2, "y is correct" );
@@ -439,10 +484,12 @@ define(
       });
 
       test( "subtract with given array", function() {
-        expect( 4 );
+        expect( 5 );
 
         var v1 = new this.math.Vector3( 2, 3, 1 );
+        v1.modified = false;
         var result = v1.subtract( [-1, 2, 3] );
+        ok( v1.modified, "modified is set" );
 
         equal( v1.x, 3, "x is correct" );
         equal( v1.y, 1, "y is correct" );
@@ -451,11 +498,13 @@ define(
       });
 
       test( "subtract with result", function() {
-        expect( 3 );
+        expect( 4 );
 
         var v1 = new this.math.Vector3( 2, 3, 4 );
         var result = new this.math.Vector3();
+        result.modified = false;
         v1.subtract( [-1, 2, 1], result );
+        ok( result.modified, "modified is set" );
 
         equal( result.x, 3, "x is correct" );
         equal( result.y, 1, "y is correct" );
