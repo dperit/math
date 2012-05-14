@@ -12,6 +12,9 @@ define( function( require ) {
           "vector/vector2-api.test",
           "vector/vector2.test",
 
+          "vector/v3.test",
+          "vector/vector3-api.test",
+
           "matrix/matrix4.test"
 /*         
           "vector/vector2.test",
