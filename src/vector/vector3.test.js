@@ -290,14 +290,14 @@ define(
         equal( result.y, -2, "y is correct" );
         equal( result.z, -3, "z is correct" );
       });
-/*
+
       test( "normalize", function() {
         expect( 2 );
 
-        var v = new this.math.Vector2( -1, 9 );
+        var v = new this.math.Vector3( -1, 9, 2 );
         var result = v.normalize();
 
-        deepEqual( v.buffer, this.math.vector2.normalize( [-1, 9] ),
+        deepEqual( v.buffer, this.math.vector3.normalize( [-1, 9, 2] ),
           "normalized vector is correct" );
         equal( result, v, "normalize returns this" );
       });
@@ -305,159 +305,122 @@ define(
       test( "normalize with result", function() {
         expect( 1 );
 
-        var v = new this.math.Vector2( -1, 9 );
-        var result = new this.math.Vector2();
+        var v = new this.math.Vector3( -1, 9, 3 );
+        var result = new this.math.Vector3();
         v.normalize( result );
 
-        deepEqual( result.buffer, this.math.vector2.normalize( [-1, 9] ),
+        deepEqual( result.buffer, this.math.vector3.normalize( [-1, 9, 3] ),
           "normalized vector is correct" );
       });
 
-      test( "project with vector object", function() {
-        expect( 2 );
-
-        var v1 = new this.math.Vector2( -1, 9 );
-        var v2 = new this.math.Vector2( 2, 3 );
-        var result = v1.project( v2 );
-
-        deepEqual( v1.buffer, this.math.vector2.project( v1.buffer, v2.buffer ),
-          "projection is correct" );
-        equal( result, v1, "project returns this" );
-      });
-
-      test( "project with typed array", function() {
-        expect( 2 );
-
-        var v1 = new this.math.Vector2( -1, 9 );
-        var v2 = new this.math.V2( 2, 3 );
-        var result = v1.project( v2 );
-
-        deepEqual( v1.buffer, this.math.vector2.project( v1.buffer, v2 ),
-          "projection is correct" );
-        equal( result, v1, "project returns this" );
-      });
-
-      test( "project with given array", function() {
-        expect( 2 );
-
-        var v1 = new this.math.Vector2( -1, 9 );
-        var v2 = [3, 4];
-        var result = v1.project( v2 );
-
-        deepEqual( v1.buffer, this.math.vector2.project( v1.buffer, v2 ),
-          "projection is correct" );
-        equal( result, v1, "project returns this" );
-      });
-
-      test( "project with result", function() {
-        expect( 1 );
-
-        var v1 = new this.math.Vector2( -1, 9 );
-        var v2 = [3, 4];
-        var result = new this.math.Vector2();
-        v1.project( v2, result );
-
-        deepEqual( result.buffer, this.math.vector2.project( v1.buffer, v2 ),
-          "projection is correct" );
-      });
-
       test( "set with vector object", function() {
-        expect( 3 );
+        expect( 4 );
 
-        var v1 = new this.math.Vector2( 1, 2 );
-        var v2 = new this.math.Vector2( 3, 4 );
+        var v1 = new this.math.Vector3( 1, 2, 3 );
+        var v2 = new this.math.Vector3( 3, 4, 5 );
         v1.set( v2 );
 
         equal( v2.x, 3, "x is the same" );
         equal( v2.y, 4, "y is the same" );
+        equal( v2.z, 5, "z is the same" );
         deepEqual( v1.buffer, v2.buffer, "vectors are the same" );
       });
 
       test( "set with typed array", function() {
-        expect( 3 );
+        expect( 4 );
 
-        var v1 = new this.math.Vector2( 1, 2 );
-        var v2 = new this.math.V2( 3, 4 );
+        var v1 = new this.math.Vector3( 1, 2, 3 );
+        var v2 = new this.math.V3( 3, 4, 5 );
         v1.set( v2 );
 
         equal( v2[0], 3, "x is the same" );
         equal( v2[1], 4, "y is the same" );
+        equal( v2[2], 5, "z is the same" );
         deepEqual( v1.buffer, v2, "vectors are the same" );
       });
 
       test( "set with given array", function() {
-        expect( 4 );
+        expect( 6 );
 
-        var v1 = new this.math.Vector2( 1, 2 );
-        var v2 = [3, 4];
+        var v1 = new this.math.Vector3( 1, 2, 3 );
+        var v2 = [3, 4, 5];
         v1.set( v2 );
 
         equal( v2[0], 3, "x is the same" );
         equal( v2[1], 4, "y is the same" );
+        equal( v2[2], 5, "y is the same" );
         equal( v1.x, v2[0], "x components are equal" );
         equal( v1.y, v2[1], "y components are equal" );
+        equal( v1.z, v2[2], "z components are equal" );
       });
 
       test( "set with given values", function() {
-        expect( 2 );
+        expect( 3 );
 
-        var v1 = new this.math.Vector2( 1, 2 );
-        v1.set( 3, 4 );
+        var v1 = new this.math.Vector3( 1, 2, 3 );
+        v1.set( 3, 4, 5 );
 
         equal( v1.x, 3, "x is the same" );
         equal( v1.y, 4, "y is the same" );
+        equal( v1.z, 5, "z is the same" );
       });
 
       test( "subtract with vector object", function() {
-        expect( 5 );
+        expect( 7 );
 
-        var v1 = new this.math.Vector2( 1, 2 );
-        var v2 = new this.math.Vector2( 3, 4 );
+        var v1 = new this.math.Vector3( 1, 2, 3 );
+        var v2 = new this.math.Vector3( 3, 4, 2 );
         var result = v1.subtract( v2 );
 
         equal( v1.x, -2, "x is correct" );
         equal( v1.y, -2, "y is correct" );
+        equal( v1.z, 1, "z is correct" );
         equal( v2.x, 3, "x is the same" );
         equal( v2.y, 4, "y is the same" );
+        equal( v2.z, 2, "z is the same" );
         equal( result, v1, "subtract returns this" );
       });
 
       test( "subtract with typed array", function() {
-        expect( 5 );
+        expect( 7 );
 
-        var v1 = new this.math.Vector2( 2, 3 );
-        var v2 = new this.math.V2( 4, 5 );
+        var v1 = new this.math.Vector3( 2, 3, 5 );
+        var v2 = new this.math.V3( 4, 5, 1 );
         var result = v1.subtract( v2 );
 
         equal( v1.x, -2, "x is correct" );
         equal( v1.y, -2, "y is correct" );
+        equal( v1.z, 4, "z is correct" );
         equal( v2[0], 4, "x is the same" );
         equal( v2[1], 5, "y is the same" );
+        equal( v2[2], 1, "z is the same" );
         equal( result, v1, "subtract returns this" );
       });
 
       test( "subtract with given array", function() {
-        expect( 3 );
+        expect( 4 );
 
-        var v1 = new this.math.Vector2( 2, 3 );
-        var result = v1.subtract( [-1, 2] );
+        var v1 = new this.math.Vector3( 2, 3, 1 );
+        var result = v1.subtract( [-1, 2, 3] );
 
         equal( v1.x, 3, "x is correct" );
         equal( v1.y, 1, "y is correct" );
+        equal( v1.z, -2, "z is correct" );
         equal( result, v1, "subtract returns this" );
       });
 
       test( "subtract with result", function() {
-        expect( 2 );
+        expect( 3 );
 
-        var v1 = new this.math.Vector2( 2, 3 );
-        var result = new this.math.Vector2();
-        v1.subtract( [-1, 2], result );
+        var v1 = new this.math.Vector3( 2, 3, 4 );
+        var result = new this.math.Vector3();
+        v1.subtract( [-1, 2, 1], result );
 
         equal( result.x, 3, "x is correct" );
         equal( result.y, 1, "y is correct" );
+        equal( result.z, 3, "z is correct" );
       });
-*/
+
     };
   }
 );

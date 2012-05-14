@@ -144,7 +144,7 @@ define( function ( require ) {
       var argc = arguments.length;
       var buffer = this.buffer;
       if( 1 === argc ) {
-        if( arg1 instanceof Vector2 ) {
+        if( arg1 instanceof Vector3 ) {
           var other = arg1.buffer;
           buffer[0] = other[0];
           buffer[1] = other[1];
