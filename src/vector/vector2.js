@@ -53,6 +53,7 @@ define( function ( require ) {
 
       result = result || this;
       vector2.add( this.buffer, other, result.buffer );
+      result.modified = true;
 
       return this;
     }
@@ -70,6 +71,7 @@ define( function ( require ) {
 
     function clear() {
       vector2.clear( this.buffer );
+      this.modified = true;
 
       return this;
     }
@@ -107,6 +109,7 @@ define( function ( require ) {
     function multiply( arg, result ) {
       result = result || this;
       vector2.multiply( this.buffer, arg, result.buffer );
+      result.modified = true;
 
       return this;
     }
@@ -114,6 +117,7 @@ define( function ( require ) {
     function negate( result ) {
       result = result || this;
       vector2.negate( this.buffer, result.buffer );
+      result.modified = true;
 
       return this;
     }
@@ -121,6 +125,7 @@ define( function ( require ) {
     function normalize( result ) {
       result = result || this;
       vector2.normalize( this.buffer, result.buffer );
+      result.modified = true;
 
       return this;
     }
@@ -135,6 +140,7 @@ define( function ( require ) {
 
       result = result || this;
       vector2.project( this.buffer, other, result.buffer );
+      result.modified = true;
 
       return this;
     }
@@ -155,6 +161,7 @@ define( function ( require ) {
         buffer[0] = arg1;
         buffer[1] = arg2;
       }
+      this.modified = true;
 
       return this;
     }
@@ -169,6 +176,7 @@ define( function ( require ) {
 
       result = result || this;
       vector2.subtract( this.buffer, other, result.buffer );
+      result.modified = true;
 
       return this;
     }    
