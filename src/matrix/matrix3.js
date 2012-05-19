@@ -3,8 +3,8 @@ define( function ( require ) {
   return function( FLOAT_ARRAY_TYPE ) {
     
     var notImplemented = require( "common/not-implemented" );
-    var M4 = require( "matrix/m4" )( FLOAT_ARRAY_TYPE );
-    var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
+    var M3 = require( "matrix/m3" )( FLOAT_ARRAY_TYPE );
+    var matrix3 = require( "matrix/matrix3-api" )( FLOAT_ARRAY_TYPE );
 
     function getView( index ) {
       return this._views[index];
@@ -21,13 +21,13 @@ define( function ( require ) {
 
     function updateViews() {
       var i;
-      for( i = 0; i < 4; ++ i ) {
-        this._views[i] = new Matrix4View( this, this.buffer, 
-          i*4, (i+1)*4 );
+      for( i = 0; i < 3; ++ i ) {
+        this._views[i] = new Matrix3View( this, this.buffer, 
+          i*3, (i+1)*3 );
       }
     }
 
-    var Matrix4View = function( matrix, buffer, start, end ) {
+    var Matrix3View = function( matrix, buffer, start, end ) {
       this.matrix = matrix;
       this.buffer = buffer.subarray( start, end );
 
@@ -43,32 +43,26 @@ define( function ( require ) {
         "2": {
           get: getValue.bind( this, 2 ),
           set: setValue.bind( this, 2 )
-        },
-        "3": {
-          get: getValue.bind( this, 3 ),
-          set: setValue.bind( this, 3 )
-        }        
+        }
       });
     };
 
-    var Matrix4 = function( arg1, arg2, arg3, arg4,
-                            arg5, arg6, arg7, arg8,
-                            arg9, arg10, arg11, arg12,
-                            arg13, arg14, arg15, arg16 ) {
+    var Matrix3 = function( arg1, arg2, arg3, 
+                            arg4, arg5, arg6, 
+                            arg7, arg8, arg9 ) {
       var argc = arguments.length;
       if( 1 === argc ) {
-        if( arg1 instanceof Matrix4 ) {
-          this.buffer = new M4( arg1.buffer );
+        if( arg1 instanceof Matrix3 ) {
+          this.buffer = new M3( arg1.buffer );
         } else {
-          this.buffer = new M4( arg1 );
+          this.buffer = new M3( arg1 );
         }
-      } else if( 16 === argc ) {
-        this.buffer = new M4( arg1, arg2, arg3, arg4,
-                              arg5, arg6, arg7, arg8,
-                              arg9, arg10, arg11, arg12,
-                              arg13, arg14, arg15, arg16 );
+      } else if( 9 === argc ) {
+        this.buffer = new M3( arg1, arg2, arg3, 
+                              arg4, arg5, arg6, 
+                              arg7, arg8, arg9 );
       } else {
-        this.buffer = new M4();
+        this.buffer = new M3();
       }
 
       Object.defineProperties( this, {
@@ -80,10 +74,7 @@ define( function ( require ) {
         },
         "2": {
           get: getView.bind( this, 2 )
-        },
-        "3": {
-          get: getView.bind( this, 3 )
-        },
+        }
       });
 
       this._views = [];
@@ -95,13 +86,13 @@ define( function ( require ) {
 
     function add( arg ) {
       var other;
-      if( arg instanceof Matrix4 ) {        
+      if( arg instanceof Matrix3 ) {        
         other = arg.buffer;
       } else {
         other = arg;
       }
 
-      matrix4.add( this.buffer, other, this.buffer );
+      matrix3.add( this.buffer, other, this.buffer );
 
       return this;
     }
@@ -110,7 +101,7 @@ define( function ( require ) {
       add: add
     };
 
-    return Matrix4;
+    return Matrix3;
 
   };
 
