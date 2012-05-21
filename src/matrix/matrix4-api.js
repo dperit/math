@@ -164,7 +164,7 @@ define( function ( require ) {
       return result;
     }
 
-    function( m, v, result ) {
+    function multiplyV3( m, v, result ) {
       result = result || new V3();
 
       var x = v[0], y = v[1], z = v[2];

@@ -200,7 +200,6 @@ define( function ( require ) {
       length: length,
       multiply: multiply,
       negate: negate,
-      normal: cross,
       normalize: normalize,
       set: set,
       subtract: subtract

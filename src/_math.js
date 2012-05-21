@@ -22,6 +22,10 @@ define( function ( require ) {
   var Matrix4 = require( "matrix/matrix4" );
   var matrix4 = require( "matrix/matrix4-api" );
 
+  var T = require( "matrix/t" );
+  var Transform = require( "matrix/transform" );
+  var transform = require( "matrix/transform-api" );
+
   function extend( object, extra ) {
     for ( var prop in extra ) {
       if ( !object.hasOwnProperty( prop ) && extra.hasOwnProperty( prop ) ) {
@@ -66,7 +70,9 @@ define( function ( require ) {
       matrix4: matrix4( ARRAY_TYPE )
     });
     extend( this, {
-      Transform: M4( ARRAY_TYPE )
+      T: T( ARRAY_TYPE ),
+      Transform: Transform( ARRAY_TYPE ),
+      transform: transform( ARRAY_TYPE )
     });
   };
 

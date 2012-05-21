@@ -3,10 +3,10 @@ define( function ( require ) {
   return function( FLOAT_ARRAY_TYPE ) {
     
     var notImplemented = require( "common/not-implemented" );
-    var M4 = require( "matrix/m4" )( FLOAT_ARRAY_TYPE );
-    var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
+    var T = require( "matrix/t" );
+    var transform = require( "matrix/transform-api" );
 
-    function getView( index ) {
+        function getView( index ) {
       return this._views[index];
     }
 
@@ -22,12 +22,12 @@ define( function ( require ) {
     function updateViews() {
       var i;
       for( i = 0; i < 4; ++ i ) {
-        this._views[i] = new Matrix4View( this, this.buffer, 
+        this._views[i] = new TransformView( this, this.buffer, 
           i*4, (i+1)*4 );
       }
     }
 
-    var Matrix4View = function( matrix, buffer, start, end ) {
+    var TransformView = function( matrix, buffer, start, end ) {
       this.matrix = matrix;
       this.buffer = buffer.subarray( start, end );
 
@@ -51,13 +51,13 @@ define( function ( require ) {
       });
     };
 
-    var Matrix4 = function( arg1, arg2, arg3, arg4,
+    var Transform = function( arg1, arg2, arg3, arg4,
                             arg5, arg6, arg7, arg8,
                             arg9, arg10, arg11, arg12,
                             arg13, arg14, arg15, arg16 ) {
       var argc = arguments.length;
       if( 1 === argc ) {
-        if( arg1 instanceof Matrix4 ) {
+        if( arg1 instanceof Transform ) {
           this.buffer = new M4( arg1.buffer );
         } else {
           this.buffer = new M4( arg1 );
@@ -93,26 +93,25 @@ define( function ( require ) {
       this.modified = true;
     };
 
-    function add( arg, result ) {
-      var other;
-      if( arg instanceof Matrix4 ) {        
-        other = arg.buffer;
-      } else {
-        other = arg;
-      }
+    function rotate( v, result ) {
 
-      result = result || this;
-      matrix4.add( this.buffer, other, result.buffer );
-      result.modified = true;
-
-      return this;
     }
-    
-    Matrix4.prototype = {
-      add: add
+
+    function scale( v, result ) {
+
+    }
+
+    function translate( v, result ) {
+
+    }
+
+    Transform.prototype = {
+      rotate: rotate,
+      scale: scale,
+      translate: translate
     };
 
-    return Matrix4;
+    return Transform;
 
   };
 
