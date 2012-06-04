@@ -50,21 +50,150 @@ define( function ( require ) {
 
       this.modified = true;
     };
+
+    function add( arg, result ) {
+      var other;
+      if( arg instanceof Vector4 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      result = result || this;
+      vector4.add( this.buffer, other, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function angle( arg ) {
+      var other;
+      if( arg instanceof Vector4 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      return vector4.angle( this.buffer, other );      
+    }
+
+    function clear() {
+      vector4.clear( this.buffer );
+      this.modified = true;
+
+      return this;
+    }
+
+    function clone() {
+      return new Vector4( this );
+    }
+
+    function dot( arg ) {
+      var other;
+      if( arg instanceof Vector4 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      return vector4.dot( this.buffer, other );
+    }
+
+    function equal( arg ) {
+      var other;
+      if( arg instanceof Vector4 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      return vector4.equal( this.buffer, other );
+    }
+
+    function length() {
+      return vector4.length( this.buffer );
+    }
+
+    function multiply( arg, result ) {
+      result = result || this;
+      vector4.multiply( this.buffer, arg, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function negate( result ) {
+      result = result || this;
+      vector4.negate( this.buffer, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function normalize( result ) {
+      result = result || this;
+      vector4.normalize( this.buffer, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function set( arg1, arg2, arg3, arg4 ) {
+      var argc = arguments.length;
+      var buffer = this.buffer;
+      if( 1 === argc ) {
+        if( arg1 instanceof Vector4 ) {
+          var other = arg1.buffer;
+          buffer[0] = other[0];
+          buffer[1] = other[1];
+          buffer[2] = other[2];
+          buffer[3] = other[3];
+        } else {
+          buffer[0] = arg1[0];
+          buffer[1] = arg1[1];
+          buffer[2] = arg1[2];
+          buffer[3] = arg1[3];
+        }
+      } else if( 3 === argc ) {
+        buffer[0] = arg1;
+        buffer[1] = arg2;
+        buffer[2] = arg3;
+        buffer[3] = arg4;
+      }
+      this.modified = true;
+
+      return this;
+    }
+
+    function subtract( arg, result ) {
+      var other;
+      if( arg instanceof Vector4 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      result = result || this;
+      vector4.subtract( this.buffer, other, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
   
     Vector4.prototype = {
-      add: notImplemented,
-      angle: notImplemented,
-      clear: notImplemented,
-      clone: notImplemented,
+      add: add,
+      angle: angle,
+      clear: clear,
+      clone: clone,
       distance: notImplemented,
-      dot: notImplemented,
-      equal: notImplemented,
-      length: notImplemented,
-      multiply: notImplemented,
-      negate: notImplemented,
-      normalize: notImplemented,
-      set: notImplemented,
-      subtract: notImplemented
+      dot: dot,
+      equal: equal,
+      length: length,
+      multiply: multiply,
+      negate: negate,
+      normalize: normalize,
+      set: set,
+      subtract: subtract
     };
 
     return Vector4;
