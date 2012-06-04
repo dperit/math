@@ -3,7 +3,7 @@ define( function ( require ) {
   return function( FLOAT_ARRAY_TYPE ) {
     
     var notImplemented = require( "common/not-implemented" );
-    var T = require( "matrix/t" );
+    var M4 = require( "matrix/m4" );
     var transform = require( "matrix/transform-api" );
 
         function getView( index ) {

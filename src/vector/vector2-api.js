@@ -106,11 +106,11 @@ define( function ( require ) {
     
     function set( v ) {
       if( 2 === arguments.length ) {
-          v[0] = arguments[1][0];
-          v[1] = arguments[1][1];
+        v[0] = arguments[1][0];
+        v[1] = arguments[1][1];
       } else {
-          v[0] = arguments[1];
-          v[1] = arguments[2];
+        v[0] = arguments[1];
+        v[1] = arguments[2];
       }
      
       return v;

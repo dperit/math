@@ -119,14 +119,14 @@ define( function ( require ) {
     }
 
     function set( v ) {
-      if( 4 === arguments.length ) {
-        v[0] = arguments[1];
-        v[1] = arguments[2];
-        v[2] = arguments[3];
-      } else {          
+      if( 2 === arguments.length ) {
         v[0] = arguments[1][0];
         v[1] = arguments[1][1];
         v[2] = arguments[1][2];
+      } else {          
+        v[0] = arguments[1];
+        v[1] = arguments[2];
+        v[2] = arguments[3];
       }
      
       return v;      

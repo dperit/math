@@ -3,10 +3,10 @@ define( function ( require ) {
   return function( FLOAT_ARRAY_TYPE ) {
 
     var notImplemented = require( "common/not-implemented" );
-    var T = require( "matrix/t" );
+    var M4 = require( "matrix/m4" );
 
     function fixed( translation, rotation, scale, result ) {
-      result = result || new T();
+      result = result || new M4();
 
       if( translation ) {
         translate( translation, result );

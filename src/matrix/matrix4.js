@@ -109,7 +109,15 @@ define( function ( require ) {
     }
     
     Matrix4.prototype = {
-      add: add
+      add: add,
+      clear: notImplemented,
+      determinant: notImplemented,
+      equal: notImplemented,
+      inverse: notImplemented,
+      multiply: notImplemented,
+      set: notImplemented,
+      subtract: notImplemented,
+      transpose: notImplemented
     };
 
     return Matrix4;
