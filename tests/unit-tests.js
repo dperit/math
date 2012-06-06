@@ -20,15 +20,14 @@ define( function( require ) {
           "vector/vector4-api.test",
           "vector/vector4.test",
 
-          // "vector/q.test",
           // "vector/quaternion-api.test",
           // "vector/quaternion.test",
 
-          // "matrix/m2.test",
+          "matrix/m2.test",
           // "matrix/matrix2-api.test",
           // "matrix/matrix2.test",
 
-          // "matrix/m3.test",
+          "matrix/m3.test",
           // "matrix/matrix3-api.test",
           // "matrix/matrix3.test",
 
@@ -36,7 +35,6 @@ define( function( require ) {
           // "matrix/matrix4-api.test",
           "matrix/matrix4.test",
 
-          // "matrix/t.test",
           // "matrix/transform-api.test",
           // "matrix/transform.test"
 
