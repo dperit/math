@@ -10,6 +10,10 @@ define( function ( require ) {
   var Vector3 = require( "vector/vector3" );
   var vector3 = require( "vector/vector3-api" );
 
+  var V4 = require( "vector/v4" );
+  var Vector4 = require( "vector/vector4" );
+  var vector4 = require( "vector/vector4-api" );
+
   var M2 = require( "matrix/m2" );
   var Matrix2 = require( "matrix/matrix2" );
   var matrix2 = require( "matrix/matrix2-api" );
@@ -52,6 +56,11 @@ define( function ( require ) {
       V3: V3( ARRAY_TYPE ),
       Vector3: Vector3( ARRAY_TYPE ),
       vector3: vector3( ARRAY_TYPE )
+    });
+    extend( this, {
+      V4: V4( ARRAY_TYPE ),
+      Vector4: Vector4( ARRAY_TYPE ),
+      vector4: vector4( ARRAY_TYPE )
     });
     extend( this, {
       M2: M2( ARRAY_TYPE ),

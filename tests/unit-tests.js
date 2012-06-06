@@ -16,7 +16,7 @@ define( function( require ) {
           "vector/vector3-api.test",
           "vector/vector3.test",
 
-          // "vector/v4.test",
+          "vector/v4.test",
           // "vector/vector4-api.test",
           // "vector/vector4.test",
 
