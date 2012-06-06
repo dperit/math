@@ -4,7 +4,7 @@ define( function ( require ) {
     
     var notImplemented = require( "common/not-implemented" );
     var M2 = require( "matrix/m2" )( FLOAT_ARRAY_TYPE );
-    // var matrix2 = require( "matrix/matrix2-api" )( FLOAT_ARRAY_TYPE );
+    var matrix2 = require( "matrix/matrix2-api" )( FLOAT_ARRAY_TYPE );
 
     function getView( index ) {
       return this._views[index];

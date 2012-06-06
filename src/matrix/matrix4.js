@@ -107,17 +107,141 @@ define( function ( require ) {
 
       return this;
     }
+
+    function clear() {
+      matrix4.clear( this.buffer );
+      this.modified = true;
+
+      return this;
+    }
+
+    function determinant( result ) {
+      result = result || this;
+      matrix4.determinant( this.buffer, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function equal( arg ) {
+      var other;
+      if( arg instanceof Matrix4 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      return matrix4.equal( this.buffer, other );
+    }
+
+    function inverse( result ) {
+      result = result || this;
+      matrix4.inverse( this.buffer, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function multiply( arg, result ) {
+      var other;
+      if( arg instanceof Matrix4 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      result = result || this;
+      matrix4.multiply( this.buffer, other, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function set( arg1, arg2, arg3, arg4,
+                  arg5, arg6, arg7, arg8,
+                  arg9, arg10, arg11, arg12,
+                  arg13, arg14, arg15, arg16 ) {
+      var argc = arguments.length;
+      var buffer = this.buffer;
+      var other;
+      if( 1 === argc ) {
+        if( arg1 instanceof Vector4 ) {
+          other = arg1.buffer;
+        } else {
+          other = arg1;
+        }
+        buffer[0] = other[0];
+        buffer[1] = other[1];
+        buffer[2] = other[2];
+        buffer[3] = other[3];
+        buffer[4] = other[4];
+        buffer[5] = other[5];
+        buffer[6] = other[6];
+        buffer[7] = other[7];
+        buffer[8] = other[8];
+        buffer[9] = other[9];
+        buffer[10] = other[10];
+        buffer[11] = other[11];
+        buffer[12] = other[12];
+        buffer[13] = other[13];
+        buffer[14] = other[14];
+        buffer[15] = other[15];
+      } else if( 16 === argc ) {
+        buffer[0] = arg1;
+        buffer[1] = arg2;
+        buffer[2] = arg3;
+        buffer[3] = arg4;
+        buffer[4] = arg5;
+        buffer[5] = arg6;
+        buffer[6] = arg7;
+        buffer[7] = arg8;
+        buffer[8] = arg9;
+        buffer[9] = arg10;
+        buffer[10] = arg11;
+        buffer[11] = arg12;
+        buffer[12] = arg13;
+        buffer[13] = arg14;
+        buffer[14] = arg15;
+        buffer[15] = arg16;
+      }
+      this.modified = true;
+
+      return this;
+    }
+
+    function subtract( arg, result ) {
+      var other;
+      if( arg instanceof Matrix4 ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      result = result || this;
+      matrix4.subtract( this.buffer, other, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function transpose( result ) {
+      result = result || this;
+      matrix4.transpose( this.buffer, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
     
     Matrix4.prototype = {
       add: add,
-      clear: notImplemented,
-      determinant: notImplemented,
-      equal: notImplemented,
-      inverse: notImplemented,
-      multiply: notImplemented,
-      set: notImplemented,
-      subtract: notImplemented,
-      transpose: notImplemented
+      clear: clear,
+      determinant: determinant,
+      equal: equal,
+      inverse: inverse,
+      multiply: multiply,
+      set: set,
+      subtract: subtract,
+      transpose: transpose
     };
 
     return Matrix4;

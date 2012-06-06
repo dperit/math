@@ -3,7 +3,7 @@ define(
   function() {
     return function( _Math ) {
 
-      module( "Vector2", {
+      module( "Vector3", {
         setup: function() {
           this.math = _Math;
         },
