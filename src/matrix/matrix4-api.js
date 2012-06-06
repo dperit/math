@@ -109,7 +109,7 @@ define( function ( require ) {
         return undefined;
       }
       
-      inverseDeterminant = 1 / d;
+      inverseDeterminant = 1 / determinant;
 
       result[0] = (a11 * b11 - a12 * b10 + a13 * b09) * inverseDeterminant;
       result[1] = (-a01 * b11 + a02 * b10 - a03 * b09) * inverseDeterminant;
@@ -144,22 +144,22 @@ define( function ( require ) {
         b20 = m2[8], b21 = m2[9], b22 = m2[10], b23 = m2[11],
         b30 = m2[12], b31 = m2[13], b32 = m2[14], b33 = m2[15];
 
-      result[0] = b00 * a00 + b01 * a10 + b02 * a20 + b03 * a30;
-      result[1] = b00 * a01 + b01 * a11 + b02 * a21 + b03 * a31;
-      result[2] = b00 * a02 + b01 * a12 + b02 * a22 + b03 * a32;
-      result[3] = b00 * a03 + b01 * a13 + b02 * a23 + b03 * a33;
-      result[4] = b10 * a00 + b11 * a10 + b12 * a20 + b13 * a30;
-      result[5] = b10 * a01 + b11 * a11 + b12 * a21 + b13 * a31;
-      result[6] = b10 * a02 + b11 * a12 + b12 * a22 + b13 * a32;
-      result[7] = b10 * a03 + b11 * a13 + b12 * a23 + b13 * a33;
-      result[8] = b20 * a00 + b21 * a10 + b22 * a20 + b23 * a30;
-      result[9] = b20 * a01 + b21 * a11 + b22 * a21 + b23 * a31;
-      result[10] = b20 * a02 + b21 * a12 + b22 * a22 + b23 * a32;
-      result[11] = b20 * a03 + b21 * a13 + b22 * a23 + b23 * a33;
-      result[12] = b30 * a00 + b31 * a10 + b32 * a20 + b33 * a30;
-      result[13] = b30 * a01 + b31 * a11 + b32 * a21 + b33 * a31;
-      result[14] = b30 * a02 + b31 * a12 + b32 * a22 + b33 * a32;
-      result[15] = b30 * a03 + b31 * a13 + b32 * a23 + b33 * a33;
+      result[0] = a00 * b00 + a01 * b10 + a02 * b20 + a03 * b30;
+      result[1] = a00 * b01 + a01 * b11 + a02 * b21 + a03 * b31;
+      result[2] = a00 * b02 + a01 * b12 + a02 * b22 + a03 * b32;
+      result[3] = a00 * b03 + a01 * b13 + a02 * b23 + a03 * b33;
+      result[4] = a10 * b00 + a11 * b10 + a12 * b20 + a13 * b30;
+      result[5] = a10 * b01 + a11 * b11 + a12 * b21 + a13 * b31;
+      result[6] = a10 * b02 + a11 * b12 + a12 * b22 + a13 * b32;
+      result[7] = a10 * b03 + a11 * b13 + a12 * b23 + a13 * b33;
+      result[8] = a20 * b00 + a21 * b10 + a22 * b20 + a23 * b30;
+      result[9] = a20 * b01 + a21 * b11 + a22 * b21 + a23 * b31;
+      result[10] = a20 * b02 + a21 * b12 + a22 * b22 + a23 * b32;
+      result[11] = a20 * b03 + a21 * b13 + a22 * b23 + a23 * b33;
+      result[12] = a30 * b00 + a31 * b10 + a32 * b20 + a33 * b30;
+      result[13] = a30 * b01 + a31 * b11 + a32 * b21 + a33 * b31;
+      result[14] = a30 * b02 + a31 * b12 + a32 * b22 + a33 * b32;
+      result[15] = a30 * b03 + a31 * b13 + a32 * b23 + a33 * b33;
 
       return result;
     }
@@ -177,7 +177,7 @@ define( function ( require ) {
     }
 
     function set( m ) {
-      if( 17 === arguments.length ) {
+      if( 2 === arguments.length ) {
         var values = arguments[1];
         m[0] = values[0];
         m[1] = values[1];
@@ -196,22 +196,22 @@ define( function ( require ) {
         m[14] = values[14];
         m[15] = values[15];
       } else {
-        m[0] = arguments[0];
-        m[1] = arguments[1];
-        m[2] = arguments[2];
-        m[3] = arguments[3];
-        m[4] = arguments[4];
-        m[5] = arguments[5];
-        m[6] = arguments[6];
-        m[7] = arguments[7];
-        m[8] = arguments[8];
-        m[9] = arguments[9];
-        m[10] = arguments[10];
-        m[11] = arguments[11];
-        m[12] = arguments[12];
-        m[13] = arguments[13];
-        m[14] = arguments[14];
-        m[15] = arguments[15];
+        m[0] = arguments[1];
+        m[1] = arguments[2];
+        m[2] = arguments[3];
+        m[3] = arguments[4];
+        m[4] = arguments[5];
+        m[5] = arguments[6];
+        m[6] = arguments[7];
+        m[7] = arguments[8];
+        m[8] = arguments[9];
+        m[9] = arguments[10];
+        m[10] = arguments[11];
+        m[11] = arguments[12];
+        m[12] = arguments[13];
+        m[13] = arguments[14];
+        m[14] = arguments[15];
+        m[15] = arguments[16];
       }
      
       return m;
