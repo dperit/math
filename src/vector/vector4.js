@@ -154,7 +154,7 @@ define( function ( require ) {
           buffer[2] = arg1[2];
           buffer[3] = arg1[3];
         }
-      } else if( 3 === argc ) {
+      } else if( 4 === argc ) {
         buffer[0] = arg1;
         buffer[1] = arg2;
         buffer[2] = arg3;

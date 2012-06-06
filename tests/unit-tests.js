@@ -18,7 +18,7 @@ define( function( require ) {
 
           "vector/v4.test",
           "vector/vector4-api.test",
-          // "vector/vector4.test",
+          "vector/vector4.test",
 
           // "vector/q.test",
           // "vector/quaternion-api.test",
