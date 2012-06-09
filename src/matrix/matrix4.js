@@ -115,12 +115,12 @@ define( function ( require ) {
       return this;
     }
 
-    function determinant( result ) {
-      result = result || this;
-      matrix4.determinant( this.buffer, result.buffer );
-      result.modified = true;
+    function clone() {
+      return new Matrix4( this );
+    }
 
-      return this;
+    function determinant() {
+      return matrix4.determinant( this.buffer );
     }
 
     function equal( arg ) {
@@ -136,6 +136,9 @@ define( function ( require ) {
 
     function inverse( result ) {
       result = result || this;
+      if( !matrix4.determinant( this.buffer ) ) {
+        throw new Error( "matrix is singular" );
+      }
       matrix4.inverse( this.buffer, result.buffer );
       result.modified = true;
 
@@ -165,7 +168,7 @@ define( function ( require ) {
       var buffer = this.buffer;
       var other;
       if( 1 === argc ) {
-        if( arg1 instanceof Vector4 ) {
+        if( arg1 instanceof Matrix4 ) {
           other = arg1.buffer;
         } else {
           other = arg1;
@@ -235,6 +238,7 @@ define( function ( require ) {
     Matrix4.prototype = {
       add: add,
       clear: clear,
+      clone: clone,
       determinant: determinant,
       equal: equal,
       inverse: inverse,
