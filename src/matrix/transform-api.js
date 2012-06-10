@@ -23,63 +23,69 @@ define( function ( require ) {
       return result;
     }
 
-    function rotate( rotation, result ) {
-      result || matrix4.identity;
+    function rotate( v, result ) {
+      result || new M4( matrix4.identity );
 
       var sinA,
           cosA;
+      var rotation;
 
-      var ml;
       if( 0 !== v[2] ) {
         sinA = Math.sin( v[2] );
         cosA = Math.cos( v[2] );
-        ml = [];
-        ml.push(matrix4.$([ cosA, sinA, 0, 0,
-                           -sinA, cosA, 0, 0,
-                            0, 0, 1, 0,
-                            0, 0, 0, 1 ] ));
-        ml.push(matrix4.$(r));
-        
-        matrix4.multiply( ml, r );
+
+        rotation = [ cosA, sinA, 0, 0,
+                     -sinA, cosA, 0, 0,
+                     0, 0, 1, 0,
+                     0, 0, 0, 1 ];
+        matrix4.set( result, rotation );
       }
 
       if( 0 !== v[1] ) {
         sinA = Math.sin( v[1] );
         cosA = Math.cos( v[1] );
-        ml = [];
-        ml.push(matrix4.$([ cosA, 0, -sinA, 0,
-                            0, 1, 0, 0,
-                            sinA, 0, cosA, 0,
-                            0, 0, 0, 1 ] ));
-        ml.push(matrix4.$(r));
-        
-        matrix4.multiply( ml, r );
+
+        rotation = [ cosA, 0, -sinA, 0,
+                     0, 1, 0, 0,
+                     sinA, 0, cosA, 0,
+                     0, 0, 0, 1 ];
+        matrix4.multiply( rotation, result, result );
       }
 
       if( 0 !== v[0] ) {
         sinA = Math.sin( v[0] );
         cosA = Math.cos( v[0] );
-        ml = [];
-        ml.push(matrix4.$([ 1, 0, 0, 0,
-                            0, cosA, sinA, 0,
-                            0, -sinA, cosA, 0,
-                            0, 0, 0, 1 ] ));
-        ml.push(matrix4.$(r));
         
-        matrix4.multiply( ml, r );
+        rotation = [ 1, 0, 0, 0,
+                     0, cosA, sinA, 0,
+                     0, -sinA, cosA, 0,
+                     0, 0, 0, 1 ];
+        matrix4.multiply( rotation, result, result );
       }
 
-      if( !result ) {
-        return r;
-      }
+      return result;
     }
 
-    function scale( scale, result ) {
+    function scale( v, result ) {
+      result = result || new M4();
 
+      matrix4.set( result, v[0], 0, 0, 0,
+                           0, v[1], 0, 0,
+                           0, 0, v[2], 0,
+                           0, 0, 0, 1 );
+
+      return result;
     }
 
-    function translate( translation, result ) {
+    function translate( v, result ) {
+      result = result || new M4();
 
+      matrix4.set( result, 1, 0, 0, 0,
+                           0, 1, 0, 0,
+                           0, 0, 1, 0,
+                           v[0], v[1], v[2], 1 );
+
+      return result;
     }
 
     var transform = {

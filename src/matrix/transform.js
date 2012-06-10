@@ -5,6 +5,7 @@ define( function ( require ) {
     var notImplemented = require( "common/not-implemented" );
     var M4 = require( "matrix/m4" );
     var transform = require( "matrix/transform-api" );
+    var matrix4 = require( "matrix/matrix-api" );
 
         function getView( index ) {
       return this._views[index];
@@ -51,10 +52,7 @@ define( function ( require ) {
       });
     };
 
-    var Transform = function( arg1, arg2, arg3, arg4,
-                            arg5, arg6, arg7, arg8,
-                            arg9, arg10, arg11, arg12,
-                            arg13, arg14, arg15, arg16 ) {
+    var Transform = function( arg1, arg2, arg3 ) {
       var argc = arguments.length;
       if( 1 === argc ) {
         if( arg1 instanceof Transform ) {
@@ -62,11 +60,8 @@ define( function ( require ) {
         } else {
           this.buffer = new M4( arg1 );
         }
-      } else if( 16 === argc ) {
-        this.buffer = new M4( arg1, arg2, arg3, arg4,
-                              arg5, arg6, arg7, arg8,
-                              arg9, arg10, arg11, arg12,
-                              arg13, arg14, arg15, arg16 );
+      } else if( 3 === argc ) {
+        this.buffer = transform.fixed( arg1, arg2, arg3 );
       } else {
         this.buffer = new M4();
       }
@@ -93,19 +88,59 @@ define( function ( require ) {
       this.modified = true;
     };
 
-    function rotate( v, result ) {
+    function clone( t ) {
+      return new Transform( this );
+    }
 
+    function multiply( arg, result ) {
+      var other;
+      if( arg instanceof Matrix4 ||
+          arg instanceof Transform ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      result = result || this;
+      matrix4.multiply( this.buffer, other, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function rotate( v, result ) {
+      var rotation = transform.rotate( v );
+
+      result = result || this;
+      matrix4.multiply( this.buffer, rotation, result.buffer );
+      result.modified = true;
+
+      return this;
     }
 
     function scale( v, result ) {
+      var scale = transform.scale( v );
 
+      result = result || this;
+      matrix4.multiply( this.buffer, scale, result.buffer );
+      result.modified = true;
+
+      return this;
     }
 
     function translate( v, result ) {
+      var translation = transform.translate( v );
 
+      result = result || this;
+      matrix4.multiply( this.buffer, translation, result.buffer );
+      result.modified = true;
+
+      return this;
     }
 
     Transform.prototype = {
+      clone: clone,
+      multiply: multiply,
       rotate: rotate,
       scale: scale,
       translate: translate
