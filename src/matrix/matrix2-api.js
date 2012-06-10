@@ -107,10 +107,10 @@ define( function ( require ) {
 
     function transpose( m, result ) {
       if( m && m === result ) {
-        var a10 = m[2];
+        var a01 = m[1];
 
         result[1] = m[2];
-        result[2] = a10;
+        result[2] = a01;
 
         return result;
       }
