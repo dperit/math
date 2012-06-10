@@ -29,7 +29,7 @@ define( function( require ) {
 
           "matrix/m3.test",
           "matrix/matrix3-api.test",
-          // "matrix/matrix3.test",
+          "matrix/matrix3.test",
 
           "matrix/m4.test",
           "matrix/matrix4-api.test",
