@@ -131,6 +131,7 @@ define( function ( require ) {
       return result;      
     }
 
+    // https://github.com/toji/gl-matrix/blob/8d6179c15aa938159feb2cb617d8a3af3fa2c7f3/gl-matrix.js#L1295
     function multiply( m1, m2, result ) {
       result = result || new M4();
 

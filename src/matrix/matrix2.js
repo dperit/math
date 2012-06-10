@@ -88,7 +88,7 @@ define( function ( require ) {
       return this;
     }
     
-    Matrix4.prototype = {
+    Matrix2.prototype = {
       add: add
     };
 

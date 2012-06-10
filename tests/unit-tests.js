@@ -28,7 +28,7 @@ define( function( require ) {
           // "matrix/matrix2.test",
 
           "matrix/m3.test",
-          // "matrix/matrix3-api.test",
+          "matrix/matrix3-api.test",
           // "matrix/matrix3.test",
 
           "matrix/m4.test",
