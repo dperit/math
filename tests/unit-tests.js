@@ -24,7 +24,7 @@ define( function( require ) {
           // "vector/quaternion.test",
 
           "matrix/m2.test",
-          // "matrix/matrix2-api.test",
+          "matrix/matrix2-api.test",
           // "matrix/matrix2.test",
 
           "matrix/m3.test",
