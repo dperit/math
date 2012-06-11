@@ -24,6 +24,7 @@
     "notEqual",
     "ok",
     "deepEqual",
+    "notDeepEqual",
     
     // HTML5 browser APIs that jshint will learn about someday
     "requestAnimationFrame",

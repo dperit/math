@@ -121,7 +121,7 @@ define(
       test( "angle with vector object", function() {
         expect( 1 );
 
-        var v1 = new this.math.Vector4( 1, 1, 3, 4 )
+        var v1 = new this.math.Vector4( 1, 1, 3, 4 );
         var v2 = new this.math.Vector4( 2, 3, -1, 5 );
         var angle = v1.angle( v2 );
 
@@ -144,7 +144,7 @@ define(
         expect( 1 );
 
         var v1 = new this.math.Vector4( 2, 3, 2, 5 );
-        var v2 = [3, 2, 5, 7]
+        var v2 = [3, 2, 5, 7];
         var angle = v1.angle( v2 );
 
         equal( angle, this.math.vector4.angle( v1.buffer, v2 ),

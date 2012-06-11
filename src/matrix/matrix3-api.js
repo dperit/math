@@ -35,7 +35,7 @@ define( function ( require ) {
           a20 = m[6], a21 = m[7], a22 = m[8];
 
       return a00 * (a22 * a11 - a12 * a21) + a01 * (-a22 * a10 + a12 * a20) + a02 * (a21 * a10 - a11 * a20);
-    };
+    }
 
     function equal( m1, m2, e ) {
       e = e || 0.000001;
@@ -83,7 +83,7 @@ define( function ( require ) {
       result[8] = (a11 * a00 - a01 * a10) * inverseDeterminant;
 
       return result;
-    };
+    }
 
     // https://github.com/toji/gl-matrix/blob/8d6179c15aa938159feb2cb617d8a3af3fa2c7f3/gl-matrix.js#L682
     function multiply( m1, m2, result ) {

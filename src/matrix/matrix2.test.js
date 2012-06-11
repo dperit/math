@@ -29,9 +29,10 @@ define(
       test( "create a matrix with given values", function() {
         expect( 5 );
 
-        var m = new this.math.Matrix2( 1, 2, 3, 4 );
+        var m = new this.math.Matrix2( 1, 2, 3, 4 );        
 
         ok( m.modified, "modified is set" );
+        var i, j;
         for( i = 0; i < 2; ++ i ) {
           for( j = 0; j < 2; ++ j ) {
             equal( m[j][i], 1 + i + 2*j, "value " + i + "," + j + " is correct" );
@@ -45,6 +46,7 @@ define(
         var m = new this.math.Matrix2( [1, 2, 3, 4] );
 
         ok( m.modified, "modified is set" );
+        var i, j;
         for( i = 0; i < 2; ++ i ) {
           for( j = 0; j < 2; ++ j ) {
             equal( m[j][i], 1 + i + 2*j, "value " + i + "," + j + " is correct" );
@@ -208,7 +210,7 @@ define(
         }, function( error ) {
           ok( !m.modified, "matrix is not modified" );
           return error instanceof Error;
-        }, "exception thrown for singular matrix")
+        }, "exception thrown for singular matrix");
       });
 
       test( "multiply with matrix object", function() {

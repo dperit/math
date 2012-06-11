@@ -112,7 +112,7 @@ define(
       test( "angle with vector object", function() {
         expect( 1 );
 
-        var v1 = new this.math.Vector3( 1, 1, 3 )
+        var v1 = new this.math.Vector3( 1, 1, 3 );
         var v2 = new this.math.Vector3( 2, 3, -1 );
         var angle = v1.angle( v2 );
 
@@ -135,7 +135,7 @@ define(
         expect( 1 );
 
         var v1 = new this.math.Vector3( 2, 3, 2 );
-        var v2 = [3, 2, 5]
+        var v2 = [3, 2, 5];
         var angle = v1.angle( v2 );
 
         equal( angle, this.math.vector3.angle( v1.buffer, v2 ),
@@ -197,7 +197,7 @@ define(
         expect( 2 );
 
         var v1 = new this.math.Vector3( 2, 3, 1 );
-        var v2 = [2, 4, 1]
+        var v2 = [2, 4, 1];
         v1.modified = false;
         var result = v1.cross( v2 );
         ok( v1.modified, "modified is set" );

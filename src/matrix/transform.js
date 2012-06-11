@@ -80,7 +80,7 @@ define( function ( require ) {
         },
         "3": {
           get: getView.bind( this, 3 )
-        },
+        }
       });
 
       this._views = [];
@@ -133,10 +133,10 @@ define( function ( require ) {
     }
 
     function scale( v, result ) {
-      var scale = transform.scale( v );
+      var scaled = transform.scale( v );
 
       result = result || this;
-      matrix4.multiply( this.buffer, scale, result.buffer );
+      matrix4.multiply( this.buffer, scaled, result.buffer );
       result.modified = true;
 
       return this;

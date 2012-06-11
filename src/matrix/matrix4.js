@@ -83,7 +83,7 @@ define( function ( require ) {
         },
         "3": {
           get: getView.bind( this, 3 )
-        },
+        }
       });
 
       this._views = [];

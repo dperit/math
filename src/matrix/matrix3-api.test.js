@@ -128,6 +128,7 @@ define(
         expect( 18 );
 
         var result;
+        var i;
 
         var m1 = new this.math.M3( 1, 0, 0,
                                    0, 1, 1,
@@ -136,7 +137,7 @@ define(
 
         result = this.math.matrix3.inverse( m1 );
         
-        for( var i = 0; i < 9; ++ i ) {
+        for( i = 0; i < 9; ++ i ) {
           equal( result[i], expected[i], "value is correct" );
         }
 
@@ -146,7 +147,7 @@ define(
 
         result = this.math.matrix3.inverse( m2 );
         
-        for( var i = 0; i < 9; ++ i ) {
+        for( i = 0; i < 9; ++ i ) {
           equal( result[i], m2[i], "value is correct" );
         }
       });
@@ -155,6 +156,7 @@ define(
         expect( 18 );
 
         var result = new this.math.M3();
+        var i;
 
         var m1 = new this.math.M3( 1, 0, 0,
                                    0, 1, 1,
@@ -163,7 +165,7 @@ define(
 
         this.math.matrix3.inverse( m1, result );
         
-        for( var i = 0; i < 9; ++ i ) {
+        for( i = 0; i < 9; ++ i ) {
           equal( result[i], expected[i], "value is correct" );
         }
 
@@ -174,7 +176,7 @@ define(
         result = new this.math.M3();
         this.math.matrix3.inverse( m2, result );
         
-        for( var i = 0; i < 9; ++ i ) {
+        for( i = 0; i < 9; ++ i ) {
           equal( result[i], m2[i], "value is correct" );
         }
       });
@@ -286,6 +288,7 @@ define(
         expect( 18 );
 
         var result;
+        var i;
 
         var m1 = new this.math.M3( 1, 2, 3,
                                    5, 6, 7,
@@ -294,7 +297,7 @@ define(
         result = this.math.matrix3.transpose( m1 );
         var expected = [1, 5, 9, 2, 6, 1, 3, 7, 2];       
         
-        for( var i = 0; i < 9; ++ i ) {
+        for( i = 0; i < 9; ++ i ) {
           equal( result[i], expected[i], "value is correct" );
         }
 
@@ -304,7 +307,7 @@ define(
 
         result = this.math.matrix3.inverse( m2 );
         
-        for( var i = 0; i < 9; ++ i ) {
+        for( i = 0; i < 9; ++ i ) {
           equal( result[i], m2[i], "value is correct" );
         }
       });
@@ -312,7 +315,8 @@ define(
       test( "transpose, set result parameter", function() {
         expect( 18 );
 
-        var result = new this.math.M3();;
+        var result = new this.math.M3();
+        var i;
 
         var m1 = new this.math.M3( 1, 2, 3,
                                    5, 6, 7,
@@ -321,7 +325,7 @@ define(
         this.math.matrix3.transpose( m1, result );
         var expected = [1, 5, 9, 2, 6, 1, 3, 7, 2];       
         
-        for( var i = 0; i < 9; ++ i ) {
+        for( i = 0; i < 9; ++ i ) {
           equal( result[i], expected[i], "value is correct" );
         }
 
@@ -332,7 +336,7 @@ define(
 
         this.math.matrix3.inverse( m2, result );
         
-        for( var i = 0; i < 9; ++ i ) {
+        for( i = 0; i < 9; ++ i ) {
           equal( result[i], m2[i], "value is correct" );
         }
       });

@@ -28,7 +28,7 @@ define( function ( require ) {
           a10 = m[2], a11 = m[3];
 
       return a00 * a11 - a01 * a10;
-    };
+    }
 
     function equal( m1, m2, e ) {
       e = e || 0.000001;
@@ -61,7 +61,7 @@ define( function ( require ) {
       result[3] = a00 * inverseDeterminant;
 
       return result;
-    };
+    }
 
     function multiply( m1, m2, result ) {
       result = result || new M2();

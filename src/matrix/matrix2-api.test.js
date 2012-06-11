@@ -102,13 +102,14 @@ define(
         expect( 8 );
 
         var result;
+        var i;
 
         var m1 = new this.math.M2( 1, 1, 0, 1 );
         var expected = [1, -1, 0, 1];
 
         result = this.math.matrix2.inverse( m1 );
         
-        for( var i = 0; i < 4; ++ i ) {
+        for( i = 0; i < 4; ++ i ) {
           equal( result[i], expected[i], "value is correct" );
         }
 
@@ -116,7 +117,7 @@ define(
 
         result = this.math.matrix2.inverse( m2 );
         
-        for( var i = 0; i < 4; ++ i ) {
+        for( i = 0; i < 4; ++ i ) {
           equal( result[i], m2[i], "value is correct" );
         }
       });
@@ -125,13 +126,14 @@ define(
         expect( 8 );
 
         var result = new this.math.M2();
+        var i;
 
         var m1 = new this.math.M2( 1, 1, 0, 1 );
         var expected = [1, -1, 0, 1];
 
         this.math.matrix2.inverse( m1, result );
 
-        for( var i = 0; i < 4; ++ i ) {
+        for( i = 0; i < 4; ++ i ) {
           equal( result[i], expected[i], "value is correct" );
         }
 
@@ -140,7 +142,7 @@ define(
         result = new this.math.M2();
         this.math.matrix2.inverse( m2, result );
         
-        for( var i = 0; i < 4; ++ i ) {
+        for( i = 0; i < 4; ++ i ) {
           equal( result[i], m2[i], "value is correct" );
         }
       });
@@ -232,13 +234,14 @@ define(
         expect( 8 );
 
         var result;
+        var i;
 
         var m1 = new this.math.M2( 4, 2, 1, 2 );
 
         result = this.math.matrix2.transpose( m1 );
         var expected = [4, 1, 2, 2];       
         
-        for( var i = 0; i < 4; ++ i ) {
+        for( i = 0; i < 4; ++ i ) {
           equal( result[i], expected[i], "value is correct" );
         }
 
@@ -246,7 +249,7 @@ define(
 
         result = this.math.matrix2.inverse( m2 );
         
-        for( var i = 0; i < 4; ++ i ) {
+        for( i = 0; i < 4; ++ i ) {
           equal( result[i], m2[i], "value is correct" );
         }
       });
@@ -254,14 +257,15 @@ define(
       test( "transpose, set result parameter", function() {
         expect( 8 );
 
-        var result = new this.math.M2();;
+        var result = new this.math.M2();
+        var i;
 
         var m1 = new this.math.M2( 4, 2, 1, 5 );
 
         this.math.matrix2.transpose( m1, result );
         var expected = [4, 1, 2, 5];       
         
-        for( var i = 0; i < 4; ++ i ) {
+        for( i = 0; i < 4; ++ i ) {
           equal( result[i], expected[i], "value is correct" );
         }
 
@@ -270,7 +274,7 @@ define(
 
         this.math.matrix2.inverse( m2, result );
         
-        for( var i = 0; i < 4; ++ i ) {
+        for( i = 0; i < 4; ++ i ) {
           equal( result[i], m2[i], "value is correct" );
         }
       });
