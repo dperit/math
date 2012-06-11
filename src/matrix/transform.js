@@ -3,9 +3,10 @@ define( function ( require ) {
   return function( FLOAT_ARRAY_TYPE ) {
     
     var notImplemented = require( "common/not-implemented" );
-    var M4 = require( "matrix/m4" );
-    var transform = require( "matrix/transform-api" );
-    var matrix4 = require( "matrix/matrix-api" );
+    var M4 = require( "matrix/m4" )( FLOAT_ARRAY_TYPE );
+    var transform = require( "matrix/transform-api" )( FLOAT_ARRAY_TYPE );
+    var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
+    var Matrix4 = require( "matrix/matrix4" )( FLOAT_ARRAY_TYPE );
 
         function getView( index ) {
       return this._views[index];
@@ -55,15 +56,16 @@ define( function ( require ) {
     var Transform = function( arg1, arg2, arg3 ) {
       var argc = arguments.length;
       if( 1 === argc ) {
-        if( arg1 instanceof Transform ) {
+        if( arg1 instanceof Transform ||
+            arg1 instanceof Matrix4 ) {
           this.buffer = new M4( arg1.buffer );
-        } else {
+        } else if( arg1 instanceof M4 ) {
           this.buffer = new M4( arg1 );
+        } else {
+          this.buffer = transform.fixed( arg1, arg2, arg3 );
         }
-      } else if( 3 === argc ) {
-        this.buffer = transform.fixed( arg1, arg2, arg3 );
       } else {
-        this.buffer = new M4();
+        this.buffer = transform.fixed( arg1, arg2, arg3 );
       }
 
       Object.defineProperties( this, {
@@ -88,8 +90,20 @@ define( function ( require ) {
       this.modified = true;
     };
 
-    function clone( t ) {
+    function clone() {
       return new Transform( this );
+    }
+
+    function equal( arg ) {
+      var other;
+      if( arg instanceof Matrix4 ||
+          arg instanceof Transform ) {        
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      return matrix4.equal( this.buffer, other );
     }
 
     function multiply( arg, result ) {
@@ -128,6 +142,14 @@ define( function ( require ) {
       return this;
     }
 
+    function transformDirection( v, result ) {
+
+    }
+
+    function transformPoint( v, result ) {
+
+    }
+
     function translate( v, result ) {
       var translation = transform.translate( v );
 
@@ -140,9 +162,12 @@ define( function ( require ) {
 
     Transform.prototype = {
       clone: clone,
+      equal: equal,
       multiply: multiply,
       rotate: rotate,
       scale: scale,
+      transformDirection: notImplemented,
+      transformPoint: notImplemented,
       translate: translate
     };
 

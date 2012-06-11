@@ -35,8 +35,8 @@ define( function( require ) {
           "matrix/matrix4-api.test",
           "matrix/matrix4.test",
 
-          // "matrix/transform-api.test",
-          // "matrix/transform.test"
+          "matrix/transform-api.test",
+          "matrix/transform.test"
 
           ];
 

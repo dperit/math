@@ -3,28 +3,29 @@ define( function ( require ) {
   return function( FLOAT_ARRAY_TYPE ) {
 
     var notImplemented = require( "common/not-implemented" );
-    var M4 = require( "matrix/m4" );
+    var M4 = require( "matrix/m4" )( FLOAT_ARRAY_TYPE );
+    var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
 
-    function fixed( translation, rotation, scale, result ) {
-      result = result || new M4();
+    function fixed( t, r, s, result ) {
+      result = result || new M4( matrix4.identity );
 
-      if( translation ) {
-        translate( translation, result );
+      if( t ) {
+        translate( t, result );
       }
 
-      if( rotation ) {
-        rotate( rotation, result );
+      if( r ) {
+        rotate( r, result );
       }
 
-      if( scale ) {
-        scale( scale, result );
+      if( s ) {
+        scale( s, result );
       }
 
       return result;
     }
 
     function rotate( v, result ) {
-      result || new M4( matrix4.identity );
+      result = result || new M4( matrix4.identity );
 
       var sinA,
           cosA;
@@ -38,7 +39,7 @@ define( function ( require ) {
                      -sinA, cosA, 0, 0,
                      0, 0, 1, 0,
                      0, 0, 0, 1 ];
-        matrix4.set( result, rotation );
+        matrix4.multiply( rotation, result, result );
       }
 
       if( 0 !== v[1] ) {
@@ -67,23 +68,23 @@ define( function ( require ) {
     }
 
     function scale( v, result ) {
-      result = result || new M4();
+      result = result || new M4( matrix4.identity );
 
-      matrix4.set( result, v[0], 0, 0, 0,
-                           0, v[1], 0, 0,
-                           0, 0, v[2], 0,
-                           0, 0, 0, 1 );
+      matrix4.multiply( result, [v[0], 0, 0, 0,
+                                 0, v[1], 0, 0,
+                                 0, 0, v[2], 0,
+                                 0, 0, 0, 1], result );
 
       return result;
     }
 
     function translate( v, result ) {
-      result = result || new M4();
+      result = result || new M4( matrix4.identity );
 
-      matrix4.set( result, 1, 0, 0, 0,
-                           0, 1, 0, 0,
-                           0, 0, 1, 0,
-                           v[0], v[1], v[2], 1 );
+      matrix4.multiply( result, [1, 0, 0, 0,
+                                 0, 1, 0, 0,
+                                 0, 0, 1, 0,
+                                 v[0], v[1], v[2], 1], result );
 
       return result;
     }
@@ -92,6 +93,8 @@ define( function ( require ) {
       fixed: fixed,
       rotate: rotate,
       scale: scale,
+      transformDirection: notImplemented,
+      transformPoint: notImplemented,
       translate: translate
     };
 
