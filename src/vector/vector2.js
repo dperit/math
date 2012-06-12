@@ -153,15 +153,17 @@ define( function ( require ) {
           var other = arg1.buffer;
           buffer[0] = other[0];
           buffer[1] = other[1];
+          this.modified = true;
         } else {
           buffer[0] = arg1[0];
           buffer[1] = arg1[1];
+          this.modified = true;
         }
       } else if( 2 === argc ) {
         buffer[0] = arg1;
         buffer[1] = arg2;
-      }
-      this.modified = true;
+        this.modified = true;
+      }      
 
       return this;
     }

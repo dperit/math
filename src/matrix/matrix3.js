@@ -180,6 +180,7 @@ define( function ( require ) {
         buffer[13] = other[13];
         buffer[14] = other[14];
         buffer[15] = other[15];
+        this.modified = true;
       } else if( 16 === argc ) {
         buffer[0] = arg1;
         buffer[1] = arg2;
@@ -197,8 +198,8 @@ define( function ( require ) {
         buffer[13] = arg14;
         buffer[14] = arg15;
         buffer[15] = arg16;
+        this.modified = true;
       }
-      this.modified = true;
 
       return this;
     }

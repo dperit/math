@@ -158,17 +158,19 @@ define( function ( require ) {
           buffer[0] = other[0];
           buffer[1] = other[1];
           buffer[2] = other[2];
+          this.modified = true;
         } else {
           buffer[0] = arg1[0];
           buffer[1] = arg1[1];
           buffer[2] = arg1[2];
+          this.modified = true;
         }
       } else if( 3 === argc ) {
         buffer[0] = arg1;
         buffer[1] = arg2;
         buffer[2] = arg3;
-      }
-      this.modified = true;
+        this.modified = true;
+      }      
 
       return this;
     }
