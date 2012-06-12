@@ -1,6 +1,7 @@
 define( function ( require ) {
 
   var constants = require( "constants" );
+  var equal = require( "equal" );
 
   var V2 = require( "vector/v2" );
   var Vector2 = require( "vector/vector2" );
@@ -47,6 +48,7 @@ define( function ( require ) {
     var ARRAY_TYPE = this.ARRAY_TYPE = FLOAT_ARRAY_ENUM.Float32;
 
     extend( this, constants );
+    this.equal = equal;
     extend( this, {
       V2: V2( ARRAY_TYPE ),
       Vector2: Vector2( ARRAY_TYPE ),

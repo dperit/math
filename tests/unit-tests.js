@@ -7,6 +7,7 @@ define( function( require ) {
   return [
 
           "_math.test",
+          "equal.test",
 
           "vector/v2.test",
           "vector/vector2-api.test",
