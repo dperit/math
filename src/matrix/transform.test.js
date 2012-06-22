@@ -106,7 +106,7 @@ define(
         transform1.multiply( transform2, result );
 
         ok( this.math.matrix4.equal( result.buffer, expected ), "result is correct" );
-        ok( !transform1.modified, "transform1 is modified" );
+        ok( !transform1.modified, "transform1 is not modified" );
         ok( !transform2.modified, "transform2 is not modified" );
       });
 
@@ -129,7 +129,7 @@ define(
         var result = new this.math.Transform();
         transform.rotate( [1, 2, 3], result );
 
-        ok( !transform.modified, "transform is modified" );
+        ok( !transform.modified, "transform is not modified" );
         ok( this.math.matrix4.equal( result.buffer, expected ), "result is correct" );
       });
 
@@ -152,8 +152,20 @@ define(
         var result = new this.math.Transform();
         transform.scale( [1, 2, 3], result );
 
-        ok( !transform.modified, "transform is modified" );
+        ok( !transform.modified, "transform is not modified" );
         ok( this.math.matrix4.equal( result.buffer, expected ), "result is correct" );
+      });
+
+      test( "set", function() {
+        expect( 2 );
+        var transform = new this.math.Transform( [1, 2, 3], [4, 5, 6], [7, 8, 9] );
+        transform.modified = false;
+        var expected = new this.math.Transform( [9, 8, 7], [6, 5, 4], [3, 2, 1] );
+        transform.set( [9, 8, 7], [6, 5, 4], [3, 2, 1] );
+
+        ok( transform.modified, "transform is modified" );
+        ok( this.math.matrix4.equal( transform.buffer, expected.buffer ),
+          "transform is correct" );
       });
 
       test( "translate", function() {

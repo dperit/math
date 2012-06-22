@@ -142,6 +142,12 @@ define( function ( require ) {
       return this;
     }
 
+    function set( t, r, s ) {
+      matrix4.set( this.buffer, matrix4.identity );
+      transform.fixed( t, r, s, this.buffer );
+      this.modified = true;
+    }
+
     function transformDirection( v, result ) {
 
     }
@@ -166,6 +172,7 @@ define( function ( require ) {
       multiply: multiply,
       rotate: rotate,
       scale: scale,
+      set: set,
       transformDirection: notImplemented,
       transformPoint: notImplemented,
       translate: translate
