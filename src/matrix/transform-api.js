@@ -81,10 +81,10 @@ define( function ( require ) {
     function translate( v, result ) {
       result = result || new M4( matrix4.identity );
 
-      matrix4.multiply( result, [1, 0, 0, 0,
-                                 0, 1, 0, 0,
-                                 0, 0, 1, 0,
-                                 v[0], v[1], v[2], 1], result );
+      matrix4.multiply( result, [1, 0, 0, v[0],
+                                 0, 1, 0, v[1],
+                                 0, 0, 1, v[2],
+                                 0, 0, 0, 1], result );
 
       return result;
     }

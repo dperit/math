@@ -8,7 +8,7 @@ define( function ( require ) {
     var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
     var Matrix4 = require( "matrix/matrix4" )( FLOAT_ARRAY_TYPE );
 
-        function getView( index ) {
+    function getView( index ) {
       return this._views[index];
     }
 
@@ -169,6 +169,8 @@ define( function ( require ) {
     Transform.prototype = {
       clone: clone,
       equal: equal,
+      inverseTransformDirection: notImplemented,
+      inverseTransformPoint: notImplemented,
       multiply: multiply,
       rotate: rotate,
       scale: scale,
