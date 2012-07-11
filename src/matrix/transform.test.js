@@ -61,6 +61,23 @@ define(
           "transform is correct" );
       });
 
+      test("Decomposing a matrix and then recreating it results in unchanged values", function(){
+        expect( 1 );
+        var transform = new this.math.Transform( [1, 2, 3], [4, 5, 6], [7, 8, 9] );
+        transform.decomposeMatrix();
+        var recreatedTransform = new this.math.Transform(transform.translation, transform.rotation, transform.scaling);
+        ok(this.math.matrix4.equal(transform.buffer, recreatedTransform.buffer), "Recreated transform is equal to original transform");
+      });
+
+      test("Shear", function(){
+        var parentTransform = new this.math.Transform([0,0,0],[0,0,0],[7,13,17]);
+        var childTransform = new this.math.Transform([0,0,0],[this.math.TAU/2, this.math.TAU/3, this.math.TAU/4],[1,1,1]);
+        var result = new this.math.Transform();
+        childTransform.multiply(parentTransform, result );
+        result.decomposeMatrix();
+        console.log(result.scaling);
+      });
+
       test( "clone", function() {
         expect( 2 );
         var transform1 = new this.math.Transform( [1, 2, 3], [4, 5, 6], [7, 8, 9] );
