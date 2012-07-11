@@ -7,6 +7,7 @@ define( function ( require ) {
     var transform = require( "matrix/transform-api" )( FLOAT_ARRAY_TYPE );
     var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
     var Matrix4 = require( "matrix/matrix4" )( FLOAT_ARRAY_TYPE );
+    var V3 = require( "vector/v3" )( FLOAT_ARRAY_TYPE );
 
     function getView( index ) {
       return this._views[index];
@@ -94,6 +95,41 @@ define( function ( require ) {
       return new Transform( this );
     }
 
+    //Recover the translation, rotation, and scale from the 4x4 matrix
+    // in the given transform
+    function decomposeMatrix(arg, result){
+      var matrix;
+      if (arg){
+        if (arg instanceof Matrix4 ||
+          arg instanceof Transform){
+          matrix = arg.buffer;
+        } else {
+          matrix = arg;
+        }
+      }else{
+        matrix = this.buffer;
+      }
+
+      var translation = new V3(matrix[3], matrix[7], matrix[11]);
+
+      var scaling_x = Math.sqrt(matrix[0] * matrix[0] + matrix[1] * matrix[1] + matrix[2] * matrix[2]);
+      var scaling_y = Math.sqrt(matrix[4] * matrix[4] + matrix[5] * matrix[5] + matrix[6] * matrix[6]);
+      var scaling_z = Math.sqrt(matrix[8] * matrix[8] + matrix[9] * matrix[9] + matrix[10] * matrix[10]);
+      var scaling = new V3(scaling_x, scaling_y, scaling_z);
+
+      var rotation = new M4(matrix[0]/scaling_x, matrix[1]/scaling_x, matrix[2]/scaling_x,0,
+        matrix[4]/scaling_y,matrix[5]/scaling_y,matrix[6]/scaling_y,0,
+        matrix[8]/scaling_z,matrix[9]/scaling_z,matrix[10]/scaling_z,0,
+        0,0,0,1);
+
+      result = result || this;
+      result.translation = translation;
+      result.scaling = scaling;
+      result.rotation = rotation;
+
+      return [translation, scaling, rotation];
+    }
+
     function equal( arg ) {
       var other;
       if( arg instanceof Matrix4 ||
@@ -168,6 +204,7 @@ define( function ( require ) {
 
     Transform.prototype = {
       clone: clone,
+      decomposeMatrix: decomposeMatrix,
       equal: equal,
       inverseTransformDirection: notImplemented,
       inverseTransformPoint: notImplemented,
