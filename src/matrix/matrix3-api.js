@@ -40,15 +40,29 @@ define( function ( require ) {
     function equal( m1, m2, e ) {
       e = e || 0.000001;
 
-      if( Math.abs( m1[0] - m2[0] ) > e ||
-          Math.abs( m1[1] - m2[1] ) > e ||
-          Math.abs( m1[2] - m2[2] ) > e ||
-          Math.abs( m1[3] - m2[3] ) > e ||
-          Math.abs( m1[4] - m2[4] ) > e ||
-          Math.abs( m1[5] - m2[5] ) > e ||
-          Math.abs( m1[6] - m2[6] ) > e ||
-          Math.abs( m1[7] - m2[7] ) > e ||
-          Math.abs( m1[8] - m2[8] ) > e ) {
+      if( m1.length !== m2.length ) {
+        return false;
+      }
+
+      var d0 = Math.abs( m1[0] - m2[0] );
+      var d1 = Math.abs( m1[1] - m2[1] );
+      var d2 = Math.abs( m1[2] - m2[2] );
+      var d3 = Math.abs( m1[3] - m2[3] );
+      var d4 = Math.abs( m1[4] - m2[4] );
+      var d5 = Math.abs( m1[5] - m2[5] );
+      var d6 = Math.abs( m1[6] - m2[6] );
+      var d7 = Math.abs( m1[7] - m2[7] );
+      var d8 = Math.abs( m1[8] - m2[8] );
+
+      if( isNaN( d0 ) || d0 > e ||
+          isNaN( d1 ) || d1 > e ||
+          isNaN( d2 ) || d2 > e ||
+          isNaN( d3 ) || d3 > e ||
+          isNaN( d4 ) || d4 > e ||
+          isNaN( d5 ) || d5 > e ||
+          isNaN( d6 ) || d6 > e ||
+          isNaN( d7 ) || d7 > e ||
+          isNaN( d8 ) || d8 > e ) {
         return false;
       }
 

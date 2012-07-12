@@ -376,7 +376,7 @@ define(
 
         ok( m1.modified, "matrix is modified" );
         ok( !m2.modified, "matrix is not modified" );
-        ok( this.math.matrix4.equal( m1, m2 ), "matrix is set properly" );
+        ok( this.math.matrix4.equal( m1.buffer, m2.buffer ), "matrix is set properly" );
         ok( returnValue, m1, "set returns this" );
       });
 
@@ -395,7 +395,7 @@ define(
         var returnValue = m1.set( m2 );
 
         ok( m1.modified, "matrix is modified" );
-        ok( this.math.matrix4.equal( m1, m2 ), "matrix is set properly" );
+        ok( this.math.matrix4.equal( m1.buffer, m2 ), "matrix is set properly" );
         ok( returnValue, m1, "set returns this" );
       });
 
@@ -411,7 +411,7 @@ define(
         var returnValue = m1.set( m2 );
 
         ok( m1.modified, "matrix is modified" );
-        ok( this.math.matrix4.equal( m1, m2 ), "matrix is set properly" );
+        ok( this.math.matrix4.equal( m1.buffer, m2 ), "matrix is set properly" );
         ok( returnValue, m1, "set returns this" );
       });
 

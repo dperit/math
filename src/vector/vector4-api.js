@@ -49,15 +49,20 @@ define( function ( require ) {
     function equal( v1, v2, e ) {
       e = e || 0.000001;
 
-      if( v1.length != v2.length ) {
-          return false;
+      if( v1.length !== v2.length ) {
+        return false;
       }
-      
-      if( Math.abs( v1[0] - v2[0] ) > e ||
-          Math.abs( v1[1] - v2[1] ) > e ||
-          Math.abs( v1[2] - v2[2] ) > e ||
-          Math.abs( v1[3] - v2[3] ) > e ) {
-          return false;
+
+      var d0 = Math.abs( v1[0] - v2[0] );
+      var d1 = Math.abs( v1[1] - v2[1] );
+      var d2 = Math.abs( v1[2] - v2[2] );
+      var d3 = Math.abs( v1[3] - v2[3] );
+
+      if( isNaN( d0 ) || d0 > e ||
+          isNaN( d1 ) || d1 > e ||
+          isNaN( d2 ) || d2 > e ||
+          isNaN( d3 ) || d3 > e ) {
+        return false;
       }
 
       return true;
