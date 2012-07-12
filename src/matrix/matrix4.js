@@ -160,6 +160,13 @@ define( function ( require ) {
       return this;
     }
 
+    //This requires that a vector4 be sent in, and will return a vector4 without
+    // changing this matrix
+    // An additional vector4 can optionally be supplied to store the result
+    function multiplyVector( arg, result ) {
+      return matrix4.multiplyVector( this.buffer, arg, result );
+    }
+
     function set( arg1, arg2, arg3, arg4,
                   arg5, arg6, arg7, arg8,
                   arg9, arg10, arg11, arg12,
@@ -244,6 +251,7 @@ define( function ( require ) {
       equal: equal,
       inverse: inverse,
       multiply: multiply,
+      multiplyVector: multiplyVector,
       set: set,
       subtract: subtract,
       transpose: transpose
