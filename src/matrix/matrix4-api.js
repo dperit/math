@@ -5,6 +5,7 @@ define( function ( require ) {
     var notImplemented = require( "common/not-implemented" );
     var M4 = require( "matrix/m4" )( FLOAT_ARRAY_TYPE );
     var V3 = require( "vector/v3" )( FLOAT_ARRAY_TYPE );
+    var V4 = requite( "vector/v4" )( FLOAT_ARRAY_TYPE );
 
     function add( m1, m2, result ) {
       result = result || new M4();
@@ -186,6 +187,20 @@ define( function ( require ) {
       return result;
     }
 
+    //Multiplies matrix4 by column vector4
+    function multiplyVector( m, v, result ) {
+      result = result || new V4();
+
+      var x = v[0], y = v[1], z = v[2], o = v[3];
+
+      result[0] = m[0] * x + m[1] * y + m[2] * z + m[3] * o;
+      result[1] = m[4] * x + m[5] * y + m[6] * z + m[7] * o;
+      result[2] = m[8] * x + m[9] * y + m[10] * z + m[11] * o;
+      result[3] = m[12] * x + m[13] * y + m[14] * z + m[15] * o;
+
+      return result;
+    }
+
     function multiplyV3( m, v, result ) {
       result = result || new V3();
 
@@ -313,6 +328,7 @@ define( function ( require ) {
       equal: equal,
       inverse: inverse,
       multiply: multiply,
+      multiplyVector: multiplyVector,
       multiplyV3: notImplemented,
       set: set,
       subtract: subtract,
