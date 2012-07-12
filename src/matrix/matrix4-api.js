@@ -58,22 +58,43 @@ define( function ( require ) {
     function equal( m1, m2, e ) {
       e = e || 0.000001;
 
-      if( Math.abs( m1[0] - m2[0] ) > e ||
-          Math.abs( m1[1] - m2[1] ) > e ||
-          Math.abs( m1[2] - m2[2] ) > e ||
-          Math.abs( m1[3] - m2[3] ) > e ||
-          Math.abs( m1[4] - m2[4] ) > e ||
-          Math.abs( m1[5] - m2[5] ) > e ||
-          Math.abs( m1[6] - m2[6] ) > e ||
-          Math.abs( m1[7] - m2[7] ) > e ||
-          Math.abs( m1[8] - m2[8] ) > e ||
-          Math.abs( m1[9] - m2[9] ) > e ||
-          Math.abs( m1[10] - m2[10] ) > e ||
-          Math.abs( m1[11] - m2[11] ) > e ||
-          Math.abs( m1[12] - m2[12] ) > e ||
-          Math.abs( m1[13] - m2[13] ) > e ||
-          Math.abs( m1[14] - m2[14] ) > e ||
-          Math.abs( m1[15] - m2[15] ) > e ) {
+      if( m1.length !== m2.length ) {
+        return false;
+      }
+
+      var d0 = Math.abs( m1[0] - m2[0] );
+      var d1 = Math.abs( m1[1] - m2[1] );
+      var d2 = Math.abs( m1[2] - m2[2] );
+      var d3 = Math.abs( m1[3] - m2[3] );
+      var d4 = Math.abs( m1[4] - m2[4] );
+      var d5 = Math.abs( m1[5] - m2[5] );
+      var d6 = Math.abs( m1[6] - m2[6] );
+      var d7 = Math.abs( m1[7] - m2[7] );
+      var d8 = Math.abs( m1[8] - m2[8] );
+      var d9 = Math.abs( m1[9] - m2[9] );
+      var d10 = Math.abs( m1[10] - m2[10] );
+      var d11 = Math.abs( m1[11] - m2[11] );
+      var d12 = Math.abs( m1[12] - m2[12] );
+      var d13 = Math.abs( m1[13] - m2[13] );
+      var d14 = Math.abs( m1[14] - m2[14] );
+      var d15 = Math.abs( m1[15] - m2[15] );
+
+      if( isNaN( d0 ) || d0 > e ||
+          isNaN( d1 ) || d1 > e ||
+          isNaN( d2 ) || d2 > e ||
+          isNaN( d3 ) || d3 > e ||
+          isNaN( d4 ) || d4 > e ||
+          isNaN( d5 ) || d5 > e ||
+          isNaN( d6 ) || d6 > e ||
+          isNaN( d7 ) || d7 > e ||
+          isNaN( d8 ) || d8 > e ||
+          isNaN( d9 ) || d9 > e ||
+          isNaN( d10 ) || d10 > e ||
+          isNaN( d11 ) || d11 > e ||
+          isNaN( d12 ) || d12 > e ||
+          isNaN( d13 ) || d13 > e ||
+          isNaN( d14 ) || d14 > e ||
+          isNaN( d15 ) || d15 > e ) {
         return false;
       }
 

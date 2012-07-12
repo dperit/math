@@ -93,8 +93,6 @@ define( function ( require ) {
       fixed: fixed,
       rotate: rotate,
       scale: scale,
-      transformDirection: notImplemented,
-      transformPoint: notImplemented,
       translate: translate
     };
 
