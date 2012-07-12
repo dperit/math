@@ -5,6 +5,7 @@ define( function ( require ) {
     var notImplemented = require( "common/not-implemented" );
     var M4 = require( "matrix/m4" )( FLOAT_ARRAY_TYPE );
     var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
+    var Vector4 = require( "vector/vector4" )( FLOAT_ARRAY_TYPE );
 
     function getView( index ) {
       return this._views[index];
@@ -147,24 +148,30 @@ define( function ( require ) {
 
     function multiply( arg, result ) {
       var other;
-      if( arg instanceof Matrix4 ) {        
-        other = arg.buffer;
-      } else {
-        other = arg;
+      if (arg instanceof Vector4 || arg.length === 4){
+        if (arg.buffer){
+          other = arg.buffer;
+        }else{
+          other = arg;
+        }
+        if (result && result.buffer){
+          return matrix4.multiplyVector(this.buffer, other, result.buffer);
+        }else{
+          return matrix4.multiplyVector(this.buffer, other, result);
+        }
+      }else{
+        if( arg instanceof Matrix4 ) {
+          other = arg.buffer;
+        } else {
+          other = arg;
+        }
+
+        result = result || this;
+        matrix4.multiply( this.buffer, other, result.buffer );
+        result.modified = true;
+
+        return this;
       }
-
-      result = result || this;
-      matrix4.multiply( this.buffer, other, result.buffer );
-      result.modified = true;
-
-      return this;
-    }
-
-    //This requires that a vector4 be sent in, and will return a vector4 without
-    // changing this matrix
-    // An additional vector4 can optionally be supplied to store the result
-    function multiplyVector( arg, result ) {
-      return matrix4.multiplyVector( this.buffer, arg, result );
     }
 
     function set( arg1, arg2, arg3, arg4,
@@ -251,7 +258,6 @@ define( function ( require ) {
       equal: equal,
       inverse: inverse,
       multiply: multiply,
-      multiplyVector: multiplyVector,
       set: set,
       subtract: subtract,
       transpose: transpose
