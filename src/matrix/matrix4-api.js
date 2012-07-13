@@ -191,12 +191,12 @@ define( function ( require ) {
     function multiplyVector( m, v, result ) {
       result = result || new V4();
 
-      var x = v[0], y = v[1], z = v[2], o = v[3];
+      var x = v[0], y = v[1], z = v[2], w = v[3];
 
-      result[0] = m[0] * x + m[1] * y + m[2] * z + m[3] * o;
-      result[1] = m[4] * x + m[5] * y + m[6] * z + m[7] * o;
-      result[2] = m[8] * x + m[9] * y + m[10] * z + m[11] * o;
-      result[3] = m[12] * x + m[13] * y + m[14] * z + m[15] * o;
+      result[0] = m[0] * x + m[1] * y + m[2] * z + m[3] * w;
+      result[1] = m[4] * x + m[5] * y + m[6] * z + m[7] * w;
+      result[2] = m[8] * x + m[9] * y + m[10] * z + m[11] * w;
+      result[3] = m[12] * x + m[13] * y + m[14] * z + m[15] * w;
 
       return result;
     }

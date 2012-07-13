@@ -360,6 +360,72 @@ define(
         deepEqual( result.buffer, expected, "result is correct" );
       });
 
+      test( "multiply with vector object", function() {
+        expect( 2 );
+
+        var m1 = new this.math.Matrix4( 1, 2, 3, 4,
+          5, 6, 7, 8,
+          9, 10, 11, 12,
+          13, 14, 15, 16 );
+        var vector = new this.math.Vector4( 1, 2, 3, 4);
+        m1.modified = false;
+        var expected = this.math.matrix4.multiplyVector( m1.buffer, vector.buffer );
+        var result = m1.multiply( vector );
+
+        ok( !m1.modified, "modified is not changed" );
+        deepEqual( result, expected, "multiply returns the same thing as multiplyVector" );
+      });
+
+      test( "multiply with typed vector array", function() {
+        expect( 2 );
+
+        var m1 = new this.math.Matrix4( 1, 2, 3, 4,
+          5, 6, 7, 8,
+          9, 10, 11, 12,
+          13, 14, 15, 16 );
+        var vector = new this.math.V4( 1, 2, 3, 4 );
+        m1.modified = false;
+        var expected = this.math.matrix4.multiplyVector( m1.buffer, vector );
+        var result = m1.multiply( vector );
+
+        ok( !m1.modified, "modified is not changed" );
+        deepEqual( result, expected, "multiply returns the same thing as multiplyVector" );
+      });
+
+      test( "multiply with given vector array", function() {
+        expect( 2 );
+
+        var m1 = new this.math.Matrix4( 1, 2, 3, 4,
+          5, 6, 7, 8,
+          9, 10, 11, 12,
+          13, 14, 15, 16 );
+        var vector = [1, 2, 3, 4];
+        m1.modified = false;
+        var expected = this.math.matrix4.multiplyVector( m1.buffer, vector );
+        var result = m1.multiply( vector );
+
+        ok( !m1.modified, "modified is not changed" );
+        deepEqual( result, expected, "multiply returns the same thing as multiplyVector" );
+      });
+
+      test( "multiply with vector result", function() {
+        expect( 3 );
+
+        var m1 = new this.math.Matrix4( 1, 2, 3, 4,
+          5, 6, 7, 8,
+          9, 10, 11, 12,
+          13, 14, 15, 16 );
+        var vector = new this.math.Vector4( 1, 2, 3, 4 );
+        var expected = this.math.matrix4.multiplyVector( m1.buffer, vector.buffer );
+        var result = new this.math.Vector4();
+        result.modified = false;
+        var returnValue = m1.multiply( vector, result );
+
+        ok( !m1.modified, "modified is not changed" );
+        deepEqual( returnValue, result, "multiply returns this" );
+        deepEqual( returnValue, expected, "result is correct" );
+      });
+
       test( "set with matrix object", function() {
         expect( 4 );
 

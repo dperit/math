@@ -148,13 +148,14 @@ define( function ( require ) {
 
     function multiply( arg, result ) {
       var other;
-      if (arg instanceof Vector4 || arg.length === 4){
-        if (arg.buffer){
+      var isVector4 = arg instanceof Vector4;
+      if (isVector4 || arg.length === 4){
+        if (isVector4){
           other = arg.buffer;
         }else{
           other = arg;
         }
-        if (result && result.buffer){
+        if (result instanceof Vector4){
           return matrix4.multiplyVector(this.buffer, other, result.buffer);
         }else{
           return matrix4.multiplyVector(this.buffer, other, result);
