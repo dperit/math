@@ -5,17 +5,24 @@ define( function ( require ) {
     var V4 = function() {
       var elements = null;
       var argc = arguments.length;
-      if( 1 === argc) {
-        elements = arguments[0];
-      } else if( 0 === argc ) {
-        elements = [0, 0, 0, 0];
-      } else {
-        elements = arguments;
-      }
+      var i, j, vi = 0;
 
       var vector = new FLOAT_ARRAY_TYPE( 4 );
-      for( var i = 0; i < 4; ++ i ) {
-        vector[i] = elements[i];
+
+      for( i = 0; i < argc && vi < 4; ++ i ) {
+        var arg = arguments[i];
+        if( arg instanceof Array ||
+            arg instanceof FLOAT_ARRAY_TYPE ) {
+          for( j = 0; j < arg.length && vi < 4; ++ j ) {
+            vector[vi ++] = arg[j];
+          }
+        } else {
+          vector[vi ++] = arg;
+        }
+      }
+      // Fill in missing elements with zero
+      for( ; vi < 4; ++ vi ) {
+        vector[vi] = 0;
       }
 
       return vector;
