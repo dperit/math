@@ -5,6 +5,7 @@ define( function ( require ) {
     var notImplemented = require( "common/not-implemented" );
     var V4 = require( "vector/v4" )( FLOAT_ARRAY_TYPE );
     var vector4 = require( "vector/vector4-api" )( FLOAT_ARRAY_TYPE );
+    var Matrix4 = require( "matrix/matrix4" )( FLOAT_ARRAY_TYPE );
 
     function getValue( index ) {
       return this.buffer[index];
@@ -181,6 +182,24 @@ define( function ( require ) {
 
       return this;
     }
+
+    function transform( arg, result ) {
+      var other;
+      //This version of the if was removed because instanceof wasn't working
+      // properly in some circumstances for unknown reasons
+      //if (arg instanceof Matrix4) {
+      if( arg.buffer && arg.buffer.length === 16) {
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      result = result || this;
+      vector4.transform( this.buffer, other, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
   
     Vector4.prototype = {
       add: add,
@@ -195,7 +214,8 @@ define( function ( require ) {
       negate: negate,
       normalize: normalize,
       set: set,
-      subtract: subtract
+      subtract: subtract,
+      transform: transform
     };
 
     return Vector4;
