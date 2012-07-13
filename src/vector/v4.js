@@ -3,7 +3,6 @@ define( function ( require ) {
   return function( FLOAT_ARRAY_TYPE ) {
 
     var V4 = function() {
-      var elements = null;
       var argc = arguments.length;
       var i, j, vi = 0;
 
