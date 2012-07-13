@@ -237,6 +237,39 @@ define(
         }
       });
 
+      test( "multiplyVector, return new result", function() {
+        expect( 4 );
+
+        var m1 = new this.math.M4( 1,  2,  3,  4,
+                                   5,  6,  7,  8,
+                                   9, 10, 11, 12,
+                                  13, 14, 15, 16 );
+        var vector = new this.math.V4( 1, 2, 3, 4 );
+
+        var result = this.math.matrix4.multiplyVector( m1, vector );
+        var expected = [30, 70, 110, 150];
+
+        for( var i = 0; i < 4; ++ i ) {
+          equal( result[i], expected[i], "value is correct" );
+        }
+      });
+
+      test( "multiplyVector, set result parameter", function() {
+        var m1 = new this.math.M4( 1,  2,  3,  4,
+          5,  6,  7,  8,
+          9, 10, 11, 12,
+          13, 14, 15, 16 );
+        var vector = new this.math.V4( 1, 2, 3, 4 );
+
+        var result = new this.math.V4();
+        this.math.matrix4.multiplyVector( m1, vector, result);
+        var expected = [30, 70, 110, 150];
+
+        for( var i = 0; i < 4; ++ i ) {
+          equal( result[i], expected[i], "value is correct" );
+        }
+      });
+
       test( "set with given values", function() {
         expect( 16 );
 
