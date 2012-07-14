@@ -13,7 +13,7 @@ define(
       });
 
       test( "create an empty vector", function() {
-        expect( 4 );
+        expect( 5 );
 
         var v = new this.math.Vector3();        
 
@@ -21,6 +21,7 @@ define(
         equal( v.x, 0, "x is correct" );
         equal( v.y, 0, "y is correct" );
         equal( v.z, 0, "z is correct" );
+        ok( v instanceof this.math.Vector3, "type is correct" );
       });
 
       test( "create a vector with given values", function() {
@@ -43,6 +44,27 @@ define(
         equal( v.x, 2, "x is correct" );
         equal( v.y, 3, "y is correct" );
         equal( v.z, 4, "z is correct" );
+      });
+
+      test( "create a vector smaller with vector", function() {
+        expect( 3 );
+
+        var v1 = new this.math.Vector2( 2, 3 );
+        var v2 = new this.math.Vector3( v1, 4 );
+
+        equal( v2.x, 2, "x is correct" );
+        equal( v2.y, 3, "y is correct" );
+        equal( v2.z, 4, "z is correct" );
+      });
+
+      test( "create a vector, pass extra parameters", function() {
+        expect( 3 );
+
+        var v = new this.math.V3( 2, 3, 4, 5, 6 );
+
+        equal( v[0], 2, "x is correct" );
+        equal( v[1], 3, "y is correct" );
+        equal( v[2], 4, "z is correct" );
       });
 
       test( "add with vector object", function() {
