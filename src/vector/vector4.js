@@ -2,10 +2,12 @@ define( function ( require ) {
 
   return function( FLOAT_ARRAY_TYPE ) {
     
+    var _ = require( "../../lib/lodash" );
     var notImplemented = require( "common/not-implemented" );
     var V4 = require( "vector/v4" )( FLOAT_ARRAY_TYPE );
     var vector4 = require( "vector/vector4-api" )( FLOAT_ARRAY_TYPE );
     var Matrix4 = require( "matrix/matrix4" )( FLOAT_ARRAY_TYPE );
+    var Vector = require( "vector/vector" );  
 
     function getValue( index ) {
       return this.buffer[index];
@@ -18,17 +20,13 @@ define( function ( require ) {
 
     var Vector4 = function( arg1, arg2, arg3, arg4 ) {
       var argc = arguments.length;
-      if( 1 === argc ) {
-        if( arg1 instanceof Vector4 ) {
-          this.buffer = new V4( arg1.buffer );
-        } else {
-          this.buffer = new V4( arg1 );
-        }
-      } else if( 4 === argc ) {
-        this.buffer = new V4( arg1, arg2, arg3, arg4 );
-      } else {
-        this.buffer = new V4();
-      }
+
+      this.buffer = new V4(
+        (arg1 instanceof Vector) ? arg1.buffer : arg1,
+        (arg2 instanceof Vector) ? arg2.buffer : arg2,
+        (arg3 instanceof Vector) ? arg3.buffer : arg3,
+        (arg4 instanceof Vector) ? arg4.buffer : arg4
+      );
 
       Object.defineProperties( this, {
         x: {
@@ -50,7 +48,10 @@ define( function ( require ) {
       });
 
       this.modified = true;
+      this.size = 4;
     };
+    Vector4.prototype = new Vector();
+    Vector4.prototype.constructor = Vector4;
 
     function add( arg, result ) {
       var other;
@@ -201,7 +202,7 @@ define( function ( require ) {
       return this;
     }
   
-    Vector4.prototype = {
+    _.extend( Vector4.prototype, {
       add: add,
       angle: angle,
       clear: clear,
@@ -214,9 +215,14 @@ define( function ( require ) {
       negate: negate,
       normalize: normalize,
       set: set,
+<<<<<<< HEAD
       subtract: subtract,
       transform: transform
     };
+=======
+      subtract: subtract
+    });
+>>>>>>> upstream/develop
 
     return Vector4;
 

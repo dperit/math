@@ -42,6 +42,15 @@ define(
         ok( v.modified, "modified is set" );
       });
 
+      test( "create a vector, pass extra parameters", function() {
+        expect( 2 );
+
+        var v = new this.math.V2( 2, 3, 4, 5, 6 );
+
+        equal( v[0], 2, "x is correct" );
+        equal( v[1], 3, "y is correct" );
+      });
+
       test( "add with vector object", function() {
         expect( 6 );
 

@@ -1,0 +1,7 @@
+{
+  "volo": {
+    "dependencies": {
+      "lodash": "github:bestiejs/lodash/v0.4.1"
+    }
+  }
+}
