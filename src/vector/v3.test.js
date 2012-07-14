@@ -70,7 +70,7 @@ define(
         equal( v2[0], 2, "x is correct" );
         equal( v2[1], 3, "y is correct" );
         equal( v2[2], 4, "z is correct" );
-        equal( v2.length, 3, "length is corrct" );
+        equal( v2.length, 3, "length is correct" );
       });
 
       test( "create a vector, pass extra parameters", function() {

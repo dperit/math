@@ -1,5 +1,7 @@
 define( function ( require ) {
 
+  var V = require( "vector/v" );
+
   return function( FLOAT_ARRAY_TYPE ) {
 
     var V4 = function() {
@@ -10,8 +12,10 @@ define( function ( require ) {
 
       for( i = 0; i < argc && vi < 4; ++ i ) {
         var arg = arguments[i];
-        if( arg instanceof Array ||
-            arg instanceof FLOAT_ARRAY_TYPE ) {
+        if( arg === undefined ) {
+          break;
+        } else if( arg instanceof Array ||
+                   arg instanceof FLOAT_ARRAY_TYPE ) {
           for( j = 0; j < arg.length && vi < 4; ++ j ) {
             vector[vi ++] = arg[j];
           }
@@ -26,6 +30,8 @@ define( function ( require ) {
 
       return vector;
     };
+    V4.prototype = new V();
+    V4.prototype.constructor = V4;
 
     return V4;
 

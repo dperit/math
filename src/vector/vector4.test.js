@@ -1,7 +1,7 @@
 define(
   [],
   function() {
-    return function( _Math ) {
+    return function( _Math, Vector ) {
 
       module( "Vector4", {
         setup: function() {
@@ -13,7 +13,7 @@ define(
       });
 
       test( "create an empty vector", function() {
-        expect( 5 );
+        expect( 6 );
 
         var v = new this.math.Vector4();        
 
@@ -22,6 +22,7 @@ define(
         equal( v.y, 0, "y is correct" );
         equal( v.z, 0, "z is correct" );
         equal( v.w, 0, "w is correct" );
+        ok( v instanceof this.math.Vector4, "type is correct" );
       });
 
       test( "create a vector with given values", function() {
@@ -46,6 +47,29 @@ define(
         equal( v.y, 3, "y is correct" );
         equal( v.z, 4, "z is correct" );
         equal( v.w, 5, "w is correct" );
+      });
+
+      test( "create a vector smaller with vector", function() {
+        expect( 4 );
+
+        var v1 = new this.math.Vector2( 2, 3 );
+        var v2 = new this.math.Vector4( v1, 4, 5 );
+
+        equal( v2.x, 2, "x is correct" );
+        equal( v2.y, 3, "y is correct" );
+        equal( v2.z, 4, "z is correct" );
+        equal( v2.w, 5, "w is correct" );
+      });
+
+      test( "create a vector, pass extra parameters", function() {
+        expect( 4 );
+
+        var v = new this.math.V4( 2, 3, 4, 5, 6 );
+
+        equal( v[0], 2, "x is correct" );
+        equal( v[1], 3, "y is correct" );
+        equal( v[2], 4, "z is correct" );
+        equal( v[3], 5, "w is correct" );
       });
 
       test( "add with vector object", function() {

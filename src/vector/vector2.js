@@ -2,9 +2,11 @@ define( function ( require ) {
 
   return function( FLOAT_ARRAY_TYPE ) {
     
+    var _ = require( "../../lib/lodash" );
     var notImplemented = require( "common/not-implemented" );
     var V2 = require( "vector/v2" )( FLOAT_ARRAY_TYPE );
     var vector2 = require( "vector/vector2-api" )( FLOAT_ARRAY_TYPE );
+    var Vector = require( "vector/vector" );
 
     function getValue( index ) {
       return this.buffer[index];
@@ -17,17 +19,11 @@ define( function ( require ) {
 
     var Vector2 = function( arg1, arg2 ) {
       var argc = arguments.length;
-      if( 1 === argc ) {
-        if( arg1 instanceof Vector2 ) {
-          this.buffer = new V2( arg1.buffer );
-        } else {
-          this.buffer = new V2( arg1 );
-        }
-      } else if( 2 === argc ) {
-        this.buffer = new V2( arg1, arg2 );
-      } else {
-        this.buffer = new V2();
-      }
+
+      this.buffer = new V2(
+        (arg1 instanceof Vector) ? arg1.buffer : arg1,
+        (arg2 instanceof Vector) ? arg2.buffer : arg2
+      );
 
       Object.defineProperties( this, {
         x: {
@@ -41,7 +37,10 @@ define( function ( require ) {
       });
 
       this.modified = true;
+      this.size = 2;
     };
+    Vector2.prototype = new Vector();
+    Vector2.prototype.constructor = Vector2;
 
     function add( arg, result ) {
       var other;
@@ -183,7 +182,7 @@ define( function ( require ) {
       return this;
     }    
     
-    Vector2.prototype = {
+    _.extend( Vector2.prototype, {
       add: add,
       angle: angle,
       clear: clear,
@@ -198,7 +197,7 @@ define( function ( require ) {
       project: project,
       set: set,
       subtract: subtract
-    };
+    });
 
     return Vector2;
 

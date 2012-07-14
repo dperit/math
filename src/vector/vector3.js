@@ -2,9 +2,11 @@ define( function ( require ) {
 
   return function( FLOAT_ARRAY_TYPE ) {
     
+    var _ = require( "../../lib/lodash" );
     var notImplemented = require( "common/not-implemented" );
     var V3 = require( "vector/v3" )( FLOAT_ARRAY_TYPE );
     var vector3 = require( "vector/vector3-api" )( FLOAT_ARRAY_TYPE );
+    var Vector = require( "vector/vector" );
 
     function getValue( index ) {
       return this.buffer[index];
@@ -17,17 +19,12 @@ define( function ( require ) {
 
     var Vector3 = function( arg1, arg2, arg3 ) {
       var argc = arguments.length;
-      if( 1 === argc ) {
-        if( arg1 instanceof Vector3 ) {
-          this.buffer = new V3( arg1.buffer );
-        } else {
-          this.buffer = new V3( arg1 );
-        }
-      } else if( 3 === argc ) {
-        this.buffer = new V3( arg1, arg2, arg3 );
-      } else {
-        this.buffer = new V3();
-      }
+
+      this.buffer = new V3(
+        (arg1 instanceof Vector) ? arg1.buffer : arg1,
+        (arg2 instanceof Vector) ? arg2.buffer : arg2,
+        (arg3 instanceof Vector) ? arg3.buffer : arg3
+      );
 
       Object.defineProperties( this, {
         x: {
@@ -45,7 +42,10 @@ define( function ( require ) {
       });
 
       this.modified = true;
+      this.size = 3;
     };
+    Vector3.prototype = new Vector();
+    Vector3.prototype.constructor = Vector3;
 
     function add( arg, result ) {
       var other;
@@ -190,7 +190,7 @@ define( function ( require ) {
       return this;
     }    
     
-    Vector3.prototype = {
+    _.extend( Vector3.prototype, {
       add: add,
       angle: angle,
       clear: clear,
@@ -205,7 +205,7 @@ define( function ( require ) {
       normalize: normalize,
       set: set,
       subtract: subtract
-    };
+    });
 
     return Vector3;
 
