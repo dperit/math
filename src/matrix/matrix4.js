@@ -2,9 +2,11 @@ define( function ( require ) {
 
   return function( FLOAT_ARRAY_TYPE ) {
     
+    var _ = require( "../../lib/lodash" );
     var notImplemented = require( "common/not-implemented" );
     var M4 = require( "matrix/m4" )( FLOAT_ARRAY_TYPE );
     var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
+    var Matrix = require( "matrix/matrix" );
 
     function getView( index ) {
       return this._views[index];
@@ -92,6 +94,8 @@ define( function ( require ) {
 
       this.modified = true;
     };
+    Matrix4.prototype = new Matrix();
+    Matrix4.prototype.constructor = Matrix4;
 
     function add( arg, result ) {
       var other;
@@ -236,7 +240,7 @@ define( function ( require ) {
       return this;
     }
     
-    Matrix4.prototype = {
+    _.extend( Matrix4.prototype, {
       add: add,
       clear: clear,
       clone: clone,
@@ -247,7 +251,7 @@ define( function ( require ) {
       set: set,
       subtract: subtract,
       transpose: transpose
-    };
+    });
 
     return Matrix4;
 

@@ -158,6 +158,45 @@ define(
           equal( result[3], 6, "w is correct" );
         });
 
+        test( "transform, return new result", function() {
+          expect( 4 );
+
+          var m = new this.math.M4( 1,  2,  3,  4,
+                                    5,  6,  7,  8,
+                                    9, 10, 11, 12,
+                                    13, 14, 15, 16 );
+
+          var v = new this.math.V4( 1, 2, 3, 4 );
+
+          var result = this.math.vector4.transform( v, m );
+          var expected = [30, 70, 110, 150];
+
+          equal( result[0], expected[0], "x is correct" );
+          equal( result[1], expected[1], "y is correct" );
+          equal( result[2], expected[2], "z is correct" );
+          equal( result[3], expected[3], "w is correct" );
+        });
+
+        test( "transform, set result parameter", function() {
+          expect( 4 );
+
+          var m = new this.math.M4( 1,  2,  3,  4,
+            5,  6,  7,  8,
+            9, 10, 11, 12,
+            13, 14, 15, 16 );
+          var v = new this.math.V4( 1, 2, 3, 4 );
+
+          var result = new this.math.V4();
+          this.math.vector4.transform( v, m, result );
+          var expected = [30, 70, 110, 150];
+
+          equal( result[0], expected[0], "x is correct" );
+          equal( result[1], expected[1], "y is correct" );
+          equal( result[2], expected[2], "z is correct" );
+          equal( result[3], expected[3], "w is correct" );
+
+        });
+
         test( "negate, return new result", function() {
           expect( 4 );
 

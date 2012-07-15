@@ -140,6 +140,22 @@ define( function ( require ) {
       return result;
     }
 
+    //This does a matrix4 by vector4 transform, which is a matrix multiplication
+    //The matrix4 is on the left side of the multiplication and is multiplied by
+    // the vector in column form
+    function transform( v, m, result ) {
+      result = result || new V4();
+
+      var x = v[0], y = v[1], z = v[2], w = v[3];
+
+      result[0] = m[0] * x + m[1] * y + m[2] * z + m[3] * w;
+      result[1] = m[4] * x + m[5] * y + m[6] * z + m[7] * w;
+      result[2] = m[8] * x + m[9] * y + m[10] * z + m[11] * w;
+      result[3] = m[12] * x + m[13] * y + m[14] * z + m[15] * w;
+
+      return result;
+    }
+
     var vector4 = {
       add: add,
       angle: angle,
@@ -154,6 +170,7 @@ define( function ( require ) {
       normalize: normalize,
       set: set,
       subtract: subtract,
+      transform: transform,
 
       x: new V4( 1, 0, 0, 0 ),
       y: new V4( 0, 1, 0, 0 ),

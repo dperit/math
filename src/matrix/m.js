@@ -1,8 +1,8 @@
 define( function ( require ) {
 
-  var V = function() {
+  var M = function() {
   };
 
-  return V;
+  return M;
 
 });

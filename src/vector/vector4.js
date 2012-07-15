@@ -6,6 +6,7 @@ define( function ( require ) {
     var notImplemented = require( "common/not-implemented" );
     var V4 = require( "vector/v4" )( FLOAT_ARRAY_TYPE );
     var vector4 = require( "vector/vector4-api" )( FLOAT_ARRAY_TYPE );
+    var Matrix = require( "matrix/matrix" );
     var Vector = require( "vector/vector" );  
 
     function getValue( index ) {
@@ -182,6 +183,21 @@ define( function ( require ) {
 
       return this;
     }
+
+    function transform( arg, result ) {
+      var other;
+      if( arg instanceof Matrix ) {
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+
+      result = result || this;
+      vector4.transform( this.buffer, other, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
   
     _.extend( Vector4.prototype, {
       add: add,
@@ -196,7 +212,8 @@ define( function ( require ) {
       negate: negate,
       normalize: normalize,
       set: set,
-      subtract: subtract
+      subtract: subtract,
+      transform: transform
     });
 
     return Vector4;

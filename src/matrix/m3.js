@@ -1,5 +1,7 @@
 define( function ( require ) {
 
+  var M = require( "matrix/m" );
+
   return function( FLOAT_ARRAY_TYPE ) {
 
     var M3 = function() {
@@ -22,6 +24,8 @@ define( function ( require ) {
 
       return matrix;
     };
+    M3.prototype = new M();
+    M3.prototype.constructor = M3;
 
     return M3;
 

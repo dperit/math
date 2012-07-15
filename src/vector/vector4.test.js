@@ -327,6 +327,49 @@ define(
         equal( result.w, 16, "w is correct" );
       });
 
+      test( "transform", function() {
+        expect( 6 );
+
+        var m = new this.math.Matrix4( 1,  2,  3,  4,
+          5,  6,  7,  8,
+          9, 10, 11, 12,
+          13, 14, 15, 16 );
+
+        var v = new this.math.Vector4( 1, 2, 3, 4 );
+        v.modified = false;
+        var expected = this.math.vector4.transform(v.buffer, m.buffer);
+        var result = v.transform( m );
+        ok( v.modified, "modified is set" );
+
+        equal( v.x, expected[0], "x is correct" );
+        equal( v.y, expected[1], "y is correct" );
+        equal( v.z, expected[2], "z is correct" );
+        equal( v.w, expected[3], "w is correct" );
+        equal( result, v, "multiply returns this" );
+      });
+
+      test( "transform with result", function() {
+        expect( 6 );
+
+        var m = new this.math.Matrix4( 1,  2,  3,  4,
+          5,  6,  7,  8,
+          9, 10, 11, 12,
+          13, 14, 15, 16 );
+
+        var v = new this.math.Vector4( 1, 2, 3, 4 );
+        var result = new this.math.Vector4();
+        result.modified = false;
+        var expected = this.math.vector4.transform(v.buffer, m.buffer);
+        var returned = v.transform( m, result );
+        ok( result.modified, "modified is set" );
+
+        equal( result.x, expected[0], "x is correct" );
+        equal( result.y, expected[1], "y is correct" );
+        equal( result.z, expected[2], "z is correct" );
+        equal( result.w, expected[3], "w is correct" );
+        equal( returned, v, "multiply returns this" );
+      });
+
       test( "negate", function() {
         expect( 6 );
 
