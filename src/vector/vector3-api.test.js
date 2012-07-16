@@ -319,7 +319,7 @@ define(
         });
 
         test( "transform, return new result", function() {
-          expect( 4 );
+          expect( 3 );
 
           var m = new this.math.M3( 1, 2, 3,
             4, 5, 6,
@@ -336,7 +336,7 @@ define(
         });
 
         test( "transform, set result parameter", function() {
-          expect( 4 );
+          expect( 3 );
 
           var m = new this.math.M3( 1, 2, 3,
             4, 5, 6,
