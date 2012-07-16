@@ -146,6 +146,21 @@ define( function ( require ) {
       return result;
     }
 
+    //This does a matrix3 by vector3 transform, which is a matrix multiplication
+    //The matrix3 is on the left side of the multiplication and is multiplied by
+    // the vector in column form
+    function transform( v, m, result ) {
+      result = result || new V3();
+
+      var x = v[0], y = v[1], z = v[2];
+
+      result[0] = m[0] * x + m[1] * y + m[2] * z;
+      result[1] = m[3] * x + m[4] * y + m[5] * z;
+      result[2] = m[6] * x + m[7] * y + m[8] * z;
+
+      return result;
+    }
+
     var vector3 = {
       add: add,
       angle: angle,
@@ -161,6 +176,7 @@ define( function ( require ) {
       normalize: normalize,
       set: set,
       subtract: subtract,
+      transform: transform,
 
       x: new V3( 1, 0, 0 ),
       y: new V3( 0, 1, 0 ),

@@ -318,6 +318,41 @@ define(
           equal( this.math.vector3.one[2], 1, "z is correct" );
         });
 
+        test( "transform, return new result", function() {
+          expect( 3 );
+
+          var m = new this.math.M3( 1, 2, 3,
+            4, 5, 6,
+            7, 8, 9 );
+
+          var v = new this.math.V3( 1, 2, 3 );
+
+          var result = this.math.vector3.transform( v, m );
+          var expected = [14, 32, 50];
+
+          equal( result[0], expected[0], "x is correct" );
+          equal( result[1], expected[1], "y is correct" );
+          equal( result[2], expected[2], "z is correct" );
+        });
+
+        test( "transform, set result parameter", function() {
+          expect( 3 );
+
+          var m = new this.math.M3( 1, 2, 3,
+            4, 5, 6,
+            7, 8, 9 );
+
+          var v = new this.math.V3( 1, 2, 3 );
+
+          var result = new this.math.V3();
+          this.math.vector3.transform( v, m, result );
+          var expected = [14, 32, 50];
+
+          equal( result[0], expected[0], "x is correct" );
+          equal( result[1], expected[1], "y is correct" );
+          equal( result[2], expected[2], "z is correct" );
+        });
+
     };
   }
 );
