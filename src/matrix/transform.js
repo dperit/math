@@ -62,10 +62,10 @@ define( function ( require ) {
         } else if( arg1 instanceof M4 ) {
           this.buffer = new M4( arg1 );
         } else {
-          this.buffer = transform.fixed( arg1, arg2, arg3 );
+          this.buffer = transform.compound( arg1, arg2, arg3 );
         }
       } else {
-        this.buffer = transform.fixed( arg1, arg2, arg3 );
+        this.buffer = transform.compound( arg1, arg2, arg3 );
       }
 
       Object.defineProperties( this, {
@@ -143,8 +143,7 @@ define( function ( require ) {
     }
 
     function set( t, r, s ) {
-      matrix4.set( this.buffer, matrix4.identity );
-      transform.fixed( t, r, s, this.buffer );
+      transform.compound( t, r, s, this.buffer );
       this.modified = true;
     }
 

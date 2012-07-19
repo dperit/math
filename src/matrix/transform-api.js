@@ -6,7 +6,10 @@ define( function ( require ) {
     var M4 = require( "matrix/m4" )( FLOAT_ARRAY_TYPE );
     var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
 
-    function fixed( t, r, s, result ) {
+    function compound( t, r, s, result ) {
+      if (result){
+        matrix4.set(result, matrix4.identity);
+      }
       result = result || new M4( matrix4.identity );
 
       if( t ) {
@@ -90,7 +93,7 @@ define( function ( require ) {
     }
 
     var transform = {
-      fixed: fixed,
+      compound: compound,
       rotate: rotate,
       scale: scale,
       translate: translate
