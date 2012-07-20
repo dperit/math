@@ -97,7 +97,10 @@ define( function ( require ) {
 
     var transform = {
       compound: compound,
-      set: set
+      set: set,
+      rotate: rotate,
+      scale: scale,
+      translate: translate
     };
 
     return transform;
