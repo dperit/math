@@ -143,7 +143,7 @@ define( function ( require ) {
     }
 
     function set( t, r, s ) {
-      transform.compound( t, r, s, this.buffer );
+      transform.compound( this.buffer, t, r, s );
       this.modified = true;
     }
 

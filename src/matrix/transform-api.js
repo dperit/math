@@ -41,8 +41,8 @@ define( function ( require ) {
         sinA = Math.sin( v[2] );
         cosA = Math.cos( v[2] );
 
-        rotation = [ cosA, sinA, 0, 0,
-                     -sinA, cosA, 0, 0,
+        rotation = [ cosA, -sinA, 0, 0,
+                     sinA, cosA, 0, 0,
                      0, 0, 1, 0,
                      0, 0, 0, 1 ];
         matrix4.multiply( result, rotation, result );
@@ -52,9 +52,9 @@ define( function ( require ) {
         sinA = Math.sin( v[1] );
         cosA = Math.cos( v[1] );
 
-        rotation = [ cosA, 0, -sinA, 0,
+        rotation = [ cosA, 0, sinA, 0,
                      0, 1, 0, 0,
-                     sinA, 0, cosA, 0,
+                     -sinA, 0, cosA, 0,
                      0, 0, 0, 1 ];
         matrix4.multiply( result, rotation, result );
       }
@@ -64,8 +64,8 @@ define( function ( require ) {
         cosA = Math.cos( v[0] );
         
         rotation = [ 1, 0, 0, 0,
-                     0, cosA, sinA, 0,
-                     0, -sinA, cosA, 0,
+                     0, cosA, -sinA, 0,
+                     0, sinA, cosA, 0,
                      0, 0, 0, 1 ];
         matrix4.multiply( result, rotation, result );
       }
