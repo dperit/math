@@ -55,17 +55,21 @@ define( function ( require ) {
 
     var Transform = function( arg1, arg2, arg3 ) {
       var argc = arguments.length;
-      if( 1 === argc ) {
+      if( 0 === argc ) {
+        this.buffer = new M4(matrix4.identity);
+      }else if( 1 === argc ) {
         if( arg1 instanceof Transform ||
             arg1 instanceof Matrix4 ) {
           this.buffer = new M4( arg1.buffer );
         } else if( arg1 instanceof M4 ) {
           this.buffer = new M4( arg1 );
         } else {
-          this.buffer = transform.compound( arg1, arg2, arg3 );
+          this.buffer = new M4(matrix4.identity);
+          transform.compound( this.buffer, arg1, arg2, arg3 );
         }
       } else {
-        this.buffer = transform.compound( arg1, arg2, arg3 );
+        this.buffer = new M4(matrix4.identity);
+        transform.compound(this.buffer, arg1, arg2, arg3 );
       }
 
       Object.defineProperties( this, {
@@ -143,7 +147,7 @@ define( function ( require ) {
     }
 
     function set( t, r, s ) {
-      transform.compound( this.buffer, t, r, s );
+      transform.set( this.buffer, t, r, s );
       this.modified = true;
     }
 
