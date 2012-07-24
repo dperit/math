@@ -7,6 +7,7 @@ define( function ( require ) {
     var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
 
     function compound( transform, t, r, s ) {
+      transform = transform || new M4(matrix4.identity);
 
       if( t ) {
         translate( t, transform );
