@@ -6,22 +6,29 @@ define( function ( require ) {
     var M4 = require( "matrix/m4" )( FLOAT_ARRAY_TYPE );
     var matrix4 = require( "matrix/matrix4-api" )( FLOAT_ARRAY_TYPE );
 
-    function fixed( t, r, s, result ) {
-      result = result || new M4( matrix4.identity );
+    function compound( transform, t, r, s ) {
+      transform = transform || new M4(matrix4.identity);
 
       if( t ) {
-        translate( t, result );
+        translate( t, transform );
       }
 
       if( r ) {
-        rotate( r, result );
+        rotate( r, transform );
       }
 
       if( s ) {
-        scale( s, result );
+        scale( s, transform );
       }
 
-      return result;
+      return transform;
+    }
+
+    function set(transform, t, r, s){
+      if (transform){
+        matrix4.set(transform, matrix4.identity);
+      }
+      return compound(transform, t, r, s);
     }
 
     function rotate( v, result ) {
@@ -35,22 +42,22 @@ define( function ( require ) {
         sinA = Math.sin( v[2] );
         cosA = Math.cos( v[2] );
 
-        rotation = [ cosA, sinA, 0, 0,
-                     -sinA, cosA, 0, 0,
+        rotation = [ cosA, -sinA, 0, 0,
+                     sinA, cosA, 0, 0,
                      0, 0, 1, 0,
                      0, 0, 0, 1 ];
-        matrix4.multiply( rotation, result, result );
+        matrix4.multiply( result, rotation, result );
       }
 
       if( 0 !== v[1] ) {
         sinA = Math.sin( v[1] );
         cosA = Math.cos( v[1] );
 
-        rotation = [ cosA, 0, -sinA, 0,
+        rotation = [ cosA, 0, sinA, 0,
                      0, 1, 0, 0,
-                     sinA, 0, cosA, 0,
+                     -sinA, 0, cosA, 0,
                      0, 0, 0, 1 ];
-        matrix4.multiply( rotation, result, result );
+        matrix4.multiply( result, rotation, result );
       }
 
       if( 0 !== v[0] ) {
@@ -58,10 +65,10 @@ define( function ( require ) {
         cosA = Math.cos( v[0] );
         
         rotation = [ 1, 0, 0, 0,
-                     0, cosA, sinA, 0,
-                     0, -sinA, cosA, 0,
+                     0, cosA, -sinA, 0,
+                     0, sinA, cosA, 0,
                      0, 0, 0, 1 ];
-        matrix4.multiply( rotation, result, result );
+        matrix4.multiply( result, rotation, result );
       }
 
       return result;
@@ -90,7 +97,8 @@ define( function ( require ) {
     }
 
     var transform = {
-      fixed: fixed,
+      compound: compound,
+      set: set,
       rotate: rotate,
       scale: scale,
       translate: translate
