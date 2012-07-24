@@ -55,8 +55,7 @@ define(
         expect( 2 );
 
         var transform = new this.math.Transform( [1, 2, 3], [4, 5, 6], [7, 8, 9] );
-        var expected = new this.math.M4(this.math.matrix4.identity);
-        this.math.transform.compound(expected, [1, 2, 3], [4, 5, 6], [7, 8, 9] );
+        var expected = this.math.transform.compound(undefined, [1, 2, 3], [4, 5, 6], [7, 8, 9] );
         ok( transform.modified, "modified is set" );
         ok( this.math.matrix4.equal( transform.buffer, expected ), 
           "transform is correct" );

@@ -17,9 +17,9 @@ define(
 
         var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
         var transform = this.math.transform.rotate( rotation );
-        var expected = [0, -1, 0, 0,
-                        1/2, 0, -Math.sqrt(3)/2, 0,
-                        Math.sqrt(3)/2, 0, 1/2, 0,
+        var expected = [0, 1, 0, 0,
+                        -1/2, 0, -Math.sqrt(3)/2, 0,
+                        -Math.sqrt(3)/2, 0, 1/2, 0,
                         0, 0, 0, 1];
         ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
       });
@@ -30,9 +30,9 @@ define(
         var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
         var transform = this.math.M4( this.math.matrix4.identity );
         this.math.transform.rotate( rotation, transform );
-        var expected = [0, -1, 0, 0,
-                        1/2, 0, -Math.sqrt(3)/2, 0,
-                        Math.sqrt(3)/2, 0, 1/2, 0,
+        var expected = [0, 1, 0, 0,
+                        -1/2, 0, -Math.sqrt(3)/2, 0,
+                        -Math.sqrt(3)/2, 0, 1/2, 0,
                         0, 0, 0, 1];
         ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
       });
@@ -81,8 +81,11 @@ define(
         var position = [1, 2, 3];
         var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
         var scale = [0.1, 0.2, 0.3];
-        var transform = this.math.transform.compound( position, rotation, scale );
-        var expected = [-3.061515801837882e-18, -0.10000000149011612, -0.25980761647224426, -3.598076105117798, 0.10000000149011612, 8.964740287749623e-18, -1.8369095638207904e-17, 1, 6.94336233357624e-18, -0.17320507764816284, 0.15000000596046448, -0.2320508062839508, 0, 0, 0, 1];
+        var transform = this.math.transform.compound( undefined, position, rotation, scale );
+        var expected = [0, 0.20000000298023224, 0, 1,
+                        -0.05000000074505806, 0, -0.25980761647224426, 2,
+                        -0.08660253882408142, 0, 0.15000000596046448, 3,
+                        0, 0, 0, 1];
         ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
       });
 
@@ -93,8 +96,11 @@ define(
         var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
         var scale = [0.1, 0.2, 0.3];
         var transform = this.math.M4( this.math.matrix4.identity );
-        this.math.transform.compound( position, rotation, scale, transform );
-        var expected = [-3.061515801837882e-18, -0.10000000149011612, -0.25980761647224426, -3.598076105117798, 0.10000000149011612, 8.964740287749623e-18, -1.8369095638207904e-17, 1, 6.94336233357624e-18, -0.17320507764816284, 0.15000000596046448, -0.2320508062839508, 0, 0, 0, 1];
+        this.math.transform.compound( transform, position, rotation, scale );
+        var expected = [0, 0.20000000298023224, 0, 1,
+                        -0.05000000074505806, 0, -0.25980761647224426, 2,
+                        -0.08660253882408142, 0, 0.15000000596046448, 3,
+                        0, 0, 0, 1];
         ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
       });
 
