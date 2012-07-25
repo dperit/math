@@ -66,6 +66,31 @@ define( function ( require ) {
       
       return Math.sqrt( r );
     }
+
+    function limit(v, firstLimit, secondLimit){
+      var length;
+      var ratio;
+      length = Math.sqrt( v[0] * v[0] +
+        v[1] * v[1]);
+      if (secondLimit !== undefined){
+        if (length < firstLimit){
+          ratio = firstLimit/length;
+          v[0] = v[0] * ratio;
+          v[1] = v[1] * ratio;
+        }else if (length > secondLimit){
+          ratio = secondLimit/length;
+          v[0] = v[0] * ratio;
+          v[1] = v[1] * ratio;
+        }
+      }else{
+        if (length > firstLimit){
+          ratio = firstLimit/length;
+          v[0] = v[0] * ratio;
+          v[1] = v[1] * ratio;
+        }
+      }
+      return v;
+    }
     
     function multiply( v, s, result ) {
       result = result || new V2();
@@ -136,7 +161,7 @@ define( function ( require ) {
       dot: dot,
       equal: equal,
       length: length,
-      limit: notImplemented,
+      limit: limit,
       multiply: multiply,              
       negate: negate,
       normalize: normalize,

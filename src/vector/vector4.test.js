@@ -297,6 +297,37 @@ define(
         equal( result, this.math.vector4.length( v.buffer ), "length is correct" );
       });
 
+      test( "limit, upper limit only", function() {
+        expect( 2 );
+        var v = new this.math.Vector4( 3, 5, 7, 11 );
+        var v2 = new this.math.Vector4( 1, 3, 5, 7 );
+        var desiredLength = 13;
+        var expectedResult = this.math.vector4.limit(new this.math.V4( 3, 5, 7, 11 ), desiredLength);
+        var expectedResult2 = this.math.vector4.limit(new this.math.V4( 1, 3, 5, 7 ), desiredLength);
+        v.limit(desiredLength);
+        v2.limit(desiredLength);
+        ok(this.math.vector4.equal( v.buffer, expectedResult ), "upper limit is correct" );
+        ok(this.math.vector4.equal( v2.buffer, expectedResult2 ), "within limit is correct" );
+      });
+
+      test( "limit, upper and lower limits", function(){
+        expect( 3 );
+        var v1 = new this.math.Vector4( 3, 5, 7, 11 );
+        var v2 = new this.math.Vector4( 13, 17, 23, 29 );
+        var v3 = new this.math.Vector4( 7, 11, 13, 17 );
+        var desiredLower = 15;
+        var desiredUpper = 27;
+        var expectedResult1 = this.math.vector4.limit(new this.math.V4( 3, 5, 7, 11 ), desiredLower, desiredUpper);
+        var expectedResult2 = this.math.vector4.limit(new this.math.V4( 13, 17, 23, 29  ), desiredLower, desiredUpper);
+        var expectedResult3 = this.math.vector4.limit(new this.math.V4( 7, 11, 13, 17 ), desiredLower, desiredUpper);
+        v1.limit( desiredLower, desiredUpper );
+        v2.limit( desiredLower, desiredUpper );
+        v3.limit( desiredLower, desiredUpper );
+        ok(this.math.vector4.equal( v1.buffer, expectedResult1), "lower limit is correct" );
+        ok(this.math.vector4.equal( v2.buffer, expectedResult2), "upper limit is correct" );
+        ok(this.math.vector4.equal( v3.buffer, expectedResult3), "within limits is correct" );
+      });
+
       test( "multiply", function() {
         expect( 6 );
 

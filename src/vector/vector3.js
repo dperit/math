@@ -126,6 +126,13 @@ define( function ( require ) {
       return vector3.length( this.buffer );
     }
 
+    function limit(firstLimit, secondLimit, result) {
+      result = result || this;
+      vector3.limit(this.buffer, firstLimit, secondLimit);
+      result.modified = true;
+      return result;
+    }
+
     function multiply( arg, result ) {
       result = result || this;
       vector3.multiply( this.buffer, arg, result.buffer );
@@ -216,6 +223,7 @@ define( function ( require ) {
       dot: dot,
       equal: equal,
       length: length,
+      limit: limit,
       multiply: multiply,
       negate: negate,
       normalize: normalize,

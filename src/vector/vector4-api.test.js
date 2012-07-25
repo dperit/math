@@ -123,10 +123,50 @@ define(
         test( "length", function() {
           expect( 1 );
 
-          var v = new this.math.V4( 1, 1, 2, 2 );
+          var v = new this.math.V4( 1, 2, 3, 4 );
 
-          equal( this.math.vector4.length( v ), Math.sqrt( 10 ),
+          equal( this.math.vector4.length( v ), Math.sqrt( 30 ),
             "length is correct" );
+        });
+
+        test( "limit, upper limit only", function() {
+          expect( 2 );
+          var v = new this.math.V4( 3, 5, 7, 11 );
+          var v21 = new this.math.V4( 1, 3, 5, 7 );
+          var v22 = new this.math.V4( 1, 3, 5, 7 );
+          var desiredLength = 13;
+          this.math.vector4.limit(v, desiredLength);
+          this.math.vector4.limit(v21, desiredLength);
+          var actualLength = Math.sqrt( v[0] * v[0] +
+            v[1] * v[1] +
+            v[2] * v[2] +
+            v[3] * v[3]);
+          ok(this.math.equal( desiredLength, actualLength), "actual length is correct" );
+          ok(this.math.vector4.equal(v21, v22), "vector within limits was unchanged");
+        });
+
+        test( "limit, upper and lower limits", function(){
+          expect( 3 );
+          var v1 = new this.math.V4( 3, 5, 7, 11 );
+          var v2 = new this.math.V4( 13, 17, 23, 29 );
+          var v31 = new this.math.V4( 7, 11, 13, 17 );
+          var v32 = new this.math.V4( 7, 11, 13, 17 );
+          var desiredLower = 15;
+          var desiredUpper = 27;
+          this.math.vector4.limit(v1, desiredLower, desiredUpper);
+          this.math.vector4.limit(v2, desiredLower, desiredUpper);
+          this.math.vector4.limit(v31, desiredLower, desiredUpper);
+          var actualLength1 = Math.sqrt( v1[0] * v1[0] +
+            v1[1] * v1[1] +
+            v1[2] * v1[2] +
+            v1[3] * v1[3]);
+          var actualLength2 = Math.sqrt( v2[0] * v2[0] +
+            v2[1] * v2[1] +
+            v2[2] * v2[2] +
+            v2[3] * v2[3]);
+          ok(this.math.equal( desiredLower, actualLength1), "actual lower length is correct" );
+          ok(this.math.equal( desiredUpper, actualLength2), "actual upper length is correct" );
+          ok(this.math.vector4.equal(v31, v32), "vector within limits was unchanged");
         });
 
         test( "multiply, return new result", function() {
