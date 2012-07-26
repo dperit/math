@@ -107,7 +107,13 @@ define( function ( require ) {
 
     function limit(firstLimit, result) {
       result = result || this;
-      vector2.limit(this.buffer, firstLimit, result.buffer);
+      var other;
+      if( result instanceof Vector2 ) {
+        other = result.buffer;
+      } else {
+        other = result;
+      }
+      vector2.limit(this.buffer, firstLimit, other);
       result.modified = true;
       return result;
     }

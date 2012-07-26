@@ -128,7 +128,13 @@ define( function ( require ) {
 
     function limit(firstLimit, result) {
       result = result || this;
-      vector3.limit(this.buffer, firstLimit, result.buffer);
+      var other;
+      if( result instanceof Vector3 ) {
+        other = result.buffer;
+      } else {
+        other = result;
+      }
+      vector3.limit(this.buffer, firstLimit, other);
       result.modified = true;
       return result;
     }
