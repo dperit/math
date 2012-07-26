@@ -70,46 +70,30 @@ define( function ( require ) {
 
     function length( v ) {
       var r = 0;
-      
+
       r += v[0] * v[0];
       r += v[1] * v[1];
       r += v[2] * v[2];
       r += v[3] * v[3];
-      
-      return Math.sqrt( r );      
+
+      return Math.sqrt( r );
     }
 
-    function limit(v, firstLimit, secondLimit){
+    function limit(v, firstLimit, result){
+      result = result || v;
       var length;
-      var ratio;
       length = Math.sqrt( v[0] * v[0] +
-        v[1] * v[1] +
-        v[2] * v[2] +
-        v[3] * v[3]);
-      if (secondLimit !== undefined){
-        if (length < firstLimit){
-          ratio = firstLimit/length;
-          v[0] = v[0] * ratio;
-          v[1] = v[1] * ratio;
-          v[2] = v[2] * ratio;
-          v[3] = v[3] * ratio;
-        }else if (length > secondLimit){
-          ratio = secondLimit/length;
-          v[0] = v[0] * ratio;
-          v[1] = v[1] * ratio;
-          v[2] = v[2] * ratio;
-          v[3] = v[3] * ratio;
-        }
-      }else{
-        if (length > firstLimit){
-          ratio = firstLimit/length;
-          v[0] = v[0] * ratio;
-          v[1] = v[1] * ratio;
-          v[2] = v[2] * ratio;
-          v[3] = v[3] * ratio;
-        }
+                          v[1] * v[1] +
+                          v[2] * v[2] +
+                          v[3] * v[3]);
+      if (length > firstLimit){
+        var ratio = firstLimit/length;
+        result[0] = v[0] * ratio;
+        result[1] = v[1] * ratio;
+        result[2] = v[2] * ratio;
+        result[3] = v[3] * ratio;
       }
-      return v;
+      return result;
     }
 
     function multiply( v, s, result ) {

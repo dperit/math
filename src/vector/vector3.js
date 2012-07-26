@@ -126,9 +126,9 @@ define( function ( require ) {
       return vector3.length( this.buffer );
     }
 
-    function limit(firstLimit, secondLimit, result) {
+    function limit(firstLimit, result) {
       result = result || this;
-      vector3.limit(this.buffer, firstLimit, secondLimit);
+      vector3.limit(this.buffer, firstLimit, result.buffer);
       result.modified = true;
       return result;
     }

@@ -131,26 +131,6 @@ define(
           ok(this.math.vector2.equal(v21, v22), "vector within limits was unchanged");
         });
 
-        test( "limit, upper and lower limits", function(){
-          expect( 3 );
-          var v1 = new this.math.V2( 3, 5 );
-          var v2 = new this.math.V2( 13, 17 );
-          var v31 = new this.math.V2( 7, 11 );
-          var v32 = new this.math.V2( 7, 11 );
-          var desiredLower = 7;
-          var desiredUpper = 18;
-          this.math.vector2.limit(v1, desiredLower, desiredUpper);
-          this.math.vector2.limit(v2, desiredLower, desiredUpper);
-          this.math.vector2.limit(v31, desiredLower, desiredUpper);
-          var actualLength1 = Math.sqrt( v1[0] * v1[0] +
-            v1[1] * v1[1]);
-          var actualLength2 = Math.sqrt( v2[0] * v2[0] +
-            v2[1] * v2[1]);
-          ok(this.math.equal( desiredLower, actualLength1), "actual lower length is correct" );
-          ok(this.math.equal( desiredUpper, actualLength2), "actual upper length is correct" );
-          ok(this.math.vector2.equal(v31, v32), "vector within limits was unchanged");
-        });
-
         test( "multiply, return new result", function() {
           expect( 2 );
 

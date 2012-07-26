@@ -340,24 +340,6 @@ define(
         ok(this.math.vector3.equal( v2.buffer, expectedResult2 ), "within limit is correct" );
       });
 
-      test( "limit, upper and lower limits", function(){
-        expect( 3 );
-        var v1 = new this.math.Vector3( 3, 5, 7 );
-        var v2 = new this.math.Vector3( 13, 17, 23 );
-        var v3 = new this.math.Vector3( 7, 11, 13 );
-        var desiredLower = 10;
-        var desiredUpper = 25;
-        var expectedResult1 = this.math.vector3.limit(new this.math.V3( 3, 5, 7 ), desiredLower, desiredUpper);
-        var expectedResult2 = this.math.vector3.limit(new this.math.V3( 13, 17, 23 ), desiredLower, desiredUpper);
-        var expectedResult3 = this.math.vector3.limit(new this.math.V3( 7, 11, 13 ), desiredLower, desiredUpper);
-        v1.limit( desiredLower, desiredUpper );
-        v2.limit( desiredLower, desiredUpper );
-        v3.limit( desiredLower, desiredUpper );
-        ok(this.math.vector3.equal( v1.buffer, expectedResult1), "lower limit is correct" );
-        ok(this.math.vector3.equal( v2.buffer, expectedResult2), "upper limit is correct" );
-        ok(this.math.vector3.equal( v3.buffer, expectedResult3), "within limits is correct" );
-      });
-
       test( "multiply", function() {
         expect( 5 );
 

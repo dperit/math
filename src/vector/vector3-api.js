@@ -91,33 +91,20 @@ define( function ( require ) {
       return Math.sqrt( r );      
     }
 
-    function limit(v, firstLimit, secondLimit){
+    function limit(v, firstLimit, result){
+      result = result || v;
       var length;
-      var ratio;
       length = Math.sqrt( v[0] * v[0] +
-        v[1] * v[1] +
-        v[2] * v[2]);
-      if (secondLimit !== undefined){
-        if (length < firstLimit){
-          ratio = firstLimit/length;
-          v[0] = v[0] * ratio;
-          v[1] = v[1] * ratio;
-          v[2] = v[2] * ratio;
-        }else if (length > secondLimit){
-          ratio = secondLimit/length;
-          v[0] = v[0] * ratio;
-          v[1] = v[1] * ratio;
-          v[2] = v[2] * ratio;
-        }
-      }else{
-        if (length > firstLimit){
-          ratio = firstLimit/length;
-          v[0] = v[0] * ratio;
-          v[1] = v[1] * ratio;
-          v[2] = v[2] * ratio;
-        }
+                          v[1] * v[1] +
+                          v[2] * v[2]);
+
+      if (length > firstLimit){
+        var ratio = firstLimit/length;
+        result[0] = v[0] * ratio;
+        result[1] = v[1] * ratio;
+        result[2] = v[2] * ratio;
       }
-      return v;
+      return result;
     }
 
     function multiply( v, s, result ) {
