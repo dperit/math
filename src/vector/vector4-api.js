@@ -87,7 +87,7 @@ define( function ( require ) {
     }
 
     function limit(v, max, result){
-      result = result || v;
+      result = result || new V4();
       var length;
       length = Math.sqrt( v[0] * v[0] +
                           v[1] * v[1] +
@@ -99,6 +99,11 @@ define( function ( require ) {
         result[1] = v[1] * ratio;
         result[2] = v[2] * ratio;
         result[3] = v[3] * ratio;
+      }else{
+        result[0] = v[0];
+        result[1] = v[1];
+        result[2] = v[2];
+        result[3] = v[3];
       }
       return result;
     }
