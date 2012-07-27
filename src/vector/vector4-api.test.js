@@ -149,8 +149,8 @@ define(
           var v21 = new this.math.V4( 1, 3, 5, 7 );
           var v22 = new this.math.V4( 1, 3, 5, 7 );
           var desiredLength = 13;
-          this.math.vector4.limit(v, desiredLength);
-          this.math.vector4.limit(v21, desiredLength);
+          this.math.vector4.limit(v, desiredLength, v);
+          this.math.vector4.limit(v21, desiredLength, v21);
           var actualLength = Math.sqrt( v[0] * v[0] +
             v[1] * v[1] +
             v[2] * v[2] +
