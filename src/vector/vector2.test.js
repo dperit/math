@@ -261,7 +261,7 @@ define(
         equal( result, this.math.vector2.length( v.buffer ), "length is correct" );
       });
 
-      test( "limit, upper limit only", function() {
+      test( "limit", function() {
         expect( 2 );
         var v = new this.math.Vector2( 3, 5 );
         var v2 = new this.math.Vector2( 1, 3 );
@@ -270,7 +270,7 @@ define(
         var expectedResult2 = this.math.vector2.limit(new this.math.V2( 1, 3 ), desiredLength);
         v.limit(desiredLength);
         v2.limit(desiredLength);
-        ok(this.math.vector2.equal( v.buffer, expectedResult ), "upper limit is correct" );
+        ok(this.math.vector2.equal( v.buffer, expectedResult ), "limit is correct" );
         ok(this.math.vector2.equal( v2.buffer, expectedResult2 ), "within limit is correct" );
       });
 

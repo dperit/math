@@ -143,7 +143,7 @@ define(
             "length is correct" );
         });
 
-        test( "limit, upper limit only", function() {
+        test( "limit", function() {
           expect( 2 );
           var v = new this.math.V4( 3, 5, 7, 11 );
           var v21 = new this.math.V4( 1, 3, 5, 7 );
@@ -156,7 +156,7 @@ define(
             v[2] * v[2] +
             v[3] * v[3]);
           ok(this.math.equal( desiredLength, actualLength), "actual length is correct" );
-          ok(this.math.vector4.equal(v21, v22), "vector within limits was unchanged");
+          ok(this.math.vector4.equal(v21, v22), "vector within limit was unchanged");
         });
 
         test( "multiply, return new result", function() {

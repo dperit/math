@@ -115,7 +115,7 @@ define( function ( require ) {
       return vector2.length( this.buffer );
     }
 
-    function limit(firstLimit, result) {
+    function limit(max, result) {
       result = result || this;
       var other;
       if( result instanceof Vector2 ) {
@@ -124,7 +124,7 @@ define( function ( require ) {
       } else {
         other = result;
       }
-      vector2.limit(this.buffer, firstLimit, other);
+      vector2.limit(this.buffer, max, other);
       return result;
     }
 

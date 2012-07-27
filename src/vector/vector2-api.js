@@ -72,14 +72,14 @@ define( function ( require ) {
       return Math.sqrt( r );
     }
 
-    function limit(v, firstLimit, result){
+    function limit(v, max, result){
       result = result || v;
       var length;
       length = Math.sqrt( v[0] * v[0] +
         v[1] * v[1]);
 
-      if (length > firstLimit){
-        var ratio = firstLimit/length;
+      if (length > max){
+        var ratio = max/length;
         result[0] = v[0] * ratio;
         result[1] = v[1] * ratio;
       }
