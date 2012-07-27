@@ -167,6 +167,19 @@ define(
         notDeepEqual( v1.buffer, v2.buffer, "vectors are not equal" );
       });
 
+      test( "distance", function() {
+        expect( 3 );
+
+        var v1 = new this.math.Vector4( 3, 5 );
+        var v2 = new this.math.Vector4( 13, 17 );
+        var result = v1.distance(v2);
+        var result2 = v2.distance(v1);
+
+        equal( result, this.math.vector4.distance( v1.buffer, v2.buffer ), "distance from 1 to 2 is correct" );
+        equal( result2, this.math.vector4.distance( v2.buffer, v1.buffer ), "distance from 2 to 1 is correct" );
+        equal( result, result2, "distance is commutative" );
+      });
+
       test( "dot with vector object", function() {
         expect( 5 );
 

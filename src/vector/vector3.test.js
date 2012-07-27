@@ -240,6 +240,19 @@ define(
         deepEqual( result.buffer, this.math.vector3.cross( v1.buffer, v2.buffer ), "result is correct" );
       });
 
+      test( "distance", function() {
+        expect( 3 );
+
+        var v1 = new this.math.Vector4( 3, 5, 7 );
+        var v2 = new this.math.Vector4( 13, 17, 19 );
+        var result = v1.distance(v2);
+        var result2 = v2.distance(v1);
+
+        equal( result, this.math.vector4.distance( v1.buffer, v2.buffer ), "distance from 1 to 2 is correct" );
+        equal( result2, this.math.vector4.distance( v2.buffer, v1.buffer ), "distance from 2 to 1 is correct" );
+        equal( result, result2, "distance is commutative" );
+      });
+
       test( "dot with vector object", function() {
         expect( 7 );
 

@@ -91,7 +91,13 @@ define( function ( require ) {
     }
 
     function distance(arg) {
-
+      var other;
+      if( arg instanceof Vector4 ) {
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+      return vector4.distance(this.buffer, other);
     }
 
     function dot( arg ) {
@@ -125,11 +131,11 @@ define( function ( require ) {
       var other;
       if( result instanceof Vector4 ) {
         other = result.buffer;
+        result.modified = true;
       } else {
         other = result;
       }
       vector4.limit(this.buffer, firstLimit, other);
-      result.modified = true;
       return result;
     }
 

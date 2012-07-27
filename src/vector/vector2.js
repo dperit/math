@@ -79,6 +79,16 @@ define( function ( require ) {
       return new Vector2( this );
     }
 
+    function distance(arg) {
+      var other;
+      if( arg instanceof Vector2 ) {
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+      return vector2.distance(this.buffer, other);
+    }
+
     function dot( arg ) {
       var other;
       if( arg instanceof Vector2 ) {        
@@ -110,11 +120,11 @@ define( function ( require ) {
       var other;
       if( result instanceof Vector2 ) {
         other = result.buffer;
+        result.modified = true;
       } else {
         other = result;
       }
       vector2.limit(this.buffer, firstLimit, other);
-      result.modified = true;
       return result;
     }
 
@@ -200,7 +210,7 @@ define( function ( require ) {
       angle: angle,
       clear: clear,
       clone: clone,
-      distance: notImplemented,
+      distance: distance,
       dot: dot,
       equal: equal,
       length: length,

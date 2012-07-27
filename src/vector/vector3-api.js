@@ -57,6 +57,12 @@ define( function ( require ) {
       return result;
     }
 
+    function distance( v1, v2 ) {
+      return Math.sqrt((v1[0] - v2[0]) * (v1[0] - v2[0]) +
+        (v1[1] - v2[1]) * (v1[1] - v2[1]) +
+        (v1[2] - v2[2]) * (v1[2] - v2[2]));
+    }
+
     function dot( v1, v2 ) {
       return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
     }
@@ -182,7 +188,7 @@ define( function ( require ) {
       angle: angle,
       clear: clear,
       cross: cross,
-      distance: notImplemented,
+      distance: distance,
       dot: dot,
       equal: equal,
       length: length,

@@ -61,6 +61,20 @@ define(
           equal( v[1], 0, "y is cleared" );
         });
 
+        test( "distance", function() {
+          expect( 2 );
+
+          var v1 = new this.math.V4( 3, 5 );
+          var v2 = new this.math.V4( 13, 17 );
+          var result = this.math.vector4.distance(v1, v2);
+          var result2 = this.math.vector4.distance(v2, v1);
+
+          var expected = Math.sqrt(244);
+
+          equal( result, expected, "distance from 1 to 2 is correct" );
+          equal( result2, expected, "distance from 2 to 1 is correct" );
+        });
+
         test( "dot", function() {
           expect( 1 );
 
