@@ -57,6 +57,12 @@ define( function ( require ) {
       return result;
     }
 
+    function distance( v1, v2 ) {
+      return Math.sqrt((v1[0] - v2[0]) * (v1[0] - v2[0]) +
+        (v1[1] - v2[1]) * (v1[1] - v2[1]) +
+        (v1[2] - v2[2]) * (v1[2] - v2[2]));
+    }
+
     function dot( v1, v2 ) {
       return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
     }
@@ -89,6 +95,26 @@ define( function ( require ) {
       r += v[2] * v[2];
       
       return Math.sqrt( r );      
+    }
+
+    function limit(v, max, result){
+      result = result || new V3();
+      var length;
+      length = Math.sqrt( v[0] * v[0] +
+                          v[1] * v[1] +
+                          v[2] * v[2]);
+
+      if (length > max){
+        var ratio = max/length;
+        result[0] = v[0] * ratio;
+        result[1] = v[1] * ratio;
+        result[2] = v[2] * ratio;
+      }else{
+        result[0] = v[0];
+        result[1] = v[1];
+        result[2] = v[2];
+      }
+      return result;
     }
 
     function multiply( v, s, result ) {
@@ -166,11 +192,11 @@ define( function ( require ) {
       angle: angle,
       clear: clear,
       cross: cross,
-      distance: notImplemented,
+      distance: distance,
       dot: dot,
       equal: equal,
       length: length,
-      limit: notImplemented,
+      limit: limit,
       multiply: multiply,
       negate: negate,
       normalize: normalize,

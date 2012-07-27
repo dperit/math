@@ -89,6 +89,20 @@ define(
           equal( result[2], 1, "z is correct" );
         });
 
+        test( "distance", function() {
+          expect( 2 );
+
+          var v1 = new this.math.V4( 3, 5, 7 );
+          var v2 = new this.math.V4( 13, 17, 19 );
+          var result = this.math.vector4.distance(v1, v2);
+          var result2 = this.math.vector4.distance(v2, v1);
+
+          var expected = Math.sqrt(388);
+
+          equal( result, expected, "distance from 1 to 2 is correct" );
+          equal( result2, expected, "distance from 2 to 1 is correct" );
+        });
+
         test( "dot", function() {
           expect( 1 );
 
@@ -142,10 +156,25 @@ define(
         test( "length", function() {
           expect( 1 );
 
-          var v = new this.math.V3( 1, 1, 2 );
+          var v = new this.math.V3( 1, 2, 3 );
 
-          equal( this.math.vector3.length( v ), Math.sqrt( 6 ),
+          equal( this.math.vector3.length( v ), Math.sqrt( 14 ),
             "length is correct" );
+        });
+
+        test( "limit", function() {
+          expect( 2 );
+          var v = new this.math.V3( 3, 5, 7 );
+          var v21 = new this.math.V3( 1, 3, 5 );
+          var v22 = new this.math.V3( 1, 3, 5 );
+          var desiredLength = 8;
+          this.math.vector3.limit(v, desiredLength, v);
+          this.math.vector3.limit(v21, desiredLength, v21);
+          var actualLength = Math.sqrt( v[0] * v[0] +
+            v[1] * v[1] +
+            v[2] * v[2]);
+          ok(this.math.equal( desiredLength, actualLength), "actual length is correct" );
+          ok(this.math.vector3.equal(v21, v22), "vector within limit was unchanged");
         });
 
         test( "multiply, return new result", function() {

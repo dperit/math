@@ -90,6 +90,16 @@ define( function ( require ) {
       return new Vector4( this );
     }
 
+    function distance(arg) {
+      var other;
+      if( arg instanceof Vector4 ) {
+        other = arg.buffer;
+      } else {
+        other = arg;
+      }
+      return vector4.distance(this.buffer, other);
+    }
+
     function dot( arg ) {
       var other;
       if( arg instanceof Vector4 ) {        
@@ -114,6 +124,19 @@ define( function ( require ) {
 
     function length() {
       return vector4.length( this.buffer );
+    }
+
+    function limit(max, result) {
+      result = result || this;
+      var other;
+      if( result instanceof Vector4 ) {
+        other = result.buffer;
+        result.modified = true;
+      } else {
+        other = result;
+      }
+      vector4.limit(this.buffer, max, other);
+      return result;
     }
 
     function multiply( arg, result ) {
@@ -204,10 +227,11 @@ define( function ( require ) {
       angle: angle,
       clear: clear,
       clone: clone,
-      distance: notImplemented,
+      distance: distance,
       dot: dot,
       equal: equal,
       length: length,
+      limit: limit,
       multiply: multiply,
       negate: negate,
       normalize: normalize,

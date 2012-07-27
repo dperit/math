@@ -204,6 +204,19 @@ define(
         notDeepEqual( v1.buffer, v2.buffer, "vectors are not equal" );
       });
 
+      test( "distance", function() {
+        expect( 3 );
+
+        var v1 = new this.math.Vector4( 3, 5, 7, 11 );
+        var v2 = new this.math.Vector4( 13, 17, 19, 23 );
+        var result = v1.distance(v2);
+        var result2 = v2.distance(v1);
+
+        equal( result, this.math.vector4.distance( v1.buffer, v2.buffer ), "distance from 1 to 2 is correct" );
+        equal( result2, this.math.vector4.distance( v2.buffer, v1.buffer ), "distance from 2 to 1 is correct" );
+        equal( result, result2, "distance is commutative" );
+      });
+
       test( "dot with vector object", function() {
         expect( 9 );
 
@@ -295,6 +308,19 @@ define(
         var result = v.length();
 
         equal( result, this.math.vector4.length( v.buffer ), "length is correct" );
+      });
+
+      test( "limit", function() {
+        expect( 2 );
+        var v = new this.math.Vector4( 3, 5, 7, 11 );
+        var v2 = new this.math.Vector4( 1, 3, 5, 7 );
+        var desiredLength = 13;
+        var expectedResult = this.math.vector4.limit(new this.math.V4( 3, 5, 7, 11 ), desiredLength);
+        var expectedResult2 = this.math.vector4.limit(new this.math.V4( 1, 3, 5, 7 ), desiredLength);
+        v.limit(desiredLength);
+        v2.limit(desiredLength);
+        ok(this.math.vector4.equal( v.buffer, expectedResult ), "limit is correct" );
+        ok(this.math.vector4.equal( v2.buffer, expectedResult2 ), "within limit is correct" );
       });
 
       test( "multiply", function() {
