@@ -50,6 +50,14 @@ define(
           ok( Math.abs( angle - this.math.TAU/8 ) < e, "angle is correct" );
         });
 
+        test( "angle with really closely spaced values", function(){
+          var t = this.math.vector2.angle(
+            [0.9999172777290002, -0.012862258706218368],
+            [0.9999172687530518, -0.012862258590757847]
+          );
+          ok(!isNaN(t), "angle works with closely spaced values");
+        });
+
         test( "clear", function() {
           expect( 2 );
 

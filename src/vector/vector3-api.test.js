@@ -52,6 +52,14 @@ define(
           ok( Math.abs( angle - 0.44247168108809276 ) < e, "angle is correct" );
         });
 
+        test( "angle with really closely spaced values", function(){
+          var t = this.math.vector3.angle(
+            [0.9999172777290002, 0, -0.012862258706218368],
+            [0.9999172687530518, 0, -0.012862258590757847]
+          );
+          ok(!isNaN(t), "angle works with closely spaced values");
+        });
+
         test( "clear", function() {
           expect( 3 );
 
