@@ -408,6 +408,20 @@ define(
           "projection is correct" );
       });
 
+      test( "rotate", function(){
+        expect();
+
+        var v = new this.math.Vector2( -3, 7 );
+        var r = 3.9;
+        var result = new this.math.Vector2();
+        var result2 = v.rotate(r, result);
+        var vResult = this.math.vector2.rotate(v.buffer, r);
+        v.rotate(r);
+        equal(result, result2, "result is both set and returned");
+        deepEqual(result.buffer, vResult, "calls vector API functions correctly");
+        deepEqual(v.buffer, vResult, "result-less call will put results in object that called it");
+      });
+
       test( "set with vector object", function() {
         expect( 4 );
 

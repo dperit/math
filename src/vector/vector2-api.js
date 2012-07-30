@@ -128,6 +128,23 @@ define( function ( require ) {
       
       return result;
     }
+
+    function rotate(v, r, result){
+      result = result || new V2();
+      var sinA,
+        cosA;
+
+      sinA = Math.sin( r );
+      cosA = Math.cos( r );
+
+      var x = v[0];
+      var y = v[1];
+
+      result[0] = x*cosA - y*sinA;
+      result[1] = x*sinA + y*cosA;
+
+      return result;
+    }
     
     function set( v ) {
       if( 2 === arguments.length ) {
@@ -163,6 +180,7 @@ define( function ( require ) {
       negate: negate,
       normalize: normalize,
       project: project,
+      rotate: rotate,
       set: set,
       subtract: subtract,
       

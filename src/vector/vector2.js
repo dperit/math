@@ -167,6 +167,13 @@ define( function ( require ) {
       return this;
     }
 
+    function rotate( r, result ){
+      result = result || this;
+      vector2.rotate( this.buffer, r, result.buffer);
+      result.modified = true;
+      return result;
+    }
+
     function set( arg1, arg2 ) {
       var argc = arguments.length;
       var buffer = this.buffer;
@@ -219,6 +226,7 @@ define( function ( require ) {
       negate: negate,
       normalize: normalize,
       project: project,
+      rotate: rotate,
       set: set,
       subtract: subtract
     });

@@ -242,6 +242,22 @@ define(
           equal( result[1], 1, "y is correct" );
         });
 
+        test( "rotate", function() {
+          expect( 4 );
+
+          var v = new this.math.V2( 1, 1 );
+          var r = this.math.TAU/4;
+          var result = new this.math.V2();
+
+          var result2 = this.math.vector2.rotate(v, r);
+          this.math.vector2.rotate(v, r, result);
+
+          equal(result[0], -1, "x is correct");
+          equal(result[1], 1, "y is correct");
+          equal(result[0], result2[0], "set result and return result have equal x");
+          equal(result[1], result2[1], "set result and return result have equal y");
+        });
+
         test( "set with given values", function() {
           expect( 2 );
 
