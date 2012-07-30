@@ -127,6 +127,64 @@ define( function ( require ) {
         return result;
     }
 
+    function rotate( arg, v, result){
+      result = result || new M3( matrix3.identity );
+
+      if (arg !== undefined && arg != result){
+        matrix3.set(result, arg);
+      }
+
+      var sinA,
+        cosA;
+      var rotation;
+
+      if( 0 !== v[2] ) {
+        sinA = Math.sin( v[2] );
+        cosA = Math.cos( v[2] );
+
+        rotation = [ cosA, -sinA, 0,
+          sinA, cosA, 0,
+          0, 0, 1];
+        matrix3.multiply( result, rotation, result );
+      }
+
+      if( 0 !== v[1] ) {
+        sinA = Math.sin( v[1] );
+        cosA = Math.cos( v[1] );
+
+        rotation = [ cosA, 0, sinA,
+          0, 1, 0,
+          -sinA, 0, cosA];
+        matrix3.multiply( result, rotation, result );
+      }
+
+      if( 0 !== v[0] ) {
+        sinA = Math.sin( v[0] );
+        cosA = Math.cos( v[0] );
+
+        rotation = [ 1, 0, 0,
+          0, cosA, -sinA,
+          0, sinA, cosA ];
+        matrix3.multiply( result, rotation, result );
+      }
+
+      return result;
+    }
+
+    function scale(arg, v, result){
+      result = result || new M3( matrix3.identity );
+
+      if (arg === undefined){
+        arg = result;
+      }
+
+      matrix3.multiply( arg, [v[0], 0, 0,
+        0, v[1], 0,
+        0, 0, v[2]], result );
+
+      return result;
+    }
+
     function set( m ) {
       if( 2 === arguments.length ) {
         var values = arguments[1];
@@ -208,6 +266,8 @@ define( function ( require ) {
       inverse: inverse,
       multiply: multiply,
       multiplyV3: notImplemented,
+      rotate: rotate,
+      scale: scale,
       set: set,
       subtract: subtract,
       transpose: transpose,

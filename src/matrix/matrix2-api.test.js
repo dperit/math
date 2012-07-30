@@ -176,6 +176,48 @@ define(
         }
       });
 
+      test( "rotation", function() {
+        expect( 1 );
+
+        var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
+        var transform = this.math.matrix2.rotate( undefined, rotation );
+        var expected = [0, 1,
+          -1/2, 0];
+        ok( this.math.matrix2.equal( transform, expected ), "transform is correct" );
+      });
+
+      test( "rotation, set result parameter", function() {
+        expect( 1 );
+
+        var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
+        var transform = this.math.M2( this.math.matrix2.identity );
+        this.math.matrix2.rotate( transform, rotation, transform );
+        var expected = [0, 1,
+          -1/2, 0];
+        ok( this.math.matrix2.equal( transform, expected ), "transform is correct" );
+      });
+
+      test( "scale", function() {
+        expect( 1 );
+
+        var scale = [1, 2];
+        var transform = this.math.matrix2.scale( undefined, scale );
+        var expected = [1, 0,
+          0, 2];
+        ok( this.math.matrix2.equal( transform, expected ), "transform is correct" );
+      });
+
+      test( "scale, set result parameter", function() {
+        expect( 1 );
+
+        var scale = [1, 2];
+        var transform = this.math.M2( this.math.matrix2.identity );
+        this.math.matrix2.scale( transform, scale, transform );
+        var expected = [1, 0,
+          0, 2];
+        ok( this.math.matrix2.equal( transform, expected ), "transform is correct" );
+      });
+
       test( "set with given values", function() {
         expect( 4 );
 

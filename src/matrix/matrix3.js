@@ -155,6 +155,22 @@ define( function ( require ) {
       return this;
     }
 
+    function rotate( v, result ) {
+      result = result || this;
+      matrix3.rotate( this.buffer, v, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
+    function scale( v, result ) {
+      result = result || this;
+      matrix3.scale( this.buffer, v, result.buffer );
+      result.modified = true;
+
+      return this;
+    }
+
     function set( arg1, arg2, arg3, arg4,
                   arg5, arg6, arg7, arg8,
                   arg9, arg10, arg11, arg12,
@@ -239,6 +255,8 @@ define( function ( require ) {
       equal: equal,
       inverse: inverse,
       multiply: multiply,
+      rotate: rotate,
+      scale: scale,
       set: set,
       subtract: subtract,
       transpose: transpose

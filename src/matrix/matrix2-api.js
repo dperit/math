@@ -86,6 +86,39 @@ define( function ( require ) {
       return result;
     }
 
+    function rotate( arg, v, result){
+      result = result || new M2( matrix2.identity );
+
+      if (arg === undefined){
+        arg = result;
+      }
+
+      var sinA,
+        cosA;
+      var rotation;
+      sinA = Math.sin( v[2] );
+      cosA = Math.cos( v[2] );
+
+      rotation = [ cosA, -sinA,
+        sinA, cosA];
+      matrix2.multiply( arg, rotation, result );
+
+      return result;
+    }
+
+    function scale(arg, v, result){
+      result = result || new M2( matrix2.identity );
+
+      if (arg === undefined){
+        arg = result;
+      }
+
+      matrix2.multiply( arg, [v[0], 0,
+        0, v[1]], result );
+
+      return result;
+    }
+
     function set( m ) {
       if( 2 === arguments.length ) {
         var values = arguments[1];
@@ -141,6 +174,8 @@ define( function ( require ) {
       equal: equal,
       inverse: inverse,
       multiply: multiply,
+      rotate: rotate,
+      scale: scale,
       set: set,
       subtract: subtract,
       transpose: transpose,

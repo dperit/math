@@ -237,6 +237,50 @@ define(
         }
       });
 
+      test( "rotation", function() {
+        expect( 1 );
+
+        var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
+        var transform = this.math.matrix4.rotate( undefined, rotation );
+        var expected = [0, 1, 0, 0,
+          -1/2, 0, -Math.sqrt(3)/2, 0,
+          -Math.sqrt(3)/2, 0, 1/2, 0,
+          0, 0, 0, 1];
+        ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
+      });
+
+      test( "rotation, set result parameter", function() {
+        expect( 1 );
+
+        var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
+        var transform = this.math.M4( this.math.matrix4.identity );
+        this.math.matrix4.rotate( transform, rotation, transform );
+        var expected = [0, 1, 0, 0,
+          -1/2, 0, -Math.sqrt(3)/2, 0,
+          -Math.sqrt(3)/2, 0, 1/2, 0,
+          0, 0, 0, 1];
+        ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
+      });
+
+      test( "scale", function() {
+        expect( 1 );
+
+        var scale = [1, 2, 3];
+        var transform = this.math.matrix4.scale( undefined, scale );
+        var expected = [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1];
+        ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
+      });
+
+      test( "scale, set result parameter", function() {
+        expect( 1 );
+
+        var scale = [1, 2, 3];
+        var transform = this.math.M4( this.math.matrix4.identity );
+        this.math.matrix4.scale( transform, scale, transform );
+        var expected = [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1];
+        ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
+      });
+
       test( "set with given values", function() {
         expect( 16 );
 
@@ -307,6 +351,25 @@ define(
         for( var i = 0; i < 16; ++ i ) {
           equal( result[i], m1[i] - m2[i], "value is correct" );
         }
+      });
+
+      test( "translate", function() {
+        expect( 1 );
+
+        var position = [1, 2, 3];
+        var transform = this.math.matrix4.translate( undefined, position );
+        var expected = [1, 0, 0, 1, 0, 1, 0, 2, 0, 0, 1, 3, 0, 0, 0, 1];
+        ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
+      });
+
+      test( "translate, set result parameter", function() {
+        expect( 1 );
+
+        var position = [1, 2, 3];
+        var transform = this.math.M4( this.math.matrix4.identity );
+        this.math.matrix4.translate( transform, position, transform );
+        var expected = [1, 0, 0, 1, 0, 1, 0, 2, 0, 0, 1, 3, 0, 0, 0, 1];
+        ok( this.math.matrix4.equal( transform, expected ), "transform is correct" );
       });
 
       test( "transpose, return new result", function() {
