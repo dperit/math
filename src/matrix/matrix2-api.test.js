@@ -179,21 +179,21 @@ define(
       test( "rotation", function() {
         expect( 1 );
 
-        var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
+        var rotation = this.math.TAU/3;
         var transform = this.math.matrix2.rotate( undefined, rotation );
-        var expected = [0, 1,
-          -1/2, 0];
+        var expected = [-0.5,-Math.sqrt(3)/2,
+        Math.sqrt(3)/2,-0.5];
         ok( this.math.matrix2.equal( transform, expected ), "transform is correct" );
       });
 
       test( "rotation, set result parameter", function() {
         expect( 1 );
 
-        var rotation = [this.math.TAU/2, this.math.TAU/3, this.math.TAU/4];
+        var rotation = this.math.TAU/3;
         var transform = this.math.M2( this.math.matrix2.identity );
         this.math.matrix2.rotate( transform, rotation, transform );
-        var expected = [0, 1,
-          -1/2, 0];
+        var expected = [-0.5,-Math.sqrt(3)/2,
+          Math.sqrt(3)/2,-0.5];
         ok( this.math.matrix2.equal( transform, expected ), "transform is correct" );
       });
 

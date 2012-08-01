@@ -192,7 +192,7 @@ define(
                                    3, 4, 5 );
 
         var result = this.math.matrix3.multiply( m1, m2 );
-        var expected = [29, 35, 23, 89, 107, 71, 50, 62, 59];
+        var expected = [29, 35, 23, 89, 107, 71, 50, 62, 65];
 
         for( var i = 0; i < 9; ++ i ) {
           equal( result[i], expected[i], "value is correct" );
@@ -211,7 +211,7 @@ define(
 
         var result = new this.math.M3();
         this.math.matrix3.multiply( m1, m2, result );
-        var expected = [29, 35, 23, 89, 107, 71, 50, 62, 59];
+        var expected = [29, 35, 23, 89, 107, 71, 50, 62, 65];
 
         for( var i = 0; i < 9; ++ i ) {
           equal( result[i], expected[i], "value is correct" );

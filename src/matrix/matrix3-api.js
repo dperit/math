@@ -122,7 +122,7 @@ define( function ( require ) {
 
         result[6] = a20 * b00 + a21 * b10 + a22 * b20;
         result[7] = a20 * b01 + a21 * b11 + a22 * b21;
-        result[8] = a20 * b02 + a21 * b12 + a22 * a22;
+        result[8] = a20 * b02 + a21 * b12 + a22 * b22;
 
         return result;
     }

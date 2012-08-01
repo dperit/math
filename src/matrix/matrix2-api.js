@@ -86,7 +86,7 @@ define( function ( require ) {
       return result;
     }
 
-    function rotate( arg, v, result){
+    function rotate( arg, r, result){
       result = result || new M2( matrix2.identity );
 
       if (arg === undefined){
@@ -96,8 +96,8 @@ define( function ( require ) {
       var sinA,
         cosA;
       var rotation;
-      sinA = Math.sin( v[2] );
-      cosA = Math.cos( v[2] );
+      sinA = Math.sin( r );
+      cosA = Math.cos( r );
 
       rotation = [ cosA, -sinA,
         sinA, cosA];

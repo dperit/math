@@ -360,6 +360,52 @@ define(
         deepEqual( result.buffer, expected, "result is correct" );
       });
 
+      test( "rotate", function() {
+        expect( 4 );
+
+        var m = new this.math.Matrix4(2,3,5,7,
+          11,13,17,19,
+          23,29,31,37,
+          41,43,47,53);
+
+        var v = [this.math.TAU/3, this.math.TAU/5, this.math.TAU/7];
+
+        var expected = this.math.matrix4.rotate(m.buffer, v);
+
+        m.modified = false;
+        var returnValue = new this.math.Matrix4();
+        m.rotate(v, returnValue);
+        var returnValue2 = m.rotate(v);
+
+        ok(m.modified, "matrix is modified");
+        ok(this.math.matrix4.equal(m.buffer, expected), "matrix is rotated properly");
+        ok(this.math.matrix4.equal(returnValue.buffer, expected), "return value set properly");
+        equal(m, returnValue2, "returned value is correct");
+      });
+
+      test( "scale", function(){
+        expect( 4 );
+
+        var m = new this.math.Matrix4(2,3,5,7,
+          11,13,17,19,
+          23,29,31,37,
+          41,43,47,53);
+
+        var v = [this.math.TAU/3, this.math.TAU/5, this.math.TAU/7];
+
+        var expected = this.math.matrix4.scale(m.buffer, v);
+
+        m.modified = false;
+        var returnValue = new this.math.Matrix4();
+        m.scale(v, returnValue);
+        var returnValue2 = m.scale(v);
+
+        ok(m.modified, "matrix is modified");
+        ok(this.math.matrix4.equal(m.buffer, expected), "matrix is scaled properly");
+        ok(this.math.matrix4.equal(returnValue.buffer, expected), "return value set properly");
+        equal(m, returnValue2, "returned value is correct");
+      });
+
       test( "set with matrix object", function() {
         expect( 4 );
 
@@ -494,6 +540,29 @@ define(
         ok( result.modified, "modified is set" );
         equal( returnValue, m1, "subtract returns this" );
         deepEqual( result.buffer, expected, "result is correct" );
+      });
+
+      test( "translate", function(){
+        expect( 4 );
+
+        var m = new this.math.Matrix4(2,3,5,7,
+          11,13,17,19,
+          23,29,31,37,
+          41,43,47,53);
+
+        var v = [this.math.TAU/3, this.math.TAU/5, this.math.TAU/7];
+
+        var expected = this.math.matrix4.translate(m.buffer, v);
+
+        m.modified = false;
+        var returnValue = new this.math.Matrix4();
+        m.translate(v, returnValue);
+        var returnValue2 = m.translate(v);
+
+        ok(m.modified, "matrix is modified");
+        ok(this.math.matrix4.equal(m.buffer, expected), "matrix is translated properly");
+        ok(this.math.matrix4.equal(returnValue.buffer, expected), "return value set properly");
+        equal(m, returnValue2, "returned value is correct");
       });
 
       test( "transpose", function() {

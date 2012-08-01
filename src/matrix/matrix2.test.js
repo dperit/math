@@ -270,6 +270,48 @@ define(
         deepEqual( result.buffer, expected, "result is correct" );
       });
 
+      test( "rotate", function(){
+        expect( 4 );
+
+        var m = new this.math.Matrix2(2,3,
+          11,13);
+
+        var r = this.math.TAU/5;
+
+        var expected = this.math.matrix2.rotate(m.buffer, r);
+
+        m.modified = false;
+        var returnValue = new this.math.Matrix2();
+        m.rotate(r, returnValue);
+        var returnValue2 = m.rotate(r);
+
+        ok(m.modified, "matrix is modified");
+        ok(this.math.matrix2.equal(m.buffer, expected), "matrix is rotated properly");
+        ok(this.math.matrix2.equal(returnValue.buffer, expected), "return value set properly");
+        equal(m, returnValue2, "returned value is correct");
+      });
+
+      test( "scale", function(){
+        expect( 4 );
+
+        var m = new this.math.Matrix2(2,3,
+          11,13);
+
+        var v = [2,3];
+
+        var expected = this.math.matrix2.scale(m.buffer, v);
+
+        m.modified = false;
+        var returnValue = new this.math.Matrix2();
+        m.scale(v, returnValue);
+        var returnValue2 = m.scale(v);
+
+        ok(m.modified, "matrix is modified");
+        ok(this.math.matrix2.equal(m.buffer, expected), "matrix is scaled properly");
+        ok(this.math.matrix2.equal(returnValue.buffer, expected), "return value set properly");
+        equal(m, returnValue2, "returned value is correct");
+      });
+
       test( "set with matrix object", function() {
         expect( 4 );
 

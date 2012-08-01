@@ -272,8 +272,11 @@ define( function ( require ) {
       equal: equal,
       inverse: inverse,
       multiply: multiply,
+      rotate: rotate,
+      scale: scale,
       set: set,
       subtract: subtract,
+      translate: translate,
       transpose: transpose
     });
 

@@ -146,9 +146,9 @@ define( function ( require ) {
       return this;
     }
 
-    function rotate( v, result ) {
+    function rotate( r, result ) {
       result = result || this;
-      matrix2.rotate( this.buffer, v, result.buffer );
+      matrix2.rotate( this.buffer, r, result.buffer );
       result.modified = true;
 
       return this;

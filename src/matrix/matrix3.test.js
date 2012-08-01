@@ -270,6 +270,50 @@ define(
         deepEqual( result.buffer, expected, "result is correct" );
       });
 
+      test( "rotate", function(){
+        expect( 4 );
+
+        var m = new this.math.Matrix3(2,3,5,
+          11,13,17,
+          23,29,31);
+
+        var v = [this.math.TAU/3, this.math.TAU/5, this.math.TAU/7];
+
+        var expected = this.math.matrix3.rotate(m.buffer, v);
+
+        m.modified = false;
+        var returnValue = new this.math.Matrix3();
+        m.rotate(v, returnValue);
+        var returnValue2 = m.rotate(v);
+
+        ok(m.modified, "matrix is modified");
+        ok(this.math.matrix3.equal(m.buffer, expected), "matrix is rotated properly");
+        ok(this.math.matrix3.equal(returnValue.buffer, expected), "return value set properly");
+        equal(m, returnValue2, "returned value is correct");
+      });
+
+      test( "scale", function(){
+        expect( 4 );
+
+        var m = new this.math.Matrix3(2,3,5,
+          11,13,17,
+          23,29,31);
+
+        var v = [this.math.TAU/3, this.math.TAU/5, this.math.TAU/7];
+
+        var expected = this.math.matrix3.scale(m.buffer, v);
+
+        m.modified = false;
+        var returnValue = new this.math.Matrix3();
+        m.scale(v, returnValue);
+        var returnValue2 = m.scale(v);
+
+        ok(m.modified, "matrix is modified");
+        ok(this.math.matrix3.equal(m.buffer, expected), "matrix is scaled properly");
+        ok(this.math.matrix3.equal(returnValue.buffer, expected), "return value set properly");
+        equal(m, returnValue2, "returned value is correct");
+      });
+
       test( "set with matrix object", function() {
         expect( 4 );
 
